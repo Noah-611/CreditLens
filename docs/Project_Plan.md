@@ -12,8 +12,8 @@
 | 개발 기간 | 4주 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 0 초기 환경 구성 완료 |
-| 다음 단계 | Stage 1 데이터 확보 및 무결성 확인 |
+| 현재 상태 | Stage 1 데이터 확보 및 무결성 확인 완료 |
+| 다음 단계 | Stage 2 분할 전략·EDA·전처리 설계 |
 
 ### 한 줄 정의
 
@@ -202,8 +202,8 @@ GRU·LSTM은 핵심 Stage를 모두 마친 뒤 시간이 남을 때만 최근 �
 | 주차 | Stage | 핵심 목표 | 상태 |
 |---|---|---|---|
 | 1주차 | Stage 0 | 프로젝트 초기 환경 구성 | 완료 |
-| 1주차 | Stage 1 | 데이터 확보 및 무결성 확인 | 다음 |
-| 1주차 | Stage 2 | 분할 전략·EDA·전처리 설계 | 예정 |
+| 1주차 | Stage 1 | 데이터 확보 및 무결성 확인 | 완료 |
+| 1주차 | Stage 2 | 분할 전략·EDA·전처리 설계 | 다음 |
 | 2주차 | Stage 3 | 고객 단위 피처와 V1·V2·V3 구축 | 예정 |
 | 2주차 | Stage 4 | 기준 모델과 공통 평가 체계 구축 | 예정 |
 | 3주차 | Stage 5 | 후보 모델 비교·튜닝·확률 보정 | 예정 |
@@ -264,6 +264,18 @@ GRU·LSTM은 핵심 Stage를 모두 마친 뒤 시간이 남을 때만 최근 �
 - 세 핵심 테이블의 스키마와 키 관계를 설명할 수 있다.
 - 치명적인 누락·중복·타깃 이상 여부가 기록되어 있다.
 - 원본 데이터가 Git 추적 대상에 포함되지 않는다.
+
+**완료 기록 (2026-08-24)**
+
+- 청크 기반 전체 검증 결과 `PASS`: 오류 0건, 경고 43건, 정보 3건
+- `application_train.SK_ID_CURR`, `bureau.SK_ID_BUREAU` 결측·중복 0건
+- `installments_payments.SK_ID_PREV → SK_ID_CURR` 관계 위반 0건
+- `TARGET=1` 24,825건(8.0729%)으로 클래스 불균형 확인
+- 데이터 다운로드 절차: `docs/Data_Download_Guide.md`
+- 데이터 사전: `docs/Data_Dictionary.md`
+- 검증 보고서: `docs/Data_Validation_Report.md`
+- 기계 판독 결과: `reports/data_validation.json`
+- 합성 데이터 기반 자동 테스트 11개 통과
 
 ### Stage 2. 분할 전략·EDA·전처리 설계
 
@@ -490,20 +502,26 @@ CreditLens/
 │   ├── interim/              # 정제·집계 중간 데이터, Git 제외
 │   └── processed/            # 고객 단위 분석 데이터, Git 제외
 ├── docs/
+│   ├── Data_Download_Guide.md
+│   ├── Data_Dictionary.md
+│   ├── Data_Validation_Report.md
 │   └── Project_Plan.md       # 프로젝트 기준 계획서
 ├── models/                   # 학습 모델·전처리 산출물, Git 제외
 ├── notebooks/                # 단계별 탐색·실험 노트북
 ├── reports/
-│   └── figures/              # 문서·발표용 시각화
+│   ├── figures/              # 문서·발표용 시각화
+│   └── data_validation.json  # 기계 판독용 검증 결과
 ├── src/
-│   └── creditlens/           # 재사용 가능한 프로젝트 패키지
+│   └── creditlens/
+│       └── data/             # 데이터 검증·처리 모듈
 ├── tests/                    # 자동 테스트
 ├── .gitignore
+├── pytest.ini
 ├── README.md
 └── requirements.txt
 ```
 
-Stage 0에서는 폴더와 패키지 뼈대만 만든다. 전처리, 학습, 평가, API와 UI 파일은 각 Stage에 들어갈 때 책임을 정한 뒤 추가한다.
+Stage 1까지 원본 검증 모듈과 문서만 구현했다. 전처리, 학습, 평가, API와 UI 파일은 각 Stage에 들어갈 때 책임을 정한 뒤 추가한다.
 
 ## 10. 형상관리와 개발 원칙
 

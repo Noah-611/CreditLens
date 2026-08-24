@@ -7,8 +7,9 @@ CreditLens는 대출 신청정보와 과거 신용·납부 이력을 이용해 �
 ## 현재 상태
 
 - Stage 0: 프로젝트 초기 환경 구성 완료
-- 다음 작업: Stage 1 데이터 확보 및 무결성 확인
-- 아직 데이터 다운로드, 전처리, 모델 학습, API·화면 구현은 시작하지 않았습니다.
+- Stage 1: 데이터 확보 및 무결성 확인 완료 (`PASS`, 오류 0건)
+- 다음 작업: Stage 2 분할 전략·EDA·전처리 설계
+- 아직 데이터 전처리, 피처 생성, 모델 학습, API·화면 구현은 시작하지 않았습니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
 
@@ -29,15 +30,21 @@ CreditLens/
 │   ├── interim/              # 정제·집계 중간 데이터 (Git 제외)
 │   └── processed/            # 고객 단위 가공 데이터 (Git 제외)
 ├── docs/
-│   └── Project_Plan.md       # Stage별 프로젝트 계획
+│   ├── Data_Download_Guide.md
+│   ├── Data_Dictionary.md
+│   ├── Data_Validation_Report.md
+│   └── Project_Plan.md
 ├── models/                   # 학습 모델과 전처리 산출물 (Git 제외)
 ├── notebooks/                # 탐색·실험 노트북
 ├── reports/
-│   └── figures/              # 결과 시각화
+│   ├── figures/              # 결과 시각화
+│   └── data_validation.json  # 기계 판독용 Stage 1 검증 결과
 ├── src/
-│   └── creditlens/           # 재사용 가능한 Python 패키지
-├── tests/                    # 자동 테스트
+│   └── creditlens/
+│       └── data/             # 원본 데이터 검증 모듈
+├── tests/                    # 합성 데이터 기반 자동 테스트
 ├── .gitignore
+├── pytest.ini
 ├── README.md
 └── requirements.txt
 ```
@@ -72,8 +79,41 @@ python -m pip check
 - `application_train.csv`
 - `bureau.csv`
 - `installments_payments.csv`
+- `HomeCredit_columns_description.csv`
 
-Kaggle CLI를 사용할 경우 인증정보인 `kaggle.json`은 저장소에 복사하거나 커밋하지 마세요. 데이터 다운로드와 스키마 검증 절차는 Stage 1에서 구체화합니다.
+Kaggle CLI를 사용할 경우 인증정보인 `kaggle.json`은 저장소에 복사하거나 커밋하지 마세요. 전체 절차와 고정 원본 checksum은 [데이터 다운로드 가이드](docs/Data_Download_Guide.md)에 기록되어 있습니다.
+
+## Stage 1 원본 데이터 검증
+
+청크 기반 전체 검증을 재실행합니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.data.validate_raw \
+  --raw-dir data/raw
+```
+
+현재 검증 결과:
+
+| 테이블 | 데이터 행 수 | 컬럼 수 | 핵심 키 결과 |
+|---|---:|---:|---|
+| `application_train.csv` | 307,511 | 122 | `SK_ID_CURR` 결측·중복 0 |
+| `bureau.csv` | 1,716,428 | 17 | `SK_ID_BUREAU` 결측·중복 0 |
+| `installments_payments.csv` | 13,605,401 | 8 | `SK_ID_PREV → SK_ID_CURR` 위반 0 |
+
+- 최종 상태: `PASS`
+- 오류: 0건
+- 경고: 43건(고결측 컬럼 등 Stage 2 검토 대상)
+- `TARGET=1`: 24,825건(8.0729%)
+
+세부 결과는 [데이터 검증 보고서](docs/Data_Validation_Report.md), 전체 컬럼 정보는 [데이터 사전](docs/Data_Dictionary.md)에서 확인할 수 있습니다. 기계 판독용 원본 결과는 `reports/data_validation.json`에 저장됩니다.
+
+자동 테스트:
+
+```bash
+.venv/bin/python -m pytest -q
+```
+
+현재 합성 데이터 기반 회귀 테스트 11개가 통과합니다.
 
 ## Git에 올리지 않는 파일
 
@@ -93,11 +133,11 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 1에서만 다음 작업을 진행합니다.
+Stage 2에서 다음 작업을 진행합니다.
 
-1. Kaggle 데이터 다운로드 절차를 확정합니다.
-2. 파일·스키마·키 관계를 확인합니다.
-3. 결측치, 중복, 자료형과 `TARGET` 분포를 점검합니다.
-4. 데이터 사전 초안과 검증 보고서를 만듭니다.
+1. 고정 random seed와 층화 학습·검증·테스트 분할을 설계합니다.
+2. 수치형·범주형 변수의 EDA와 시각화를 진행합니다.
+3. 예측 시점 기준 데이터 누수 후보를 검토합니다.
+4. 결측·이상치·범주 인코딩·스케일링 기준을 문서화합니다.
 
-모델링은 데이터 검증과 분할·누수 방지 설계가 끝난 뒤 시작합니다.
+모델링과 피처 생성은 Stage 2의 분할·누수 방지 설계가 끝난 뒤 시작합니다.

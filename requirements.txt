@@ -24,6 +24,6 @@ streamlit>=1.32,<2.0
 
 # Project utilities and tests
 python-dotenv>=1.0,<2.0
-kaggle>=1.6,<2.0
+kaggle>=2.2,<3.0
 pytest>=8.0,<10.0
 httpx>=0.27,<1.0

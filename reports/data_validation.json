@@ -1,0 +1,4389 @@
+{
+  "schema_version": 1,
+  "generated_at_utc": "2026-08-24T06:52:21.619819+00:00",
+  "chunk_size": 200000,
+  "environment": {
+    "python": "3.12.3",
+    "pandas": "3.0.5",
+    "numpy": "2.5.2"
+  },
+  "description_manifest": {
+    "filename": "HomeCredit_columns_description.csv",
+    "display_path": "data/raw/HomeCredit_columns_description.csv",
+    "file_size_bytes": 37383,
+    "sha256": "eef7665398228a80f7367c9258220c5fbe1038f3f54094244f354d54e2d4fb03",
+    "expected_sha256": "eef7665398228a80f7367c9258220c5fbe1038f3f54094244f354d54e2d4fb03",
+    "row_count": 219,
+    "expected_row_count": 219,
+    "column_count": 5
+  },
+  "tables": {
+    "application": {
+      "name": "application",
+      "filename": "application_train.csv",
+      "display_path": "data/raw/application_train.csv",
+      "grain": "현재 대출 신청 1건당 1행",
+      "file_size_bytes": 166133370,
+      "sha256": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f",
+      "expected_sha256": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f",
+      "row_count": 307511,
+      "expected_row_count": 307511,
+      "column_count": 122,
+      "columns": [
+        "SK_ID_CURR",
+        "TARGET",
+        "NAME_CONTRACT_TYPE",
+        "CODE_GENDER",
+        "FLAG_OWN_CAR",
+        "FLAG_OWN_REALTY",
+        "CNT_CHILDREN",
+        "AMT_INCOME_TOTAL",
+        "AMT_CREDIT",
+        "AMT_ANNUITY",
+        "AMT_GOODS_PRICE",
+        "NAME_TYPE_SUITE",
+        "NAME_INCOME_TYPE",
+        "NAME_EDUCATION_TYPE",
+        "NAME_FAMILY_STATUS",
+        "NAME_HOUSING_TYPE",
+        "REGION_POPULATION_RELATIVE",
+        "DAYS_BIRTH",
+        "DAYS_EMPLOYED",
+        "DAYS_REGISTRATION",
+        "DAYS_ID_PUBLISH",
+        "OWN_CAR_AGE",
+        "FLAG_MOBIL",
+        "FLAG_EMP_PHONE",
+        "FLAG_WORK_PHONE",
+        "FLAG_CONT_MOBILE",
+        "FLAG_PHONE",
+        "FLAG_EMAIL",
+        "OCCUPATION_TYPE",
+        "CNT_FAM_MEMBERS",
+        "REGION_RATING_CLIENT",
+        "REGION_RATING_CLIENT_W_CITY",
+        "WEEKDAY_APPR_PROCESS_START",
+        "HOUR_APPR_PROCESS_START",
+        "REG_REGION_NOT_LIVE_REGION",
+        "REG_REGION_NOT_WORK_REGION",
+        "LIVE_REGION_NOT_WORK_REGION",
+        "REG_CITY_NOT_LIVE_CITY",
+        "REG_CITY_NOT_WORK_CITY",
+        "LIVE_CITY_NOT_WORK_CITY",
+        "ORGANIZATION_TYPE",
+        "EXT_SOURCE_1",
+        "EXT_SOURCE_2",
+        "EXT_SOURCE_3",
+        "APARTMENTS_AVG",
+        "BASEMENTAREA_AVG",
+        "YEARS_BEGINEXPLUATATION_AVG",
+        "YEARS_BUILD_AVG",
+        "COMMONAREA_AVG",
+        "ELEVATORS_AVG",
+        "ENTRANCES_AVG",
+        "FLOORSMAX_AVG",
+        "FLOORSMIN_AVG",
+        "LANDAREA_AVG",
+        "LIVINGAPARTMENTS_AVG",
+        "LIVINGAREA_AVG",
+        "NONLIVINGAPARTMENTS_AVG",
+        "NONLIVINGAREA_AVG",
+        "APARTMENTS_MODE",
+        "BASEMENTAREA_MODE",
+        "YEARS_BEGINEXPLUATATION_MODE",
+        "YEARS_BUILD_MODE",
+        "COMMONAREA_MODE",
+        "ELEVATORS_MODE",
+        "ENTRANCES_MODE",
+        "FLOORSMAX_MODE",
+        "FLOORSMIN_MODE",
+        "LANDAREA_MODE",
+        "LIVINGAPARTMENTS_MODE",
+        "LIVINGAREA_MODE",
+        "NONLIVINGAPARTMENTS_MODE",
+        "NONLIVINGAREA_MODE",
+        "APARTMENTS_MEDI",
+        "BASEMENTAREA_MEDI",
+        "YEARS_BEGINEXPLUATATION_MEDI",
+        "YEARS_BUILD_MEDI",
+        "COMMONAREA_MEDI",
+        "ELEVATORS_MEDI",
+        "ENTRANCES_MEDI",
+        "FLOORSMAX_MEDI",
+        "FLOORSMIN_MEDI",
+        "LANDAREA_MEDI",
+        "LIVINGAPARTMENTS_MEDI",
+        "LIVINGAREA_MEDI",
+        "NONLIVINGAPARTMENTS_MEDI",
+        "NONLIVINGAREA_MEDI",
+        "FONDKAPREMONT_MODE",
+        "HOUSETYPE_MODE",
+        "TOTALAREA_MODE",
+        "WALLSMATERIAL_MODE",
+        "EMERGENCYSTATE_MODE",
+        "OBS_30_CNT_SOCIAL_CIRCLE",
+        "DEF_30_CNT_SOCIAL_CIRCLE",
+        "OBS_60_CNT_SOCIAL_CIRCLE",
+        "DEF_60_CNT_SOCIAL_CIRCLE",
+        "DAYS_LAST_PHONE_CHANGE",
+        "FLAG_DOCUMENT_2",
+        "FLAG_DOCUMENT_3",
+        "FLAG_DOCUMENT_4",
+        "FLAG_DOCUMENT_5",
+        "FLAG_DOCUMENT_6",
+        "FLAG_DOCUMENT_7",
+        "FLAG_DOCUMENT_8",
+        "FLAG_DOCUMENT_9",
+        "FLAG_DOCUMENT_10",
+        "FLAG_DOCUMENT_11",
+        "FLAG_DOCUMENT_12",
+        "FLAG_DOCUMENT_13",
+        "FLAG_DOCUMENT_14",
+        "FLAG_DOCUMENT_15",
+        "FLAG_DOCUMENT_16",
+        "FLAG_DOCUMENT_17",
+        "FLAG_DOCUMENT_18",
+        "FLAG_DOCUMENT_19",
+        "FLAG_DOCUMENT_20",
+        "FLAG_DOCUMENT_21",
+        "AMT_REQ_CREDIT_BUREAU_HOUR",
+        "AMT_REQ_CREDIT_BUREAU_DAY",
+        "AMT_REQ_CREDIT_BUREAU_WEEK",
+        "AMT_REQ_CREDIT_BUREAU_MON",
+        "AMT_REQ_CREDIT_BUREAU_QRT",
+        "AMT_REQ_CREDIT_BUREAU_YEAR"
+      ],
+      "column_stats": {
+        "SK_ID_CURR": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 100002.0,
+          "max": 456255.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "TARGET": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NAME_CONTRACT_TYPE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 2,
+          "top_categories": [
+            {
+              "value": "Cash loans",
+              "count": 278232
+            },
+            {
+              "value": "Revolving loans",
+              "count": 29279
+            }
+          ]
+        },
+        "CODE_GENDER": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 3,
+          "top_categories": [
+            {
+              "value": "F",
+              "count": 202448
+            },
+            {
+              "value": "M",
+              "count": 105059
+            },
+            {
+              "value": "XNA",
+              "count": 4
+            }
+          ]
+        },
+        "FLAG_OWN_CAR": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 2,
+          "top_categories": [
+            {
+              "value": "N",
+              "count": 202924
+            },
+            {
+              "value": "Y",
+              "count": 104587
+            }
+          ]
+        },
+        "FLAG_OWN_REALTY": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 2,
+          "top_categories": [
+            {
+              "value": "Y",
+              "count": 213312
+            },
+            {
+              "value": "N",
+              "count": 94199
+            }
+          ]
+        },
+        "CNT_CHILDREN": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 19.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_INCOME_TOTAL": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 25650.0,
+          "max": 117000000.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_CREDIT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 45000.0,
+          "max": 4050000.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_ANNUITY": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 12,
+          "missing_rate": 3.9022994299390916e-05,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 1615.5,
+          "max": 258025.5,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_GOODS_PRICE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 278,
+          "missing_rate": 0.0009040327012692228,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 40500.0,
+          "max": 4050000.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NAME_TYPE_SUITE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 1292,
+          "missing_rate": 0.004201475719567756,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 7,
+          "top_categories": [
+            {
+              "value": "Unaccompanied",
+              "count": 248526
+            },
+            {
+              "value": "Family",
+              "count": 40149
+            },
+            {
+              "value": "Spouse, partner",
+              "count": 11370
+            },
+            {
+              "value": "Children",
+              "count": 3267
+            },
+            {
+              "value": "Other_B",
+              "count": 1770
+            },
+            {
+              "value": "Other_A",
+              "count": 866
+            },
+            {
+              "value": "Group of people",
+              "count": 271
+            }
+          ]
+        },
+        "NAME_INCOME_TYPE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 8,
+          "top_categories": [
+            {
+              "value": "Working",
+              "count": 158774
+            },
+            {
+              "value": "Commercial associate",
+              "count": 71617
+            },
+            {
+              "value": "Pensioner",
+              "count": 55362
+            },
+            {
+              "value": "State servant",
+              "count": 21703
+            },
+            {
+              "value": "Unemployed",
+              "count": 22
+            },
+            {
+              "value": "Student",
+              "count": 18
+            },
+            {
+              "value": "Businessman",
+              "count": 10
+            },
+            {
+              "value": "Maternity leave",
+              "count": 5
+            }
+          ]
+        },
+        "NAME_EDUCATION_TYPE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 5,
+          "top_categories": [
+            {
+              "value": "Secondary / secondary special",
+              "count": 218391
+            },
+            {
+              "value": "Higher education",
+              "count": 74863
+            },
+            {
+              "value": "Incomplete higher",
+              "count": 10277
+            },
+            {
+              "value": "Lower secondary",
+              "count": 3816
+            },
+            {
+              "value": "Academic degree",
+              "count": 164
+            }
+          ]
+        },
+        "NAME_FAMILY_STATUS": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 6,
+          "top_categories": [
+            {
+              "value": "Married",
+              "count": 196432
+            },
+            {
+              "value": "Single / not married",
+              "count": 45444
+            },
+            {
+              "value": "Civil marriage",
+              "count": 29775
+            },
+            {
+              "value": "Separated",
+              "count": 19770
+            },
+            {
+              "value": "Widow",
+              "count": 16088
+            },
+            {
+              "value": "Unknown",
+              "count": 2
+            }
+          ]
+        },
+        "NAME_HOUSING_TYPE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 6,
+          "top_categories": [
+            {
+              "value": "House / apartment",
+              "count": 272868
+            },
+            {
+              "value": "With parents",
+              "count": 14840
+            },
+            {
+              "value": "Municipal apartment",
+              "count": 11183
+            },
+            {
+              "value": "Rented apartment",
+              "count": 4881
+            },
+            {
+              "value": "Office apartment",
+              "count": 2617
+            },
+            {
+              "value": "Co-op apartment",
+              "count": 1122
+            }
+          ]
+        },
+        "REGION_POPULATION_RELATIVE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.00029,
+          "max": 0.072508,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_BIRTH": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -25229.0,
+          "max": -7489.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_EMPLOYED": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -17912.0,
+          "max": 365243.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_REGISTRATION": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -24672.0,
+          "max": 0.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_ID_PUBLISH": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -7197.0,
+          "max": 0.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "OWN_CAR_AGE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 202929,
+          "missing_rate": 0.6599081008484249,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 91.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_MOBIL": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_EMP_PHONE": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_WORK_PHONE": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_CONT_MOBILE": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_PHONE": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_EMAIL": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "OCCUPATION_TYPE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 96391,
+          "missing_rate": 0.31345545362604915,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 18,
+          "top_categories": [
+            {
+              "value": "Laborers",
+              "count": 55186
+            },
+            {
+              "value": "Sales staff",
+              "count": 32102
+            },
+            {
+              "value": "Core staff",
+              "count": 27570
+            },
+            {
+              "value": "Managers",
+              "count": 21371
+            },
+            {
+              "value": "Drivers",
+              "count": 18603
+            },
+            {
+              "value": "High skill tech staff",
+              "count": 11380
+            },
+            {
+              "value": "Accountants",
+              "count": 9813
+            },
+            {
+              "value": "Medicine staff",
+              "count": 8537
+            },
+            {
+              "value": "Security staff",
+              "count": 6721
+            },
+            {
+              "value": "Cooking staff",
+              "count": 5946
+            },
+            {
+              "value": "Cleaning staff",
+              "count": 4653
+            },
+            {
+              "value": "Private service staff",
+              "count": 2652
+            },
+            {
+              "value": "Low-skill Laborers",
+              "count": 2093
+            },
+            {
+              "value": "Waiters/barmen staff",
+              "count": 1348
+            },
+            {
+              "value": "Secretaries",
+              "count": 1305
+            },
+            {
+              "value": "Realty agents",
+              "count": 751
+            },
+            {
+              "value": "HR staff",
+              "count": 563
+            },
+            {
+              "value": "IT staff",
+              "count": 526
+            }
+          ]
+        },
+        "CNT_FAM_MEMBERS": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 2,
+          "missing_rate": 6.503832383231819e-06,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 1.0,
+          "max": 20.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "REGION_RATING_CLIENT": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 1.0,
+          "max": 3.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "REGION_RATING_CLIENT_W_CITY": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 1.0,
+          "max": 3.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "WEEKDAY_APPR_PROCESS_START": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 7,
+          "top_categories": [
+            {
+              "value": "TUESDAY",
+              "count": 53901
+            },
+            {
+              "value": "WEDNESDAY",
+              "count": 51934
+            },
+            {
+              "value": "MONDAY",
+              "count": 50714
+            },
+            {
+              "value": "THURSDAY",
+              "count": 50591
+            },
+            {
+              "value": "FRIDAY",
+              "count": 50338
+            },
+            {
+              "value": "SATURDAY",
+              "count": 33852
+            },
+            {
+              "value": "SUNDAY",
+              "count": 16181
+            }
+          ]
+        },
+        "HOUR_APPR_PROCESS_START": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 23.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "REG_REGION_NOT_LIVE_REGION": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "REG_REGION_NOT_WORK_REGION": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVE_REGION_NOT_WORK_REGION": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "REG_CITY_NOT_LIVE_CITY": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "REG_CITY_NOT_WORK_CITY": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVE_CITY_NOT_WORK_CITY": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "ORGANIZATION_TYPE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 58,
+          "top_categories": [
+            {
+              "value": "Business Entity Type 3",
+              "count": 67992
+            },
+            {
+              "value": "XNA",
+              "count": 55374
+            },
+            {
+              "value": "Self-employed",
+              "count": 38412
+            },
+            {
+              "value": "Other",
+              "count": 16683
+            },
+            {
+              "value": "Medicine",
+              "count": 11193
+            },
+            {
+              "value": "Business Entity Type 2",
+              "count": 10553
+            },
+            {
+              "value": "Government",
+              "count": 10404
+            },
+            {
+              "value": "School",
+              "count": 8893
+            },
+            {
+              "value": "Trade: type 7",
+              "count": 7831
+            },
+            {
+              "value": "Kindergarten",
+              "count": 6880
+            },
+            {
+              "value": "Construction",
+              "count": 6721
+            },
+            {
+              "value": "Business Entity Type 1",
+              "count": 5984
+            },
+            {
+              "value": "Transport: type 4",
+              "count": 5398
+            },
+            {
+              "value": "Trade: type 3",
+              "count": 3492
+            },
+            {
+              "value": "Industry: type 9",
+              "count": 3368
+            },
+            {
+              "value": "Industry: type 3",
+              "count": 3278
+            },
+            {
+              "value": "Security",
+              "count": 3247
+            },
+            {
+              "value": "Housing",
+              "count": 2958
+            },
+            {
+              "value": "Industry: type 11",
+              "count": 2704
+            },
+            {
+              "value": "Military",
+              "count": 2634
+            }
+          ]
+        },
+        "EXT_SOURCE_1": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 173378,
+          "missing_rate": 0.5638107254699832,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0145681324124455,
+          "max": 0.962692770561306,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "EXT_SOURCE_2": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 660,
+          "missing_rate": 0.0021462646864665006,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 8.173616518884397e-08,
+          "max": 0.8549996664047012,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "EXT_SOURCE_3": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 60965,
+          "missing_rate": 0.19825307062186392,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0005272652387098,
+          "max": 0.8960095494948396,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "APARTMENTS_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 156061,
+          "missing_rate": 0.5074972927797705,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "BASEMENTAREA_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 179943,
+          "missing_rate": 0.5851595552679416,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "YEARS_BEGINEXPLUATATION_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 150007,
+          "missing_rate": 0.48781019215572774,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "YEARS_BUILD_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 204488,
+          "missing_rate": 0.6649778381911542,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "COMMONAREA_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 214865,
+          "missing_rate": 0.6987229725115525,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "ELEVATORS_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 163891,
+          "missing_rate": 0.532959796560123,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "ENTRANCES_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 154828,
+          "missing_rate": 0.503487680115508,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLOORSMAX_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 153020,
+          "missing_rate": 0.4976082156410665,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLOORSMIN_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 208642,
+          "missing_rate": 0.6784862980511266,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LANDAREA_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 182590,
+          "missing_rate": 0.5937673774271489,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVINGAPARTMENTS_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 210199,
+          "missing_rate": 0.6835495315614726,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVINGAREA_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 154350,
+          "missing_rate": 0.5019332641759157,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NONLIVINGAPARTMENTS_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 213514,
+          "missing_rate": 0.6943296337366793,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NONLIVINGAREA_AVG": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 169682,
+          "missing_rate": 0.5517916432257708,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "APARTMENTS_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 156061,
+          "missing_rate": 0.5074972927797705,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "BASEMENTAREA_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 179943,
+          "missing_rate": 0.5851595552679416,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "YEARS_BEGINEXPLUATATION_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 150007,
+          "missing_rate": 0.48781019215572774,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "YEARS_BUILD_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 204488,
+          "missing_rate": 0.6649778381911542,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "COMMONAREA_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 214865,
+          "missing_rate": 0.6987229725115525,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "ELEVATORS_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 163891,
+          "missing_rate": 0.532959796560123,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "ENTRANCES_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 154828,
+          "missing_rate": 0.503487680115508,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLOORSMAX_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 153020,
+          "missing_rate": 0.4976082156410665,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLOORSMIN_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 208642,
+          "missing_rate": 0.6784862980511266,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LANDAREA_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 182590,
+          "missing_rate": 0.5937673774271489,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVINGAPARTMENTS_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 210199,
+          "missing_rate": 0.6835495315614726,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVINGAREA_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 154350,
+          "missing_rate": 0.5019332641759157,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NONLIVINGAPARTMENTS_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 213514,
+          "missing_rate": 0.6943296337366793,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NONLIVINGAREA_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 169682,
+          "missing_rate": 0.5517916432257708,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "APARTMENTS_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 156061,
+          "missing_rate": 0.5074972927797705,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "BASEMENTAREA_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 179943,
+          "missing_rate": 0.5851595552679416,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "YEARS_BEGINEXPLUATATION_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 150007,
+          "missing_rate": 0.48781019215572774,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "YEARS_BUILD_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 204488,
+          "missing_rate": 0.6649778381911542,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "COMMONAREA_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 214865,
+          "missing_rate": 0.6987229725115525,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "ELEVATORS_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 163891,
+          "missing_rate": 0.532959796560123,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "ENTRANCES_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 154828,
+          "missing_rate": 0.503487680115508,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLOORSMAX_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 153020,
+          "missing_rate": 0.4976082156410665,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLOORSMIN_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 208642,
+          "missing_rate": 0.6784862980511266,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LANDAREA_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 182590,
+          "missing_rate": 0.5937673774271489,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVINGAPARTMENTS_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 210199,
+          "missing_rate": 0.6835495315614726,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "LIVINGAREA_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 154350,
+          "missing_rate": 0.5019332641759157,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NONLIVINGAPARTMENTS_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 213514,
+          "missing_rate": 0.6943296337366793,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NONLIVINGAREA_MEDI": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 169682,
+          "missing_rate": 0.5517916432257708,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FONDKAPREMONT_MODE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 210295,
+          "missing_rate": 0.6838617155158677,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 4,
+          "top_categories": [
+            {
+              "value": "reg oper account",
+              "count": 73830
+            },
+            {
+              "value": "reg oper spec account",
+              "count": 12080
+            },
+            {
+              "value": "not specified",
+              "count": 5687
+            },
+            {
+              "value": "org spec account",
+              "count": 5619
+            }
+          ]
+        },
+        "HOUSETYPE_MODE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 154297,
+          "missing_rate": 0.50176091261776,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 3,
+          "top_categories": [
+            {
+              "value": "block of flats",
+              "count": 150503
+            },
+            {
+              "value": "specific housing",
+              "count": 1499
+            },
+            {
+              "value": "terraced house",
+              "count": 1212
+            }
+          ]
+        },
+        "TOTALAREA_MODE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 148431,
+          "missing_rate": 0.4826851722377411,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "WALLSMATERIAL_MODE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 156341,
+          "missing_rate": 0.508407829313423,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 7,
+          "top_categories": [
+            {
+              "value": "Panel",
+              "count": 66040
+            },
+            {
+              "value": "Stone, brick",
+              "count": 64815
+            },
+            {
+              "value": "Block",
+              "count": 9253
+            },
+            {
+              "value": "Wooden",
+              "count": 5362
+            },
+            {
+              "value": "Mixed",
+              "count": 2296
+            },
+            {
+              "value": "Monolithic",
+              "count": 1779
+            },
+            {
+              "value": "Others",
+              "count": 1625
+            }
+          ]
+        },
+        "EMERGENCYSTATE_MODE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 145755,
+          "missing_rate": 0.47398304450897694,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 2,
+          "top_categories": [
+            {
+              "value": "No",
+              "count": 159428
+            },
+            {
+              "value": "Yes",
+              "count": 2328
+            }
+          ]
+        },
+        "OBS_30_CNT_SOCIAL_CIRCLE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 1021,
+          "missing_rate": 0.0033202064316398437,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 348.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DEF_30_CNT_SOCIAL_CIRCLE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 1021,
+          "missing_rate": 0.0033202064316398437,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 34.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "OBS_60_CNT_SOCIAL_CIRCLE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 1021,
+          "missing_rate": 0.0033202064316398437,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 344.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DEF_60_CNT_SOCIAL_CIRCLE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 1021,
+          "missing_rate": 0.0033202064316398437,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 24.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_LAST_PHONE_CHANGE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 1,
+          "missing_rate": 3.2519161916159095e-06,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -4292.0,
+          "max": 0.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_2": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_3": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_4": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_5": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_6": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_7": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_8": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_9": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_10": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_11": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_12": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_13": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_14": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_15": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_16": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_17": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_18": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_19": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_20": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "FLAG_DOCUMENT_21": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_REQ_CREDIT_BUREAU_HOUR": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 41519,
+          "missing_rate": 0.13501630835970097,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 4.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_REQ_CREDIT_BUREAU_DAY": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 41519,
+          "missing_rate": 0.13501630835970097,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 9.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_REQ_CREDIT_BUREAU_WEEK": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 41519,
+          "missing_rate": 0.13501630835970097,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 8.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_REQ_CREDIT_BUREAU_MON": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 41519,
+          "missing_rate": 0.13501630835970097,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 27.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_REQ_CREDIT_BUREAU_QRT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 41519,
+          "missing_rate": 0.13501630835970097,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 261.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_REQ_CREDIT_BUREAU_YEAR": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 41519,
+          "missing_rate": 0.13501630835970097,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 25.0,
+          "unique_category_count": null,
+          "top_categories": []
+        }
+      },
+      "primary_key": "SK_ID_CURR",
+      "primary_key_null_count": 0,
+      "primary_key_unique_count": 307511,
+      "primary_key_duplicate_count": 0,
+      "duplicate_row_hash_count": 0,
+      "customer_unique_count": 307511,
+      "matched_application_row_count": null,
+      "matched_application_customer_count": null,
+      "rules": [
+        {
+          "code": "amt_annuity_non_negative",
+          "column": "AMT_ANNUITY",
+          "description": "AMT_ANNUITY은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_annuity_numeric",
+          "column": "AMT_ANNUITY",
+          "description": "AMT_ANNUITY은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_non_negative",
+          "column": "AMT_CREDIT",
+          "description": "AMT_CREDIT은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_numeric",
+          "column": "AMT_CREDIT",
+          "description": "AMT_CREDIT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_goods_price_non_negative",
+          "column": "AMT_GOODS_PRICE",
+          "description": "AMT_GOODS_PRICE은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_goods_price_numeric",
+          "column": "AMT_GOODS_PRICE",
+          "description": "AMT_GOODS_PRICE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_income_total_non_negative",
+          "column": "AMT_INCOME_TOTAL",
+          "description": "AMT_INCOME_TOTAL은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_income_total_numeric",
+          "column": "AMT_INCOME_TOTAL",
+          "description": "AMT_INCOME_TOTAL은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_req_credit_bureau_day_numeric",
+          "column": "AMT_REQ_CREDIT_BUREAU_DAY",
+          "description": "AMT_REQ_CREDIT_BUREAU_DAY은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_req_credit_bureau_hour_numeric",
+          "column": "AMT_REQ_CREDIT_BUREAU_HOUR",
+          "description": "AMT_REQ_CREDIT_BUREAU_HOUR은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_req_credit_bureau_mon_numeric",
+          "column": "AMT_REQ_CREDIT_BUREAU_MON",
+          "description": "AMT_REQ_CREDIT_BUREAU_MON은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_req_credit_bureau_qrt_numeric",
+          "column": "AMT_REQ_CREDIT_BUREAU_QRT",
+          "description": "AMT_REQ_CREDIT_BUREAU_QRT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_req_credit_bureau_week_numeric",
+          "column": "AMT_REQ_CREDIT_BUREAU_WEEK",
+          "description": "AMT_REQ_CREDIT_BUREAU_WEEK은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_req_credit_bureau_year_numeric",
+          "column": "AMT_REQ_CREDIT_BUREAU_YEAR",
+          "description": "AMT_REQ_CREDIT_BUREAU_YEAR은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "apartments_avg_numeric",
+          "column": "APARTMENTS_AVG",
+          "description": "APARTMENTS_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "apartments_medi_numeric",
+          "column": "APARTMENTS_MEDI",
+          "description": "APARTMENTS_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "apartments_mode_numeric",
+          "column": "APARTMENTS_MODE",
+          "description": "APARTMENTS_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "basementarea_avg_numeric",
+          "column": "BASEMENTAREA_AVG",
+          "description": "BASEMENTAREA_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "basementarea_medi_numeric",
+          "column": "BASEMENTAREA_MEDI",
+          "description": "BASEMENTAREA_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "basementarea_mode_numeric",
+          "column": "BASEMENTAREA_MODE",
+          "description": "BASEMENTAREA_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "cnt_children_non_negative",
+          "column": "CNT_CHILDREN",
+          "description": "CNT_CHILDREN은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "cnt_children_numeric",
+          "column": "CNT_CHILDREN",
+          "description": "CNT_CHILDREN은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "cnt_fam_members_numeric",
+          "column": "CNT_FAM_MEMBERS",
+          "description": "CNT_FAM_MEMBERS은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "commonarea_avg_numeric",
+          "column": "COMMONAREA_AVG",
+          "description": "COMMONAREA_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "commonarea_medi_numeric",
+          "column": "COMMONAREA_MEDI",
+          "description": "COMMONAREA_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "commonarea_mode_numeric",
+          "column": "COMMONAREA_MODE",
+          "description": "COMMONAREA_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_birth_negative",
+          "column": "DAYS_BIRTH",
+          "description": "DAYS_BIRTH는 신청일 이전을 나타내는 음수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_birth_numeric",
+          "column": "DAYS_BIRTH",
+          "description": "DAYS_BIRTH은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_employed_domain",
+          "column": "DAYS_EMPLOYED",
+          "description": "DAYS_EMPLOYED의 양수는 알려진 365243 sentinel만 허용한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_employed_numeric",
+          "column": "DAYS_EMPLOYED",
+          "description": "DAYS_EMPLOYED은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_id_publish_numeric",
+          "column": "DAYS_ID_PUBLISH",
+          "description": "DAYS_ID_PUBLISH은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_last_phone_change_numeric",
+          "column": "DAYS_LAST_PHONE_CHANGE",
+          "description": "DAYS_LAST_PHONE_CHANGE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_registration_numeric",
+          "column": "DAYS_REGISTRATION",
+          "description": "DAYS_REGISTRATION은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "def_30_cnt_social_circle_numeric",
+          "column": "DEF_30_CNT_SOCIAL_CIRCLE",
+          "description": "DEF_30_CNT_SOCIAL_CIRCLE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "def_60_cnt_social_circle_numeric",
+          "column": "DEF_60_CNT_SOCIAL_CIRCLE",
+          "description": "DEF_60_CNT_SOCIAL_CIRCLE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "elevators_avg_numeric",
+          "column": "ELEVATORS_AVG",
+          "description": "ELEVATORS_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "elevators_medi_numeric",
+          "column": "ELEVATORS_MEDI",
+          "description": "ELEVATORS_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "elevators_mode_numeric",
+          "column": "ELEVATORS_MODE",
+          "description": "ELEVATORS_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "entrances_avg_numeric",
+          "column": "ENTRANCES_AVG",
+          "description": "ENTRANCES_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "entrances_medi_numeric",
+          "column": "ENTRANCES_MEDI",
+          "description": "ENTRANCES_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "entrances_mode_numeric",
+          "column": "ENTRANCES_MODE",
+          "description": "ENTRANCES_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "ext_source_1_numeric",
+          "column": "EXT_SOURCE_1",
+          "description": "EXT_SOURCE_1은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "ext_source_2_numeric",
+          "column": "EXT_SOURCE_2",
+          "description": "EXT_SOURCE_2은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "ext_source_3_numeric",
+          "column": "EXT_SOURCE_3",
+          "description": "EXT_SOURCE_3은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_cont_mobile_binary",
+          "column": "FLAG_CONT_MOBILE",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_cont_mobile_numeric",
+          "column": "FLAG_CONT_MOBILE",
+          "description": "FLAG_CONT_MOBILE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_10_binary",
+          "column": "FLAG_DOCUMENT_10",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_10_numeric",
+          "column": "FLAG_DOCUMENT_10",
+          "description": "FLAG_DOCUMENT_10은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_11_binary",
+          "column": "FLAG_DOCUMENT_11",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_11_numeric",
+          "column": "FLAG_DOCUMENT_11",
+          "description": "FLAG_DOCUMENT_11은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_12_binary",
+          "column": "FLAG_DOCUMENT_12",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_12_numeric",
+          "column": "FLAG_DOCUMENT_12",
+          "description": "FLAG_DOCUMENT_12은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_13_binary",
+          "column": "FLAG_DOCUMENT_13",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_13_numeric",
+          "column": "FLAG_DOCUMENT_13",
+          "description": "FLAG_DOCUMENT_13은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_14_binary",
+          "column": "FLAG_DOCUMENT_14",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_14_numeric",
+          "column": "FLAG_DOCUMENT_14",
+          "description": "FLAG_DOCUMENT_14은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_15_binary",
+          "column": "FLAG_DOCUMENT_15",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_15_numeric",
+          "column": "FLAG_DOCUMENT_15",
+          "description": "FLAG_DOCUMENT_15은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_16_binary",
+          "column": "FLAG_DOCUMENT_16",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_16_numeric",
+          "column": "FLAG_DOCUMENT_16",
+          "description": "FLAG_DOCUMENT_16은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_17_binary",
+          "column": "FLAG_DOCUMENT_17",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_17_numeric",
+          "column": "FLAG_DOCUMENT_17",
+          "description": "FLAG_DOCUMENT_17은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_18_binary",
+          "column": "FLAG_DOCUMENT_18",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_18_numeric",
+          "column": "FLAG_DOCUMENT_18",
+          "description": "FLAG_DOCUMENT_18은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_19_binary",
+          "column": "FLAG_DOCUMENT_19",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_19_numeric",
+          "column": "FLAG_DOCUMENT_19",
+          "description": "FLAG_DOCUMENT_19은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_2_binary",
+          "column": "FLAG_DOCUMENT_2",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_2_numeric",
+          "column": "FLAG_DOCUMENT_2",
+          "description": "FLAG_DOCUMENT_2은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_20_binary",
+          "column": "FLAG_DOCUMENT_20",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_20_numeric",
+          "column": "FLAG_DOCUMENT_20",
+          "description": "FLAG_DOCUMENT_20은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_21_binary",
+          "column": "FLAG_DOCUMENT_21",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_21_numeric",
+          "column": "FLAG_DOCUMENT_21",
+          "description": "FLAG_DOCUMENT_21은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_3_binary",
+          "column": "FLAG_DOCUMENT_3",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_3_numeric",
+          "column": "FLAG_DOCUMENT_3",
+          "description": "FLAG_DOCUMENT_3은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_4_binary",
+          "column": "FLAG_DOCUMENT_4",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_4_numeric",
+          "column": "FLAG_DOCUMENT_4",
+          "description": "FLAG_DOCUMENT_4은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_5_binary",
+          "column": "FLAG_DOCUMENT_5",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_5_numeric",
+          "column": "FLAG_DOCUMENT_5",
+          "description": "FLAG_DOCUMENT_5은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_6_binary",
+          "column": "FLAG_DOCUMENT_6",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_6_numeric",
+          "column": "FLAG_DOCUMENT_6",
+          "description": "FLAG_DOCUMENT_6은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_7_binary",
+          "column": "FLAG_DOCUMENT_7",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_7_numeric",
+          "column": "FLAG_DOCUMENT_7",
+          "description": "FLAG_DOCUMENT_7은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_8_binary",
+          "column": "FLAG_DOCUMENT_8",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_8_numeric",
+          "column": "FLAG_DOCUMENT_8",
+          "description": "FLAG_DOCUMENT_8은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_9_binary",
+          "column": "FLAG_DOCUMENT_9",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_document_9_numeric",
+          "column": "FLAG_DOCUMENT_9",
+          "description": "FLAG_DOCUMENT_9은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_email_binary",
+          "column": "FLAG_EMAIL",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_email_numeric",
+          "column": "FLAG_EMAIL",
+          "description": "FLAG_EMAIL은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_emp_phone_binary",
+          "column": "FLAG_EMP_PHONE",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_emp_phone_numeric",
+          "column": "FLAG_EMP_PHONE",
+          "description": "FLAG_EMP_PHONE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_mobil_binary",
+          "column": "FLAG_MOBIL",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_mobil_numeric",
+          "column": "FLAG_MOBIL",
+          "description": "FLAG_MOBIL은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_own_car_yn",
+          "column": "FLAG_OWN_CAR",
+          "description": "소유 여부 플래그는 Y 또는 N이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_own_realty_yn",
+          "column": "FLAG_OWN_REALTY",
+          "description": "소유 여부 플래그는 Y 또는 N이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_phone_binary",
+          "column": "FLAG_PHONE",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_phone_numeric",
+          "column": "FLAG_PHONE",
+          "description": "FLAG_PHONE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_work_phone_binary",
+          "column": "FLAG_WORK_PHONE",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "flag_work_phone_numeric",
+          "column": "FLAG_WORK_PHONE",
+          "description": "FLAG_WORK_PHONE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "floorsmax_avg_numeric",
+          "column": "FLOORSMAX_AVG",
+          "description": "FLOORSMAX_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "floorsmax_medi_numeric",
+          "column": "FLOORSMAX_MEDI",
+          "description": "FLOORSMAX_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "floorsmax_mode_numeric",
+          "column": "FLOORSMAX_MODE",
+          "description": "FLOORSMAX_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "floorsmin_avg_numeric",
+          "column": "FLOORSMIN_AVG",
+          "description": "FLOORSMIN_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "floorsmin_medi_numeric",
+          "column": "FLOORSMIN_MEDI",
+          "description": "FLOORSMIN_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "floorsmin_mode_numeric",
+          "column": "FLOORSMIN_MODE",
+          "description": "FLOORSMIN_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "hour_appr_process_start_numeric",
+          "column": "HOUR_APPR_PROCESS_START",
+          "description": "HOUR_APPR_PROCESS_START은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "hour_range",
+          "column": "HOUR_APPR_PROCESS_START",
+          "description": "신청 시각은 0~23 범위여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "landarea_avg_numeric",
+          "column": "LANDAREA_AVG",
+          "description": "LANDAREA_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "landarea_medi_numeric",
+          "column": "LANDAREA_MEDI",
+          "description": "LANDAREA_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "landarea_mode_numeric",
+          "column": "LANDAREA_MODE",
+          "description": "LANDAREA_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "live_city_not_work_city_binary",
+          "column": "LIVE_CITY_NOT_WORK_CITY",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "live_city_not_work_city_numeric",
+          "column": "LIVE_CITY_NOT_WORK_CITY",
+          "description": "LIVE_CITY_NOT_WORK_CITY은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "live_region_not_work_region_binary",
+          "column": "LIVE_REGION_NOT_WORK_REGION",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "live_region_not_work_region_numeric",
+          "column": "LIVE_REGION_NOT_WORK_REGION",
+          "description": "LIVE_REGION_NOT_WORK_REGION은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "livingapartments_avg_numeric",
+          "column": "LIVINGAPARTMENTS_AVG",
+          "description": "LIVINGAPARTMENTS_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "livingapartments_medi_numeric",
+          "column": "LIVINGAPARTMENTS_MEDI",
+          "description": "LIVINGAPARTMENTS_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "livingapartments_mode_numeric",
+          "column": "LIVINGAPARTMENTS_MODE",
+          "description": "LIVINGAPARTMENTS_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "livingarea_avg_numeric",
+          "column": "LIVINGAREA_AVG",
+          "description": "LIVINGAREA_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "livingarea_medi_numeric",
+          "column": "LIVINGAREA_MEDI",
+          "description": "LIVINGAREA_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "livingarea_mode_numeric",
+          "column": "LIVINGAREA_MODE",
+          "description": "LIVINGAREA_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "nonlivingapartments_avg_numeric",
+          "column": "NONLIVINGAPARTMENTS_AVG",
+          "description": "NONLIVINGAPARTMENTS_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "nonlivingapartments_medi_numeric",
+          "column": "NONLIVINGAPARTMENTS_MEDI",
+          "description": "NONLIVINGAPARTMENTS_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "nonlivingapartments_mode_numeric",
+          "column": "NONLIVINGAPARTMENTS_MODE",
+          "description": "NONLIVINGAPARTMENTS_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "nonlivingarea_avg_numeric",
+          "column": "NONLIVINGAREA_AVG",
+          "description": "NONLIVINGAREA_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "nonlivingarea_medi_numeric",
+          "column": "NONLIVINGAREA_MEDI",
+          "description": "NONLIVINGAREA_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "nonlivingarea_mode_numeric",
+          "column": "NONLIVINGAREA_MODE",
+          "description": "NONLIVINGAREA_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "obs_30_cnt_social_circle_numeric",
+          "column": "OBS_30_CNT_SOCIAL_CIRCLE",
+          "description": "OBS_30_CNT_SOCIAL_CIRCLE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "obs_60_cnt_social_circle_numeric",
+          "column": "OBS_60_CNT_SOCIAL_CIRCLE",
+          "description": "OBS_60_CNT_SOCIAL_CIRCLE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "own_car_age_numeric",
+          "column": "OWN_CAR_AGE",
+          "description": "OWN_CAR_AGE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "region_population_relative_numeric",
+          "column": "REGION_POPULATION_RELATIVE",
+          "description": "REGION_POPULATION_RELATIVE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "region_rating_client_numeric",
+          "column": "REGION_RATING_CLIENT",
+          "description": "REGION_RATING_CLIENT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "region_rating_client_w_city_numeric",
+          "column": "REGION_RATING_CLIENT_W_CITY",
+          "description": "REGION_RATING_CLIENT_W_CITY은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_city_not_live_city_binary",
+          "column": "REG_CITY_NOT_LIVE_CITY",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_city_not_live_city_numeric",
+          "column": "REG_CITY_NOT_LIVE_CITY",
+          "description": "REG_CITY_NOT_LIVE_CITY은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_city_not_work_city_binary",
+          "column": "REG_CITY_NOT_WORK_CITY",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_city_not_work_city_numeric",
+          "column": "REG_CITY_NOT_WORK_CITY",
+          "description": "REG_CITY_NOT_WORK_CITY은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_region_not_live_region_binary",
+          "column": "REG_REGION_NOT_LIVE_REGION",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_region_not_live_region_numeric",
+          "column": "REG_REGION_NOT_LIVE_REGION",
+          "description": "REG_REGION_NOT_LIVE_REGION은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_region_not_work_region_binary",
+          "column": "REG_REGION_NOT_WORK_REGION",
+          "description": "이진 플래그는 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "reg_region_not_work_region_numeric",
+          "column": "REG_REGION_NOT_WORK_REGION",
+          "description": "REG_REGION_NOT_WORK_REGION은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_integer",
+          "column": "SK_ID_CURR",
+          "description": "ID는 정수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_not_null",
+          "column": "SK_ID_CURR",
+          "description": "ID는 결측일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_numeric",
+          "column": "SK_ID_CURR",
+          "description": "ID는 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_positive",
+          "column": "SK_ID_CURR",
+          "description": "ID는 양수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "target_domain",
+          "column": "TARGET",
+          "description": "TARGET은 0 또는 1이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "target_numeric",
+          "column": "TARGET",
+          "description": "TARGET은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "totalarea_mode_numeric",
+          "column": "TOTALAREA_MODE",
+          "description": "TOTALAREA_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "years_beginexpluatation_avg_numeric",
+          "column": "YEARS_BEGINEXPLUATATION_AVG",
+          "description": "YEARS_BEGINEXPLUATATION_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "years_beginexpluatation_medi_numeric",
+          "column": "YEARS_BEGINEXPLUATATION_MEDI",
+          "description": "YEARS_BEGINEXPLUATATION_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "years_beginexpluatation_mode_numeric",
+          "column": "YEARS_BEGINEXPLUATATION_MODE",
+          "description": "YEARS_BEGINEXPLUATATION_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "years_build_avg_numeric",
+          "column": "YEARS_BUILD_AVG",
+          "description": "YEARS_BUILD_AVG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "years_build_medi_numeric",
+          "column": "YEARS_BUILD_MEDI",
+          "description": "YEARS_BUILD_MEDI은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "years_build_mode_numeric",
+          "column": "YEARS_BUILD_MODE",
+          "description": "YEARS_BUILD_MODE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        }
+      ],
+      "domain_observations": {
+        "code_gender_xna": 4,
+        "days_employed_365243": 55374,
+        "family_status_unknown": 2,
+        "own_car_age_missing_when_car_owned": 5
+      },
+      "target_counts": {
+        "0": 282686,
+        "1": 24825
+      },
+      "dependency": null
+    },
+    "bureau": {
+      "name": "bureau",
+      "filename": "bureau.csv",
+      "display_path": "data/raw/bureau.csv",
+      "grain": "타 금융기관 신용거래 1건당 1행",
+      "file_size_bytes": 170016717,
+      "sha256": "9d799143423f280720cf51c1bfbbab2a0422da8ff2763335bb30bf43155494f7",
+      "expected_sha256": "9d799143423f280720cf51c1bfbbab2a0422da8ff2763335bb30bf43155494f7",
+      "row_count": 1716428,
+      "expected_row_count": 1716428,
+      "column_count": 17,
+      "columns": [
+        "SK_ID_CURR",
+        "SK_ID_BUREAU",
+        "CREDIT_ACTIVE",
+        "CREDIT_CURRENCY",
+        "DAYS_CREDIT",
+        "CREDIT_DAY_OVERDUE",
+        "DAYS_CREDIT_ENDDATE",
+        "DAYS_ENDDATE_FACT",
+        "AMT_CREDIT_MAX_OVERDUE",
+        "CNT_CREDIT_PROLONG",
+        "AMT_CREDIT_SUM",
+        "AMT_CREDIT_SUM_DEBT",
+        "AMT_CREDIT_SUM_LIMIT",
+        "AMT_CREDIT_SUM_OVERDUE",
+        "CREDIT_TYPE",
+        "DAYS_CREDIT_UPDATE",
+        "AMT_ANNUITY"
+      ],
+      "column_stats": {
+        "SK_ID_CURR": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 100001.0,
+          "max": 456255.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "SK_ID_BUREAU": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 5000000.0,
+          "max": 6843457.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "CREDIT_ACTIVE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 4,
+          "top_categories": [
+            {
+              "value": "Closed",
+              "count": 1079273
+            },
+            {
+              "value": "Active",
+              "count": 630607
+            },
+            {
+              "value": "Sold",
+              "count": 6527
+            },
+            {
+              "value": "Bad debt",
+              "count": 21
+            }
+          ]
+        },
+        "CREDIT_CURRENCY": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 4,
+          "top_categories": [
+            {
+              "value": "currency 1",
+              "count": 1715020
+            },
+            {
+              "value": "currency 2",
+              "count": 1224
+            },
+            {
+              "value": "currency 3",
+              "count": 174
+            },
+            {
+              "value": "currency 4",
+              "count": 10
+            }
+          ]
+        },
+        "DAYS_CREDIT": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -2922.0,
+          "max": 0.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "CREDIT_DAY_OVERDUE": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 2792.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_CREDIT_ENDDATE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 105553,
+          "missing_rate": 0.06149573416420613,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -42060.0,
+          "max": 31199.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_ENDDATE_FACT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 633653,
+          "missing_rate": 0.36916957775100384,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -42023.0,
+          "max": 0.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_CREDIT_MAX_OVERDUE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 1124488,
+          "missing_rate": 0.6551326359159837,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 115987185.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "CNT_CREDIT_PROLONG": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 9.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_CREDIT_SUM": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 13,
+          "missing_rate": 7.573868522303295e-06,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 585000000.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_CREDIT_SUM_DEBT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 257669,
+          "missing_rate": 0.15011931755948982,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -4705600.32,
+          "max": 170100000.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_CREDIT_SUM_LIMIT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 591780,
+          "missing_rate": 0.3447741472406649,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -586406.115,
+          "max": 4705600.32,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_CREDIT_SUM_OVERDUE": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 3756681.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "CREDIT_TYPE": {
+          "dtypes": [
+            "str"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": null,
+          "max": null,
+          "unique_category_count": 15,
+          "top_categories": [
+            {
+              "value": "Consumer credit",
+              "count": 1251615
+            },
+            {
+              "value": "Credit card",
+              "count": 402195
+            },
+            {
+              "value": "Car loan",
+              "count": 27690
+            },
+            {
+              "value": "Mortgage",
+              "count": 18391
+            },
+            {
+              "value": "Microloan",
+              "count": 12413
+            },
+            {
+              "value": "Loan for business development",
+              "count": 1975
+            },
+            {
+              "value": "Another type of loan",
+              "count": 1017
+            },
+            {
+              "value": "Unknown type of loan",
+              "count": 555
+            },
+            {
+              "value": "Loan for working capital replenishment",
+              "count": 469
+            },
+            {
+              "value": "Cash loan (non-earmarked)",
+              "count": 56
+            },
+            {
+              "value": "Real estate loan",
+              "count": 27
+            },
+            {
+              "value": "Loan for the purchase of equipment",
+              "count": 19
+            },
+            {
+              "value": "Loan for purchase of shares (margin lending)",
+              "count": 4
+            },
+            {
+              "value": "Interbank credit",
+              "count": 1
+            },
+            {
+              "value": "Mobile operator loan",
+              "count": 1
+            }
+          ]
+        },
+        "DAYS_CREDIT_UPDATE": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -41947.0,
+          "max": 372.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_ANNUITY": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 1226791,
+          "missing_rate": 0.714734902949614,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 118453423.5,
+          "unique_category_count": null,
+          "top_categories": []
+        }
+      },
+      "primary_key": "SK_ID_BUREAU",
+      "primary_key_null_count": 0,
+      "primary_key_unique_count": 1716428,
+      "primary_key_duplicate_count": 0,
+      "duplicate_row_hash_count": 0,
+      "customer_unique_count": 305811,
+      "matched_application_row_count": 1465325,
+      "matched_application_customer_count": 263491,
+      "rules": [
+        {
+          "code": "amt_annuity_numeric",
+          "column": "AMT_ANNUITY",
+          "description": "AMT_ANNUITY은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_max_overdue_numeric",
+          "column": "AMT_CREDIT_MAX_OVERDUE",
+          "description": "AMT_CREDIT_MAX_OVERDUE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_sum_non_negative",
+          "column": "AMT_CREDIT_SUM",
+          "description": "AMT_CREDIT_SUM은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_sum_numeric",
+          "column": "AMT_CREDIT_SUM",
+          "description": "AMT_CREDIT_SUM은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_sum_debt_numeric",
+          "column": "AMT_CREDIT_SUM_DEBT",
+          "description": "AMT_CREDIT_SUM_DEBT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_sum_limit_numeric",
+          "column": "AMT_CREDIT_SUM_LIMIT",
+          "description": "AMT_CREDIT_SUM_LIMIT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_sum_overdue_non_negative",
+          "column": "AMT_CREDIT_SUM_OVERDUE",
+          "description": "AMT_CREDIT_SUM_OVERDUE은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_credit_sum_overdue_numeric",
+          "column": "AMT_CREDIT_SUM_OVERDUE",
+          "description": "AMT_CREDIT_SUM_OVERDUE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "cnt_credit_prolong_numeric",
+          "column": "CNT_CREDIT_PROLONG",
+          "description": "CNT_CREDIT_PROLONG은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "credit_day_overdue_non_negative",
+          "column": "CREDIT_DAY_OVERDUE",
+          "description": "연체일수는 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "credit_day_overdue_numeric",
+          "column": "CREDIT_DAY_OVERDUE",
+          "description": "CREDIT_DAY_OVERDUE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_credit_numeric",
+          "column": "DAYS_CREDIT",
+          "description": "DAYS_CREDIT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_credit_enddate_numeric",
+          "column": "DAYS_CREDIT_ENDDATE",
+          "description": "DAYS_CREDIT_ENDDATE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_credit_update_numeric",
+          "column": "DAYS_CREDIT_UPDATE",
+          "description": "DAYS_CREDIT_UPDATE은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_enddate_fact_numeric",
+          "column": "DAYS_ENDDATE_FACT",
+          "description": "DAYS_ENDDATE_FACT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_bureau_integer",
+          "column": "SK_ID_BUREAU",
+          "description": "ID는 정수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_bureau_not_null",
+          "column": "SK_ID_BUREAU",
+          "description": "ID는 결측일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_bureau_numeric",
+          "column": "SK_ID_BUREAU",
+          "description": "ID는 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_bureau_positive",
+          "column": "SK_ID_BUREAU",
+          "description": "ID는 양수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_integer",
+          "column": "SK_ID_CURR",
+          "description": "ID는 정수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_not_null",
+          "column": "SK_ID_CURR",
+          "description": "ID는 결측일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_numeric",
+          "column": "SK_ID_CURR",
+          "description": "ID는 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_positive",
+          "column": "SK_ID_CURR",
+          "description": "ID는 양수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        }
+      ],
+      "domain_observations": {
+        "active_with_enddate_fact": 1969,
+        "closed_without_enddate_fact": 125,
+        "negative_credit_sum_debt": 8418,
+        "negative_credit_sum_limit": 351,
+        "positive_days_credit_update": 17
+      },
+      "target_counts": null,
+      "dependency": null
+    },
+    "installments": {
+      "name": "installments",
+      "filename": "installments_payments.csv",
+      "display_path": "data/raw/installments_payments.csv",
+      "grain": "예정 할부금에 대한 실제 납부행위 1건당 1행(분할납부 가능)",
+      "file_size_bytes": 723118349,
+      "sha256": "428c2e2496e4d6d697ee8270e98497e5213c41be16d882eed1bc95b133726797",
+      "expected_sha256": "428c2e2496e4d6d697ee8270e98497e5213c41be16d882eed1bc95b133726797",
+      "row_count": 13605401,
+      "expected_row_count": 13605401,
+      "column_count": 8,
+      "columns": [
+        "SK_ID_PREV",
+        "SK_ID_CURR",
+        "NUM_INSTALMENT_VERSION",
+        "NUM_INSTALMENT_NUMBER",
+        "DAYS_INSTALMENT",
+        "DAYS_ENTRY_PAYMENT",
+        "AMT_INSTALMENT",
+        "AMT_PAYMENT"
+      ],
+      "column_stats": {
+        "SK_ID_PREV": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 1000001.0,
+          "max": 2843499.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "SK_ID_CURR": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 100001.0,
+          "max": 456255.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NUM_INSTALMENT_VERSION": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 178.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "NUM_INSTALMENT_NUMBER": {
+          "dtypes": [
+            "int64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 1.0,
+          "max": 277.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_INSTALMENT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -2922.0,
+          "max": -1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "DAYS_ENTRY_PAYMENT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 2905,
+          "missing_rate": 0.00021351814621266952,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": -4921.0,
+          "max": -1.0,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_INSTALMENT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 0,
+          "missing_rate": 0.0,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 3771487.845,
+          "unique_category_count": null,
+          "top_categories": []
+        },
+        "AMT_PAYMENT": {
+          "dtypes": [
+            "float64"
+          ],
+          "missing_count": 2905,
+          "missing_rate": 0.00021351814621266952,
+          "blank_string_count": 0,
+          "infinite_count": 0,
+          "min": 0.0,
+          "max": 3771487.845,
+          "unique_category_count": null,
+          "top_categories": []
+        }
+      },
+      "primary_key": null,
+      "primary_key_null_count": 0,
+      "primary_key_unique_count": null,
+      "primary_key_duplicate_count": 0,
+      "duplicate_row_hash_count": 0,
+      "customer_unique_count": 339587,
+      "matched_application_row_count": 11591592,
+      "matched_application_customer_count": 291643,
+      "rules": [
+        {
+          "code": "amt_instalment_non_negative",
+          "column": "AMT_INSTALMENT",
+          "description": "AMT_INSTALMENT은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_instalment_numeric",
+          "column": "AMT_INSTALMENT",
+          "description": "AMT_INSTALMENT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_payment_non_negative",
+          "column": "AMT_PAYMENT",
+          "description": "AMT_PAYMENT은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "amt_payment_numeric",
+          "column": "AMT_PAYMENT",
+          "description": "AMT_PAYMENT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_entry_payment_non_positive",
+          "column": "DAYS_ENTRY_PAYMENT",
+          "description": "DAYS_ENTRY_PAYMENT은 현재 신청일 기준 0 이하이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_entry_payment_numeric",
+          "column": "DAYS_ENTRY_PAYMENT",
+          "description": "DAYS_ENTRY_PAYMENT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_instalment_non_positive",
+          "column": "DAYS_INSTALMENT",
+          "description": "DAYS_INSTALMENT은 현재 신청일 기준 0 이하이어야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "days_instalment_numeric",
+          "column": "DAYS_INSTALMENT",
+          "description": "DAYS_INSTALMENT은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "num_instalment_number_non_negative",
+          "column": "NUM_INSTALMENT_NUMBER",
+          "description": "NUM_INSTALMENT_NUMBER은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "num_instalment_number_numeric",
+          "column": "NUM_INSTALMENT_NUMBER",
+          "description": "NUM_INSTALMENT_NUMBER은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "num_instalment_version_non_negative",
+          "column": "NUM_INSTALMENT_VERSION",
+          "description": "NUM_INSTALMENT_VERSION은 음수일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "num_instalment_version_numeric",
+          "column": "NUM_INSTALMENT_VERSION",
+          "description": "NUM_INSTALMENT_VERSION은 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_integer",
+          "column": "SK_ID_CURR",
+          "description": "ID는 정수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_not_null",
+          "column": "SK_ID_CURR",
+          "description": "ID는 결측일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_numeric",
+          "column": "SK_ID_CURR",
+          "description": "ID는 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_curr_positive",
+          "column": "SK_ID_CURR",
+          "description": "ID는 양수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_prev_integer",
+          "column": "SK_ID_PREV",
+          "description": "ID는 정수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_prev_not_null",
+          "column": "SK_ID_PREV",
+          "description": "ID는 결측일 수 없다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_prev_numeric",
+          "column": "SK_ID_PREV",
+          "description": "ID는 숫자여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        },
+        {
+          "code": "sk_id_prev_positive",
+          "column": "SK_ID_PREV",
+          "description": "ID는 양수여야 한다.",
+          "severity": "ERROR",
+          "violations": 0
+        }
+      ],
+      "domain_observations": {
+        "payment_above_scheduled": 179397,
+        "payment_below_scheduled": 1295493,
+        "payment_early": 9309477,
+        "payment_equal_scheduled": 12127606,
+        "payment_fields_both_missing": 2905,
+        "payment_fields_missing_mismatch": 0,
+        "payment_late": 1146669,
+        "payment_on_time": 3146350
+      },
+      "target_counts": null,
+      "dependency": {
+        "rule": "SK_ID_PREV는 하나의 SK_ID_CURR에만 연결되어야 한다.",
+        "violation_key_count": 0
+      }
+    }
+  },
+  "relationships": {
+    "bureau": {
+      "application_customer_count": 307511,
+      "support_customer_count": 305811,
+      "matched_application_customer_count": 263491,
+      "application_customer_coverage_rate": 0.8568506492450677,
+      "outside_application_customer_count": 42320,
+      "matched_application_row_count": 1465325,
+      "matched_application_row_rate": 0.8537060686495442
+    },
+    "installments": {
+      "application_customer_count": 307511,
+      "support_customer_count": 339587,
+      "matched_application_customer_count": 291643,
+      "application_customer_coverage_rate": 0.9483985938714388,
+      "outside_application_customer_count": 47944,
+      "matched_application_row_count": 11591592,
+      "matched_application_row_rate": 0.8519845905313632
+    }
+  },
+  "history_overlap": {
+    "both_history_customer_count": 250003,
+    "bureau_only_customer_count": 13488,
+    "installments_only_customer_count": 41640,
+    "neither_history_customer_count": 2380,
+    "both_history_rate": 0.8129888036525522,
+    "neither_history_rate": 0.007739560536045865
+  },
+  "findings": [
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "OWN_CAR_AGE 결측률이 65.99%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "EXT_SOURCE_1 결측률이 56.38%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "APARTMENTS_AVG 결측률이 50.75%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "BASEMENTAREA_AVG 결측률이 58.52%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "YEARS_BUILD_AVG 결측률이 66.50%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "COMMONAREA_AVG 결측률이 69.87%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "ELEVATORS_AVG 결측률이 53.30%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "ENTRANCES_AVG 결측률이 50.35%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "FLOORSMIN_AVG 결측률이 67.85%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LANDAREA_AVG 결측률이 59.38%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LIVINGAPARTMENTS_AVG 결측률이 68.35%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LIVINGAREA_AVG 결측률이 50.19%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "NONLIVINGAPARTMENTS_AVG 결측률이 69.43%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "NONLIVINGAREA_AVG 결측률이 55.18%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "APARTMENTS_MODE 결측률이 50.75%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "BASEMENTAREA_MODE 결측률이 58.52%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "YEARS_BUILD_MODE 결측률이 66.50%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "COMMONAREA_MODE 결측률이 69.87%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "ELEVATORS_MODE 결측률이 53.30%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "ENTRANCES_MODE 결측률이 50.35%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "FLOORSMIN_MODE 결측률이 67.85%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LANDAREA_MODE 결측률이 59.38%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LIVINGAPARTMENTS_MODE 결측률이 68.35%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LIVINGAREA_MODE 결측률이 50.19%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "NONLIVINGAPARTMENTS_MODE 결측률이 69.43%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "NONLIVINGAREA_MODE 결측률이 55.18%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "APARTMENTS_MEDI 결측률이 50.75%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "BASEMENTAREA_MEDI 결측률이 58.52%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "YEARS_BUILD_MEDI 결측률이 66.50%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "COMMONAREA_MEDI 결측률이 69.87%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "ELEVATORS_MEDI 결측률이 53.30%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "ENTRANCES_MEDI 결측률이 50.35%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "FLOORSMIN_MEDI 결측률이 67.85%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LANDAREA_MEDI 결측률이 59.38%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LIVINGAPARTMENTS_MEDI 결측률이 68.35%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "LIVINGAREA_MEDI 결측률이 50.19%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "NONLIVINGAPARTMENTS_MEDI 결측률이 69.43%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "NONLIVINGAREA_MEDI 결측률이 55.18%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "FONDKAPREMONT_MODE 결측률이 68.39%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "HOUSETYPE_MODE 결측률이 50.18%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "application",
+      "message": "WALLSMATERIAL_MODE 결측률이 50.84%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "bureau",
+      "message": "AMT_CREDIT_MAX_OVERDUE 결측률이 65.51%입니다."
+    },
+    {
+      "severity": "WARNING",
+      "code": "high_missing_rate",
+      "table": "bureau",
+      "message": "AMT_ANNUITY 결측률이 71.47%입니다."
+    },
+    {
+      "severity": "INFO",
+      "code": "target_imbalance",
+      "table": "application",
+      "message": "TARGET=1은 24,825건(8.07%)으로 불균형 데이터입니다."
+    },
+    {
+      "severity": "INFO",
+      "code": "support_table_scope",
+      "table": "bureau",
+      "message": "train 밖 고객 42,320명은 application_test 고객이 포함된 원본 구조로 해석합니다."
+    },
+    {
+      "severity": "INFO",
+      "code": "support_table_scope",
+      "table": "installments",
+      "message": "train 밖 고객 47,944명은 application_test 고객이 포함된 원본 구조로 해석합니다."
+    }
+  ],
+  "summary": {
+    "status": "PASS",
+    "error_count": 0,
+    "warning_count": 43,
+    "info_count": 3
+  }
+}
