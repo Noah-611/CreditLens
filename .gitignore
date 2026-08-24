@@ -1,0 +1,88 @@
+# Python bytecode and caches
+__pycache__/
+*.py[cod]
+*$py.class
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.cache/
+
+# Python build artifacts
+build/
+dist/
+*.egg-info/
+.eggs/
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Test and coverage output
+.coverage
+.coverage.*
+htmlcov/
+coverage.xml
+
+# Jupyter
+.ipynb_checkpoints/
+
+# Environment variables and credentials
+.env
+.env.*
+!.env.example
+kaggle.json
+
+# Editors and operating systems
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Logs and temporary files
+*.log
+*.tmp
+*.swp
+
+# Financial data: keep directory placeholders only
+data/raw/**
+!data/raw/.gitkeep
+data/interim/**
+!data/interim/.gitkeep
+data/processed/**
+!data/processed/.gitkeep
+
+# Known Home Credit source files, even if placed outside data/raw by mistake
+application_train.csv
+application_test.csv
+bureau.csv
+bureau_balance.csv
+credit_card_balance.csv
+installments_payments.csv
+POS_CASH_balance.csv
+previous_application.csv
+sample_submission.csv
+HomeCredit_columns_description.csv
+home-credit-default-risk.zip
+
+# Trained models, preprocessors, and checkpoints
+models/**
+!models/.gitkeep
+*.pkl
+*.pickle
+*.joblib
+*.h5
+*.hdf5
+*.keras
+*.onnx
+*.ckpt
+*.pt
+*.pth
+*.safetensors
+checkpoints/
+saved_model/
+
+# Local experiment artifacts
+mlruns/
+wandb/
+tensorboard/
