@@ -1,12 +1,8 @@
-# CreditLens - 대출 상환위험 분석 및 우선심사 지원 서비스
+# CreditLens
 
-CreditLens는 공개 익명 대출 신청·외부 신용·과거 상환 데이터를 활용하여 대출 신청자의 상환곤란 위험을 분류하고 확률을 추정하는 **주 1회·총 7회차(약 7~8주) 데이터분석·AI 모델 프로젝트**입니다.
+CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 신청자의 상환곤란 위험을 분석하고 예측하는 머신러닝 프로젝트입니다.
 
-제1목표는 EDA, 고객 단위 피처 엔지니어링, Logistic Regression·Random Forest·LightGBM·TensorFlow MLP 학습 및 튜닝, 성능 비교와 SHAP 해석입니다. 최종 모델을 고정한 뒤 Streamlit 프로그램과 FastAPI 예측 API를 최소 프로토타입으로 구현합니다.
-
-NICE평가정보 데이터서비스운영 직무와 연결하기 위해 DuckDB SQL 집계, 신용위험 지표, 데이터 품질, 입출력 명세와 모니터링 설계를 보강하지만 프로젝트의 본체는 데이터분석과 AI 모델입니다. AWS와 대규모 백엔드는 7회차 핵심 범위에 포함하지 않습니다.
-
-모델이 대출을 자동으로 승인하거나 거절하지 않습니다. 결과는 공개 데이터 기반 분석·시뮬레이션이며 심사자가 검토 순서를 정할 때 참고하는 보조 정보로만 해석합니다.
+대출 신청정보, 외부 신용거래와 과거 납부기록을 고객 단위로 통합하고 금융 파생변수를 생성합니다. Logistic Regression, Random Forest, LightGBM과 TensorFlow MLP를 동일한 데이터 분할과 평가 기준으로 비교하고, 최종 모델의 주요 예측요인을 SHAP으로 분석합니다. 학습이 완료된 모델은 Streamlit 화면과 FastAPI 예측 API에서 사용할 수 있도록 구성합니다.
 
 ## 현재 상태
 
@@ -16,7 +12,7 @@ NICE평가정보 데이터서비스운영 직무와 연결하기 위해 DuckDB S
 - 다음 작업: Stage 3 SQL·Python 고객 분석 마트와 V1·V2·V3 구축
 - 아직 전처리 적용, 피처 생성과 모델 학습은 시작하지 않았습니다.
 
-과제 제출용 주제 정의, 7회차 마일스톤과 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
+전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
 
 ## 핵심 분석 목표
 
@@ -27,8 +23,11 @@ NICE평가정보 데이터서비스운영 직무와 연결하기 위해 DuckDB S
 - KS·Gini·Lift·Calibration과 위험구간별 상환곤란 비율 검증
 - SHAP 기반 주요 위험요인과 우선검토 시나리오 분석
 - 데이터 계약, 배치 스코어링(batch scoring), PSI·CSI와 품질 모니터링 설계
-- 고정된 모델을 사용하는 최소 Streamlit 프로그램과 FastAPI `/predict` API
-- 7회차 핵심 완료 후에만 AWS 참조 아키텍처 검토
+- 고정된 모델을 사용하는 Streamlit 프로그램과 FastAPI `/predict` API
+
+## 사용 범위
+
+CreditLens는 공개 데이터 기반의 분석 프로젝트입니다. 모델 결과는 실제 대출 승인·거절이나 공식 신용평가에 사용하지 않습니다.
 
 ## 저장소 구조
 
@@ -93,7 +92,7 @@ python --version
 python -m pip check
 ```
 
-`requirements-stage5-7.txt`는 대용량 TensorFlow와 시연 도구의 설치 시점만 분리합니다. TensorFlow MLP와 Streamlit·FastAPI는 7회차 프로젝트의 계획된 산출물이며, 각각 Stage 5와 Stage 7에서 사용합니다.
+`requirements-stage5-7.txt`에는 설치 용량이 큰 TensorFlow와 Streamlit·FastAPI 관련 의존성을 분리해 두었습니다.
 
 ## 데이터 준비
 
