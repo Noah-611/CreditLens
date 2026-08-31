@@ -1,0 +1,69 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-08-25T08:14:11Z",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5"
+  },
+  "source": {
+    "display_path": "data/raw/application_train.csv",
+    "sha256": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f",
+    "rows": 307511
+  },
+  "strategy": {
+    "algorithm": "blake2b-stratified-apportionment-v1",
+    "seed": 42,
+    "ratios": {
+      "train": 0.7,
+      "validation": 0.15,
+      "test": 0.15
+    }
+  },
+  "overall_target_counts": {
+    "0": 282686,
+    "1": 24825
+  },
+  "overall_target_1_rate": 0.08072881945686496,
+  "splits": {
+    "train": {
+      "rows": 215258,
+      "row_ratio": 0.7000009755748575,
+      "target_counts": {
+        "0": 197881,
+        "1": 17377
+      },
+      "target_1_rate": 0.08072638415296993,
+      "target_1_rate_difference_from_overall": -2.435303895029217e-06
+    },
+    "validation": {
+      "rows": 46127,
+      "row_ratio": 0.15000113817066707,
+      "target_counts": {
+        "0": 42403,
+        "1": 3724
+      },
+      "target_1_rate": 0.08073362672621241,
+      "target_1_rate_difference_from_overall": 4.807269347456566e-06
+    },
+    "test": {
+      "rows": 46126,
+      "row_ratio": 0.14999788625447544,
+      "target_counts": {
+        "0": 42402,
+        "1": 3724
+      },
+      "target_1_rate": 0.08073537701079651,
+      "target_1_rate_difference_from_overall": 6.557553931557658e-06
+    }
+  },
+  "assignment_sha256": "bb61706ea286086a726497ade1fa0aa3f1aad60ff505461d0612aca6222382af",
+  "configuration_sha256": "65aa6e319d48d6bf91e4b299a0e25cf67285b6a571196d68fcac0c861c10c2e6",
+  "invariants": {
+    "mutually_exclusive_customer_ids": true,
+    "all_customers_assigned_once": true,
+    "target_values_preserved": true,
+    "valid_split_names": true,
+    "stratified_target_counts": true
+  }
+}
