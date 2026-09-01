@@ -116,8 +116,9 @@ Stage 2에서는 정책만 확정했고, Stage 4에서 아래 순서를 지키�
 - 공통 평가 모듈에 ROC-AUC, PR-AUC, KS, Gini, Brier Score, 임계값 지표와 Top-K 지표를 구현했습니다.
 - Dummy Prior, V1·V2·V3 Logistic Regression과 V3 Random Forest를 train으로 학습하고 동일한 validation에서 비교했습니다.
 - 현재 튜닝 전 기준에서는 V3 Logistic Regression이 ROC-AUC 0.7585, PR-AUC 0.2424, KS 0.3908로 가장 높았습니다. 이는 최종 모델 선택 결과가 아닙니다.
+- 저장된 validation 점수로 ROC·PR·Calibration 곡선, 위험도 decile과 Top-K 상세 분석을 완료했습니다. Calibration은 보정 필요성 진단이며 보정기나 운영 cutoff를 학습·선택하지 않았습니다.
 - 비음수 오른쪽 꼬리 피처의 `log1p`와 선형 모델용 clipping은 후속 개선 실험에서 train 내부 비교 대상으로 남깁니다.
 - 납부비율은 실제 초과납부로 1보다 클 수 있으므로 일괄적으로 0~1에 자르지 않습니다.
 - 행 단위 가공 데이터와 직렬화된 학습 모델은 `data/processed/`, `models/`에만 저장하고 Git에서 제외합니다. 공유 문서에는 고객 ID가 없는 집계 성능만 기록합니다.
 
-구현된 입력·전처리·평가 계약의 상세 정의는 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md), 실제 기준 모델 결과는 [Stage 4 기준 모델 학습 보고서](Stage4_Baseline_Model_Report.md)를 참고합니다.
+구현된 입력·전처리·평가 계약의 상세 정의는 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md), 실제 기준 모델 결과는 [Stage 4 기준 모델 학습 보고서](Stage4_Baseline_Model_Report.md), 상세 validation 진단은 [Stage 4 Validation 분석 보고서](Stage4_Validation_Analysis_Report.md)를 참고합니다.

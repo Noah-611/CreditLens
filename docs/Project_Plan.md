@@ -11,8 +11,8 @@
 | 진행 방식 | Stage 단위 구현·검증 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 4 전처리·평가 기반과 기준 모델 5개 학습·validation 비교 완료 |
-| 다음 단계 | ROC·PR·Calibration 곡선, 위험도 decile과 Top-K 상세 분석 |
+| 현재 상태 | Stage 4 기준 모델 학습과 validation 상세 분석 완료 |
+| 다음 단계 | Stage 5 LightGBM·TensorFlow MLP 학습과 데이터·모델 비교 |
 
 ### 한 줄 정의
 
@@ -237,8 +237,8 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 | 2 | Stage 1 | 데이터 확보와 원본 무결성 검증 | 완료 |
 | 3 | Stage 2 | 고객 분할, train-only EDA와 처리 정책 설계 | 완료 |
 | 4 | Stage 3 | SQL·Python 고객 분석 마트와 V1·V2·V3 구축 | 완료 |
-| 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 진행 중 |
-| 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 예정 |
+| 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 완료 |
+| 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 다음 |
 | 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 예정 |
 | 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 예정 |
 | 9 | Stage 8 | 봉인 테스트·최종 보고서·시연 검증 | 예정 |
@@ -434,9 +434,12 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - Dummy Prior, V1·V2·V3 Logistic Regression과 V3 Random Forest를 train으로 학습하고 동일한 validation에서 비교했습니다.
 - 현재 튜닝 전 기준에서는 V3 Logistic Regression이 ROC-AUC 0.7585, PR-AUC 0.2424, KS 0.3908로 가장 높았습니다.
 - 위험도 상위 10%에서 상환곤란 고객의 33.75%를 포착했고 무작위 선별 대비 Lift는 3.38입니다.
-- test 피처·예측·평가는 사용하지 않았으며 Stage 1~4 자동 테스트 117개를 통과했습니다.
-- 세부 계약은 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md), 실제 결과는 [Stage 4 기준 모델 학습 보고서](Stage4_Baseline_Model_Report.md)에 기록했습니다.
-- 다음 작업은 ROC·PR·Calibration 곡선, 위험도 decile과 Top-K 상세 분석입니다.
+- 저장된 validation 점수로 ROC·PR·Calibration 곡선, 위험도 decile과 Top 5%·10%·20% 시나리오를 생성했습니다.
+- V3 Logistic의 상위 5%·10%·20% Recall은 21.11%·33.75%·52.07%였으며 상위·하위 decile 실제 위험률은 27.25%·1.69%였습니다.
+- V3 Random Forest는 평균 예측점수 40.81%로 실제 위험률 8.07%를 크게 넘으므로 현재 출력값을 실제 확률로 해석하지 않습니다.
+- test 피처·예측·평가는 사용하지 않았으며 Stage 1~4 자동 테스트 136개를 통과했습니다.
+- 세부 계약은 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md), 학습 결과는 [Stage 4 기준 모델 학습 보고서](Stage4_Baseline_Model_Report.md), 상세 진단은 [Stage 4 Validation 분석 보고서](Stage4_Validation_Analysis_Report.md)에 기록했습니다.
+- V3 Logistic은 Stage 5 비교 기준선이며 최종 모델·확률 보정·운영 cutoff는 아직 확정하지 않았습니다.
 
 ### Stage 5. LightGBM·TensorFlow MLP와 데이터·모델 비교
 
@@ -616,23 +619,25 @@ CreditLens/
 │   ├── Stage3_Build_Report.md
 │   ├── Stage4_Preprocessing_and_Evaluation_Spec.md
 │   ├── Stage4_Baseline_Model_Report.md
+│   ├── Stage4_Validation_Analysis_Report.md
 │   └── Project_Plan.md       # 프로젝트 기준 계획서
 ├── models/                   # 학습 모델·전처리 산출물, Git 제외
 ├── notebooks/
 │   └── 01_stage2_eda.ipynb   # train-only EDA 실행 진입점
 ├── reports/
-│   ├── figures/              # Stage 2 핵심 시각화
+│   ├── figures/              # Stage 2 EDA·Stage 4 모델 평가 시각화
 │   ├── data_validation.json
 │   ├── stage2_eda.json
 │   ├── stage2_split_summary.json
 │   ├── stage3_build_summary.json
 │   ├── stage3_feature_profile.json
-│   └── stage4_baseline_results.json
+│   ├── stage4_baseline_results.json
+│   └── stage4_validation_analysis.json
 ├── sql/
 │   └── stage3/               # 고객 분석 마트 조회·집계·검수 SQL
 ├── src/
 │   └── creditlens/
-│       ├── analysis/         # train-only EDA·피처 분석 모듈
+│       ├── analysis/         # EDA·피처 분석·validation 모델 진단
 │       ├── data/             # 데이터 검증·분할·분석 마트 구축
 │       ├── evaluation/       # 공통 이진분류 평가 지표
 │       └── modeling/         # 모델 입력 계약·로더·전처리 파이프라인
@@ -644,7 +649,7 @@ CreditLens/
 └── requirements-stage5-7.txt # Stage 5·7의 MLP·시연 의존성
 ```
 
-Stage 3까지 원본 검증, 고객 분할, train-only EDA와 SQL·Python 분석 마트 구축을 완료했다. Stage 4에서는 전처리·평가 기반과 Dummy·Logistic Regression·Random Forest 기준 모델 비교를 완료했으며, 다음으로 ROC·PR·Calibration 곡선과 위험도 decile·Top-K를 분석한다. 고정된 모델로 Stage 7의 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
+Stage 4까지 원본 검증, 고객 분할, train-only EDA, SQL·Python 분석 마트, 전처리·평가 기반과 기준 모델 validation 상세 분석을 완료했다. 다음 Stage에서는 LightGBM·TensorFlow MLP를 현재 V3 Logistic 기준선과 비교한다. 고정된 모델로 Stage 7의 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
 
 ## 10. 형상관리와 개발 원칙
 

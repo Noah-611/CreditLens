@@ -65,4 +65,4 @@ Brier Score는 낮을수록 좋으므로 음수 변화가 개선입니다. 위 �
 
 ## 해석 범위
 
-이 결과는 튜닝 전 기준 성능입니다. ROC·PR·Calibration 곡선, 위험도 decile, Top-K 상세 시나리오와 모델 선택 해석은 다음 분석 단계에서 작성합니다. Random Forest는 class weight를 사용했으므로 Brier Score를 보정된 확률 품질로 해석하지 않습니다.
+이 결과는 튜닝 전 기준 성능입니다. ROC·PR·Calibration 곡선, 위험도 decile과 Top-K 상세 결과는 [Stage 4 Validation 상세 분석 보고서](Stage4_Validation_Analysis_Report.md)에 기록했습니다. Random Forest는 class weight를 사용했으므로 Brier Score를 보정된 확률 품질로 해석하지 않습니다.

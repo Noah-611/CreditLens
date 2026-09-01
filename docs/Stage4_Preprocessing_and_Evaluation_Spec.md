@@ -289,7 +289,8 @@ Lift@TopK      = Precision@TopK / 전체 TARGET=1 비율
 
 - Dummy Prior, Logistic Regression, Random Forest 학습과 validation 비교: [Stage 4 기준 모델 학습 보고서](Stage4_Baseline_Model_Report.md)에 완료 결과 기록
 - 하이퍼파라미터 탐색과 피처 선택: 후속 단계
-- 확률 보정, 위험구간과 의사결정 cutoff 선택: 후속 단계
+- ROC·PR·Calibration 진단, 위험도 decile과 Top-K 상세 분석: [Stage 4 Validation 상세 분석 보고서](Stage4_Validation_Analysis_Report.md)에 완료 결과 기록
+- 확률 보정기 학습과 의사결정 cutoff 선택: 후속 단계
 - test 변환·예측·평가: 최종 설정 고정 전까지 금지
 - 학습 모델: `models/stage4/`에 로컬 저장하고 Git 제외
 - 고객별 예측값: 공유 문서와 JSON에 저장하지 않음
@@ -306,4 +307,6 @@ Lift@TopK      = Precision@TopK / 전체 TARGET=1 비율
 
 현재 튜닝 전 기준에서는 V3 Logistic Regression이 ROC-AUC 0.7585, PR-AUC 0.2424, KS 0.3908로 가장 높았습니다.
 
-이 결과는 튜닝 전 기준선입니다. ROC·PR·Calibration 곡선, 위험도 decile, Top-K 상세 분석, 확률 보정과 최종 모델 선택은 후속 단계에서 진행합니다.
+이 결과는 튜닝 전 기준선입니다. 저장된 validation 점수로 ROC·PR·Calibration 곡선, 위험도 decile과 Top 5%·10%·20% 분석을 완료했으며 상세 내용은 [Stage 4 Validation 분석 보고서](Stage4_Validation_Analysis_Report.md)에 기록했습니다.
+
+Calibration은 보정 필요성을 진단했을 뿐 보정기를 학습하지 않았습니다. V3 Logistic Regression은 Stage 5 모델 비교 기준선이며 최종 모델, 확률 보정 방식과 운영 cutoff는 후속 단계에서 확정합니다. test는 Stage 8까지 봉인합니다.

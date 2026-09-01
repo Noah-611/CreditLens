@@ -10,13 +10,14 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 1: 데이터 확보 및 무결성 확인 완료 (`PASS`, 오류 0건)
 - Stage 2: 고객 분할·train-only EDA·전처리 및 누수 정책 설계 완료
 - Stage 3: SQL·Python 고객 분석 마트와 V1·V2·V3 구축 완료
-- Stage 4: 모델 입력·전처리·공통 평가 기반과 기준 모델 5개 학습·validation 비교 완료
-- 다음 작업: ROC·PR·Calibration 곡선, 위험도 decile과 Top-K 상세 분석
+- Stage 4: 기준 모델 5개 학습과 ROC·PR·Calibration·Decile·Top-K validation 분석 완료
+- 다음 작업: Stage 5 LightGBM·TensorFlow MLP 학습과 데이터·모델 비교
 - 모델은 train으로만 학습했고 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
 Stage 4의 전처리·평가 기준은 [Stage 4 전처리·평가 명세](docs/Stage4_Preprocessing_and_Evaluation_Spec.md)에 기록되어 있습니다.
 기준 모델의 실제 실행 결과는 [Stage 4 기준 모델 학습 보고서](docs/Stage4_Baseline_Model_Report.md)에서 확인할 수 있습니다.
+곡선·위험구간·심사 용량별 해석은 [Stage 4 Validation 상세 분석 보고서](docs/Stage4_Validation_Analysis_Report.md)에 기록되어 있습니다.
 
 ## 핵심 분석 목표
 
@@ -51,6 +52,7 @@ CreditLens/
 │   ├── Preprocessing_and_Leakage_Spec.md
 │   ├── Stage4_Preprocessing_and_Evaluation_Spec.md
 │   ├── Stage4_Baseline_Model_Report.md
+│   ├── Stage4_Validation_Analysis_Report.md
 │   ├── Stage2_EDA_Report.md
 │   ├── Stage3_Build_Report.md
 │   └── Project_Plan.md
@@ -58,18 +60,19 @@ CreditLens/
 ├── notebooks/
 │   └── 01_stage2_eda.ipynb   # train-only EDA 실행 진입점
 ├── reports/
-│   ├── figures/              # Stage 2 핵심 시각화
+│   ├── figures/              # Stage 2 EDA·Stage 4 모델 평가 시각화
 │   ├── data_validation.json
 │   ├── stage2_eda.json
 │   ├── stage2_split_summary.json
 │   ├── stage3_build_summary.json
 │   ├── stage3_feature_profile.json
-│   └── stage4_baseline_results.json
+│   ├── stage4_baseline_results.json
+│   └── stage4_validation_analysis.json
 ├── sql/
 │   └── stage3/              # V1·bureau·V2·installments·V3 DuckDB SQL
 ├── src/
 │   └── creditlens/
-│       ├── analysis/         # Stage 2 EDA·Stage 3 train-only 피처 분석
+│       ├── analysis/         # EDA·피처 분석·validation 모델 진단
 │       ├── data/             # 원본 검증·분할·고객 마트 구축
 │       ├── evaluation/       # 공통 이진분류 평가 지표
 │       └── modeling/         # 모델 입력 계약·로더·전처리 파이프라인
@@ -255,6 +258,22 @@ PYTHONPATH=src .venv/bin/python -m creditlens.modeling.train_baselines \
 
 상세 설정, 실행 자원, 데이터 사용 감사와 전체 수치는 [Stage 4 기준 모델 학습 보고서](docs/Stage4_Baseline_Model_Report.md)와 [기계 판독용 결과](reports/stage4_baseline_results.json)에 기록했습니다. 학습 모델과 행별 validation 예측값은 `models/`에만 저장되며 Git에서 제외됩니다. test 피처·예측·평가는 사용하지 않았습니다.
 
+저장된 validation 점수로 ROC·PR·Calibration 곡선, 위험도 decile과 Top 5%·10%·20% 우선검토 시나리오를 재현합니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage4_validation_analysis
+```
+
+주요 분석 결과:
+
+- V3 Logistic은 위험도 상위 5%·10%·20%에서 실제 위험고객의 21.11%·33.75%·52.07%를 포착했습니다.
+- V3 Logistic의 상위 decile 실제 상환곤란 비율은 27.25%, 하위 decile은 1.69%로 위험 순서가 뚜렷했습니다.
+- V3 Random Forest도 순위 성능은 유효하지만 평균 예측점수 40.81%가 실제 위험률 8.07%보다 높아 현재 점수를 실제 확률로 해석할 수 없습니다.
+- Calibration은 보정 필요성을 진단한 것이며 보정기를 학습하거나 운영 cutoff를 확정하지 않았습니다.
+- V3 Logistic은 Stage 5 비교 기준선이며 아직 최종 모델이 아닙니다.
+
+전체 표와 그림은 [Stage 4 Validation 상세 분석 보고서](docs/Stage4_Validation_Analysis_Report.md), 집계 결과는 [기계 판독용 분석 JSON](reports/stage4_validation_analysis.json)에 기록했습니다. test 데이터는 계속 봉인했습니다.
+
 ## Git에 올리지 않는 파일
 
 - `data/raw/`, `data/interim/`, `data/processed/` 안의 모든 금융 데이터
@@ -274,12 +293,12 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 4의 마지막 분석 단계에서 기준 모델의 validation 결과를 더 자세히 해석합니다.
+Stage 4를 완료했습니다. 다음 Stage에서는 현재 기준선인 V3 Logistic과 새로운 모델을 동일한 평가 체계로 비교합니다.
 
-현재 Stage 1~4 범위의 자동 테스트 117개가 통과합니다.
+현재 Stage 1~4 범위의 자동 테스트 136개가 통과합니다.
 
-1. ROC·PR 곡선으로 모델의 순위 분리력을 비교합니다.
-2. Calibration 곡선으로 예측확률과 실제 상환곤란 비율의 차이를 확인합니다.
-3. 위험도 decile별 상환곤란 비율과 Lift를 계산합니다.
-4. Top-K 우선검토 비율별 Recall·Precision·Lift를 비교합니다.
-5. 분석이 끝날 때까지 cutoff와 최종 모델은 고정하지 않고 test는 계속 봉인합니다.
+1. LightGBM을 V1·V2·V3에서 학습해 데이터 원천별 추가 가치를 비교합니다.
+2. V3 TensorFlow MLP를 학습해 전통적 머신러닝과 딥러닝을 비교합니다.
+3. 하이퍼파라미터 탐색과 확률 보정은 train 내부에서만 수행합니다.
+4. Logistic Regression·Random Forest·LightGBM·MLP를 같은 validation 지표로 비교합니다.
+5. 최종 모델과 cutoff를 확정하기 전까지 test는 계속 봉인합니다.
