@@ -10,12 +10,13 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 1: 데이터 확보 및 무결성 확인 완료 (`PASS`, 오류 0건)
 - Stage 2: 고객 분할·train-only EDA·전처리 및 누수 정책 설계 완료
 - Stage 3: SQL·Python 고객 분석 마트와 V1·V2·V3 구축 완료
-- Stage 4: 모델 입력 계약, train-only 전처리 파이프라인과 공통 평가 모듈 구현 완료
-- 다음 작업: Dummy Classifier, V1·V2·V3 Logistic Regression과 V3 Random Forest 학습·검증 비교
-- 아직 실제 모델 학습과 성능 비교는 수행하지 않았으며 test 데이터는 계속 봉인합니다.
+- Stage 4: 모델 입력·전처리·공통 평가 기반과 기준 모델 5개 학습·validation 비교 완료
+- 다음 작업: ROC·PR·Calibration 곡선, 위험도 decile과 Top-K 상세 분석
+- 모델은 train으로만 학습했고 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
 Stage 4의 전처리·평가 기준은 [Stage 4 전처리·평가 명세](docs/Stage4_Preprocessing_and_Evaluation_Spec.md)에 기록되어 있습니다.
+기준 모델의 실제 실행 결과는 [Stage 4 기준 모델 학습 보고서](docs/Stage4_Baseline_Model_Report.md)에서 확인할 수 있습니다.
 
 ## 핵심 분석 목표
 
@@ -49,6 +50,7 @@ CreditLens/
 │   ├── Feature_Dictionary.md
 │   ├── Preprocessing_and_Leakage_Spec.md
 │   ├── Stage4_Preprocessing_and_Evaluation_Spec.md
+│   ├── Stage4_Baseline_Model_Report.md
 │   ├── Stage2_EDA_Report.md
 │   ├── Stage3_Build_Report.md
 │   └── Project_Plan.md
@@ -61,7 +63,8 @@ CreditLens/
 │   ├── stage2_eda.json
 │   ├── stage2_split_summary.json
 │   ├── stage3_build_summary.json
-│   └── stage3_feature_profile.json
+│   ├── stage3_feature_profile.json
+│   └── stage4_baseline_results.json
 ├── sql/
 │   └── stage3/              # V1·bureau·V2·installments·V3 DuckDB SQL
 ├── src/
@@ -181,7 +184,7 @@ PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage2_eda
 - `EXT_SOURCE_1~3`이 `TARGET`과 가장 큰 단변량 수치 상관을 보이지만 인과관계로 해석하지 않음
 - 검증·테스트 고객의 피처 사용 0건, 고객 ID 출력 0건
 
-상세 결과는 [Stage 2 EDA 보고서](docs/Stage2_EDA_Report.md), 처리 원칙은 [전처리·누수 점검 명세](docs/Preprocessing_and_Leakage_Spec.md)에 기록되어 있습니다. 아직 실제 결측 대치, 인코딩, 피처 생성이나 모델 학습은 수행하지 않았습니다.
+상세 결과는 [Stage 2 EDA 보고서](docs/Stage2_EDA_Report.md), 처리 원칙은 [전처리·누수 점검 명세](docs/Preprocessing_and_Leakage_Spec.md)에 기록되어 있습니다. Stage 2에서는 실제 결측 대치, 인코딩, 피처 생성이나 모델 학습을 수행하지 않았습니다.
 
 전체 자동 테스트:
 
@@ -231,6 +234,27 @@ PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage3_feature_profile
 
 Stage 3 완료 시점에는 합성 데이터 기반 회귀 테스트 48개가 통과했습니다.
 
+## Stage 4 기준 모델 비교
+
+동일한 train·validation 분할과 평가 기준으로 5개 기준 모델을 비교했습니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.modeling.train_baselines \
+  --random-forest-jobs 2
+```
+
+| 모델 | ROC-AUC | PR-AUC | KS | Brier | Recall@Top10% | Lift@Top10% |
+|---|---:|---:|---:|---:|---:|---:|
+| Dummy Prior | 0.5000 | 0.0807 | 0.0000 | 0.0742 | 0.1000 | 1.0000 |
+| V1 Logistic Regression | 0.7436 | 0.2269 | 0.3656 | 0.0686 | 0.3161 | 3.1604 |
+| V2 Logistic Regression | 0.7490 | 0.2324 | 0.3750 | 0.0684 | 0.3257 | 3.2570 |
+| V3 Logistic Regression | 0.7585 | 0.2424 | 0.3908 | 0.0678 | 0.3375 | 3.3752 |
+| V3 Random Forest | 0.7507 | 0.2333 | 0.3806 | 0.1820 | 0.3276 | 3.2758 |
+
+동일한 Logistic Regression에서 V1→V2→V3로 데이터 원천을 추가할수록 validation 성능이 개선됐습니다. 현재 튜닝 전 기준 모델 중 V3 Logistic Regression이 가장 좋지만, 최종 모델 선택은 후속 모델 비교와 확률 보정을 마친 뒤 진행합니다. Random Forest는 클래스 가중치를 사용했으므로 현재 Brier Score를 보정된 확률 품질로 해석하지 않습니다.
+
+상세 설정, 실행 자원, 데이터 사용 감사와 전체 수치는 [Stage 4 기준 모델 학습 보고서](docs/Stage4_Baseline_Model_Report.md)와 [기계 판독용 결과](reports/stage4_baseline_results.json)에 기록했습니다. 학습 모델과 행별 validation 예측값은 `models/`에만 저장되며 Git에서 제외됩니다. test 피처·예측·평가는 사용하지 않았습니다.
+
 ## Git에 올리지 않는 파일
 
 - `data/raw/`, `data/interim/`, `data/processed/` 안의 모든 금융 데이터
@@ -250,13 +274,12 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 4의 모델 입력 로더, 피처 역할 계약, train-only 전처리 파이프라인과 공통 평가 함수는 구현했습니다. 이어서 다음 작업을 진행합니다.
+Stage 4의 마지막 분석 단계에서 기준 모델의 validation 결과를 더 자세히 해석합니다.
 
-현재 Stage 1~4 기반을 포함한 자동 테스트 110개가 통과하며, 실제 모델 학습과 validation 성능 측정은 아직 시작하지 않았습니다.
+현재 Stage 1~4 범위의 자동 테스트 117개가 통과합니다.
 
-1. Dummy Classifier로 클래스 불균형을 반영한 최저 기준을 확인합니다.
-2. V1·V2·V3 Logistic Regression으로 데이터 원천별 추가 가치를 비교합니다.
-3. V3 Random Forest를 비선형 기준 모델로 학습합니다.
-4. 모든 모델을 동일한 validation 데이터와 공통 지표로 비교합니다.
-5. ROC·PR·Calibration Curve와 위험도 decile·Top-K 분석 결과를 문서화합니다.
-6. 모델과 전처리 설정을 선택하는 동안 test 데이터는 계속 봉인합니다.
+1. ROC·PR 곡선으로 모델의 순위 분리력을 비교합니다.
+2. Calibration 곡선으로 예측확률과 실제 상환곤란 비율의 차이를 확인합니다.
+3. 위험도 decile별 상환곤란 비율과 Lift를 계산합니다.
+4. Top-K 우선검토 비율별 Recall·Precision·Lift를 비교합니다.
+5. 분석이 끝날 때까지 cutoff와 최종 모델은 고정하지 않고 test는 계속 봉인합니다.

@@ -154,6 +154,18 @@ def test_linear_scaling_keeps_missing_indicators_binary() -> None:
     assert set(matrix[:, income_missing]) == {0.0, 1.0}
 
 
+def test_linear_scaling_controls_rare_extreme_numeric_values() -> None:
+    train = _train()
+    train.loc[:, "BUREAU_DEBT_SUM"] = [0.0, 0.0, 0.0, 100_000_000.0]
+    preprocessor = make_preprocessor(_roles(), model_family="linear")
+
+    matrix = preprocessor.fit_transform(train).toarray()
+    names = transformed_feature_names(preprocessor)
+    debt = _index(names, "numeric__BUREAU_DEBT_SUM")
+
+    assert np.max(np.abs(matrix[:, debt])) < 3.0
+
+
 def test_known_rare_categories_are_grouped_but_unseen_is_ignored() -> None:
     roles = _roles()
     train = pd.concat([_train(), _train().iloc[[0]]], ignore_index=True)

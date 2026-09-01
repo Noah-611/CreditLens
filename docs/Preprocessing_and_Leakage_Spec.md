@@ -1,6 +1,6 @@
 # CreditLens 전처리·데이터 누수 점검 명세
 
-> Stage 2 학습 파티션 EDA와 Stage 3 고객 분석 마트 검증을 근거로 정한 전처리 경계와 누수 방지 원칙입니다. Stage 4에서 이 원칙을 적용한 전처리·평가 기반을 구현했으며, 실제 모델 학습과 성능 비교는 아직 수행하지 않았습니다.
+> Stage 2 학습 파티션 EDA와 Stage 3 고객 분석 마트 검증을 근거로 정한 전처리 경계와 누수 방지 원칙입니다. Stage 4에서 이 원칙을 적용한 전처리·평가 기반과 기준 모델 학습 경로를 구현했으며, train 학습·validation 비교까지 완료했습니다.
 
 ## 예측 시점
 
@@ -58,7 +58,7 @@ validation은 Stage 4 이후 학습 데이터에서 만든 변환과 모델을 �
 7. `DAYS_*`의 신청일 기준 부호를 보존합니다. 연·월 단위 변환은 Stage 3 피처 산식에 기록합니다.
 8. 극단값만으로 고객 행을 삭제하지 않습니다.
 9. 오른쪽 꼬리가 긴 비음수 금액·건수는 `log1p` 후보로 검토합니다.
-10. 선형 모델에서만 train 분위수 기반 clipping과 `RobustScaler`를 비교합니다. 트리 모델에는 불필요한 스케일링을 적용하지 않습니다.
+10. 선형 모델은 `StandardScaler(with_mean=False)`를 적용합니다. `RobustScaler`는 사분위 범위가 0인 희소 금액 피처를 수천만 단위로 남겨 기준 Logistic Regression을 불안정하게 만들어 채택하지 않았습니다. train 분위수 기반 clipping은 후속 개선 실험으로 남기며 트리 모델에는 불필요한 스케일링을 적용하지 않습니다.
 
 중앙값, 분위수와 스케일 값은 모두 train에서만 계산합니다.
 
@@ -69,11 +69,11 @@ validation은 Stage 4 이후 학습 데이터에서 만든 변환과 모델을 �
 3. train의 0.1% 미만, 즉 현재 기준 216명 미만인 수준은 `__RARE__` 통합 후보로 둡니다.
 4. validation·test에서 처음 등장한 수준은 `handle_unknown="ignore"`로 처리합니다.
 5. 희소범주 기준과 범주 목록은 train에서만 `fit`합니다.
-6. 원-핫 인코딩은 선형 모델용 파이프라인에서 사용하고, 트리 모델은 해당 구현의 범주 처리 방식을 별도로 비교합니다.
+6. 현재 Logistic Regression과 Random Forest 기준 모델 모두 동일한 원-핫 인코딩을 사용합니다. 모델 계열별 차이는 수치형 스케일링 여부뿐입니다.
 
 ## 파이프라인 경계
 
-Stage 2에서는 정책만 확정했고, Stage 4에서 아래 순서를 지키는 전처리 파이프라인을 구현했습니다. 현재 저장된 실제 데이터 학습 전처리 산출물이나 모델은 없습니다.
+Stage 2에서는 정책만 확정했고, Stage 4에서 아래 순서를 지키는 전처리·모델 파이프라인을 구현했습니다. 실제 학습 모델과 validation 예측값은 Git에서 제외되는 로컬 `models/stage4/` 아래에만 저장합니다.
 
 1. train에서 sentinel·결측·희소범주 규칙을 `fit`
 2. 같은 객체로 train과 validation을 `transform`
@@ -114,9 +114,10 @@ Stage 2에서는 정책만 확정했고, Stage 4에서 아래 순서를 지키�
 - Stage 3에서 결측으로 바꾼 `DAYS_EMPLOYED` sentinel은 train 중앙값과 결측 플래그로 처리합니다. 차량 미보유자의 `OWN_CAR_AGE`는 0으로, 차량 보유자의 결측 차령은 train의 유효한 보유자 중앙값으로 대치합니다.
 - 선형 모델에는 희소 행렬을 유지하는 스케일링을 적용하고 트리 모델에는 불필요한 스케일링을 적용하지 않습니다.
 - 공통 평가 모듈에 ROC-AUC, PR-AUC, KS, Gini, Brier Score, 임계값 지표와 Top-K 지표를 구현했습니다.
-- 아직 Dummy·Logistic Regression·Random Forest를 학습하거나 validation 성능을 비교하지 않았습니다.
-- 비음수 오른쪽 꼬리 피처의 `log1p`와 선형 모델용 clipping은 기준 모델 결과를 확인한 뒤 train 내부에서만 비교합니다.
+- Dummy Prior, V1·V2·V3 Logistic Regression과 V3 Random Forest를 train으로 학습하고 동일한 validation에서 비교했습니다.
+- 현재 튜닝 전 기준에서는 V3 Logistic Regression이 ROC-AUC 0.7585, PR-AUC 0.2424, KS 0.3908로 가장 높았습니다. 이는 최종 모델 선택 결과가 아닙니다.
+- 비음수 오른쪽 꼬리 피처의 `log1p`와 선형 모델용 clipping은 후속 개선 실험에서 train 내부 비교 대상으로 남깁니다.
 - 납부비율은 실제 초과납부로 1보다 클 수 있으므로 일괄적으로 0~1에 자르지 않습니다.
-- 실제 가공 데이터와 학습 산출물은 `data/processed/`, `models/`에만 저장하고 Git에서 제외합니다.
+- 행 단위 가공 데이터와 직렬화된 학습 모델은 `data/processed/`, `models/`에만 저장하고 Git에서 제외합니다. 공유 문서에는 고객 ID가 없는 집계 성능만 기록합니다.
 
-구현된 입력·전처리·평가 계약의 상세 정의는 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md)를 참고합니다.
+구현된 입력·전처리·평가 계약의 상세 정의는 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md), 실제 기준 모델 결과는 [Stage 4 기준 모델 학습 보고서](Stage4_Baseline_Model_Report.md)를 참고합니다.

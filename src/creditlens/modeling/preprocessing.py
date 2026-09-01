@@ -16,7 +16,7 @@ from sklearn.base import BaseEstimator, TransformerMixin
 from sklearn.compose import ColumnTransformer
 from sklearn.impute import MissingIndicator, SimpleImputer
 from sklearn.pipeline import FeatureUnion, Pipeline
-from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, RobustScaler
+from sklearn.preprocessing import FunctionTransformer, OneHotEncoder, StandardScaler
 
 
 MISSING_CATEGORY = "__MISSING__"
@@ -330,7 +330,7 @@ def make_preprocessor(
         )
     ]
     if model_family == "linear":
-        numeric_value_steps.append(("scale", RobustScaler(with_centering=False)))
+        numeric_value_steps.append(("scale", StandardScaler(with_mean=False)))
     numeric_value_steps.append(
         (
             "float32",
