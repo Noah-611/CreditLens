@@ -51,6 +51,9 @@ data/interim/**
 !data/interim/.gitkeep
 data/processed/**
 !data/processed/.gitkeep
+*.parquet
+*.duckdb
+*.duckdb.wal
 
 # Known Home Credit source files, even if placed outside data/raw by mistake
 application_train.csv

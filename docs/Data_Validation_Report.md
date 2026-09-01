@@ -45,7 +45,7 @@ train 고객 이력 조합:
 - installments만 존재: 41,640명
 - 두 이력 모두 없음: 2,380명 (0.77%)
 
-보조 테이블에는 test 고객도 포함됩니다. Stage 3에서는 각각 고객 단위로 먼저 집계하고 `application_train`에 LEFT JOIN합니다.
+보조 테이블에는 현재 신청 데이터에 없는 고객도 포함됩니다. Stage 3에서는 현재 신청 고객만 범위에 포함하고, 각 보조 테이블을 고객 단위로 먼저 집계한 뒤 `application_train`에 LEFT JOIN했습니다.
 
 ## TARGET 분포
 

@@ -1,0 +1,197 @@
+{
+  "schema_version": "1.0",
+  "build_version": "stage3-v1",
+  "generated_at_utc": "2026-08-31T12:42:07Z",
+  "environment": {
+    "python": "3.12.3",
+    "duckdb": "1.5.5",
+    "platform": "Linux"
+  },
+  "settings": {
+    "memory_limit": "3GB",
+    "threads": 2,
+    "parquet_compression": "zstd"
+  },
+  "resources": {
+    "process_peak_rss_mb": 2300.25,
+    "measurement_scope": "current_process_lifetime"
+  },
+  "sources": {
+    "application": {
+      "display_path": "data/raw/application_train.csv",
+      "bytes": 166133370,
+      "sha256": "52e96b895b1112e1c853f670e58372719c8441c5ed1c57ac2f7fad559d784f5f"
+    },
+    "bureau": {
+      "display_path": "data/raw/bureau.csv",
+      "bytes": 170016717,
+      "sha256": "9d799143423f280720cf51c1bfbbab2a0422da8ff2763335bb30bf43155494f7"
+    },
+    "installments": {
+      "display_path": "data/raw/installments_payments.csv",
+      "bytes": 723118349,
+      "sha256": "428c2e2496e4d6d697ee8270e98497e5213c41be16d882eed1bc95b133726797"
+    },
+    "splits": {
+      "display_path": "data/interim/customer_splits.csv",
+      "bytes": 4797198,
+      "sha256": "bb61706ea286086a726497ade1fa0aa3f1aad60ff505461d0612aca6222382af"
+    }
+  },
+  "sql_sha256": {
+    "01_v1_application.sql": "94db6774a4a4c0f2fde3879468c69ce6ada36937d91143f51dac2ba5ad51787d",
+    "02_bureau_features.sql": "2ab022ed842bccc05151a5ae660438def59d57ff7a0ecab947f703699d7a3d91",
+    "03_v2_bureau.sql": "c1f0c4ed0e4a6471265c728fdb267c4510f5bbce072d2759e6f360cf57992a35",
+    "04_installment_features.sql": "5e252c76f960200131d3ccf58683fd86004ebc81f8ce67aac38383204d06272a",
+    "05_v3_installments.sql": "d13e3906536974a5d4a8b717ac7ad1f3dc30694a8e1e83f2a9a8494dea1740ad"
+  },
+  "source_quality": {
+    "application_rows": 307511,
+    "application_unique_customers": 307511,
+    "days_employed_sentinel_rows": 55374,
+    "split_rows": 307511,
+    "assignment_mismatches": 0,
+    "bureau_rows": 1716428,
+    "bureau_future_credit_rows": 0,
+    "bureau_positive_days_credit_update_rows_excluded": 17,
+    "installment_rows": 13605401,
+    "installment_future_due_rows": 0,
+    "installment_future_payment_rows": 0,
+    "installment_mismatched_payment_missingness": 0,
+    "installment_owner_violations": 0,
+    "installment_inconsistent_schedule_groups": 0
+  },
+  "outputs": {
+    "v1": {
+      "rows": 307511,
+      "columns": 136,
+      "candidate_feature_columns": 133,
+      "policy_excluded_columns": [
+        "CODE_GENDER"
+      ],
+      "model_feature_columns": 132,
+      "target_1_rows": 24825,
+      "split_counts": {
+        "train": {
+          "0": 197881,
+          "1": 17377,
+          "rows": 215258
+        },
+        "validation": {
+          "0": 42403,
+          "1": 3724,
+          "rows": 46127
+        },
+        "test": {
+          "0": 42402,
+          "1": 3724,
+          "rows": 46126
+        }
+      },
+      "schema_sha256": "04bd3db5a23efb8bbbf85d079703ea5b475b95b1f7deecffa9aa5cdeb41a7549",
+      "schema_hash_includes_types": true,
+      "customer_key_unique": true,
+      "target_and_split_preserved": true,
+      "sha256": "b879f6607ca15be6225942ecc5d2dad6b8a3a8841597a89b1bb50a914a8f6cd4",
+      "display_path": "data/processed/feature_mart_v1.parquet"
+    },
+    "v2": {
+      "rows": 307511,
+      "columns": 173,
+      "candidate_feature_columns": 170,
+      "policy_excluded_columns": [
+        "CODE_GENDER"
+      ],
+      "model_feature_columns": 169,
+      "target_1_rows": 24825,
+      "split_counts": {
+        "train": {
+          "0": 197881,
+          "1": 17377,
+          "rows": 215258
+        },
+        "validation": {
+          "0": 42403,
+          "1": 3724,
+          "rows": 46127
+        },
+        "test": {
+          "0": 42402,
+          "1": 3724,
+          "rows": 46126
+        }
+      },
+      "schema_sha256": "49df806e0575d037eeaf49817d018c08d681272a2b7cd14df141357e51c54702",
+      "schema_hash_includes_types": true,
+      "customer_key_unique": true,
+      "target_and_split_preserved": true,
+      "customers_with_bureau_history": 263490,
+      "bureau_rows_aggregated": 1465308,
+      "bureau_feature_contract_violations": 0,
+      "sha256": "4d95d75b680b916f89a6641fd114d6b3da9ccd0c6f032c8d7cea4eda2833a02e",
+      "display_path": "data/processed/feature_mart_v2.parquet"
+    },
+    "v3": {
+      "rows": 307511,
+      "columns": 202,
+      "candidate_feature_columns": 199,
+      "policy_excluded_columns": [
+        "CODE_GENDER"
+      ],
+      "model_feature_columns": 198,
+      "target_1_rows": 24825,
+      "split_counts": {
+        "train": {
+          "0": 197881,
+          "1": 17377,
+          "rows": 215258
+        },
+        "validation": {
+          "0": 42403,
+          "1": 3724,
+          "rows": 46127
+        },
+        "test": {
+          "0": 42402,
+          "1": 3724,
+          "rows": 46126
+        }
+      },
+      "schema_sha256": "846fdfb5adb20774b9ff3c1bfd9de218c7063161eadcd87f9db1ce8bdb7dd5ee",
+      "schema_hash_includes_types": true,
+      "customer_key_unique": true,
+      "target_and_split_preserved": true,
+      "customers_with_bureau_history": 263490,
+      "customers_with_installment_history": 291643,
+      "bureau_rows_aggregated": 1465308,
+      "bureau_feature_contract_violations": 0,
+      "installment_payment_events_aggregated": 11591592,
+      "installment_schedules_aggregated": 11026627,
+      "installment_feature_contract_violations": 0,
+      "sha256": "94b761171131d1bb8fccc67fec68d30ff01e37404e052480ecf33758945c1732",
+      "display_path": "data/processed/feature_mart_v3.parquet"
+    }
+  },
+  "lineage_mismatch_rows": {
+    "v1_to_v2": 0,
+    "v2_to_v3": 0
+  },
+  "durations_seconds": {
+    "source_validation_seconds": 26.616,
+    "v1_build_seconds": 8.814,
+    "v2_build_seconds": 11.692,
+    "v3_build_seconds": 18.173,
+    "output_validation_seconds": 19.631,
+    "total_seconds": 87.684
+  },
+  "invariants": {
+    "inputs_unchanged": true,
+    "one_row_per_customer": true,
+    "target_preserved": true,
+    "split_preserved": true,
+    "no_post_application_history_used": true,
+    "v1_v2_v3_lineage_preserved": true,
+    "model_exclusion_policy_recorded": true,
+    "summary_excludes_customer_values": true
+  }
+}

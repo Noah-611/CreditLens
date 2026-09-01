@@ -1,0 +1,3266 @@
+{
+  "schema_version": "1.0",
+  "generated_at_utc": "2026-08-31T12:42:19Z",
+  "environment": {
+    "python": "3.12.3",
+    "duckdb": "1.5.5",
+    "pandas": "3.0.5"
+  },
+  "source": {
+    "display_path": "data/processed/feature_mart_v3.parquet",
+    "bytes": 54685273,
+    "sha256": "94b761171131d1bb8fccc67fec68d30ff01e37404e052480ecf33758945c1732"
+  },
+  "analysis_scope": {
+    "statistics_split": "train",
+    "train_feature_rows_used": 215258,
+    "validation_feature_rows_used": 0,
+    "test_feature_rows_used": 0,
+    "split_counts_metadata_only": {
+      "train": {
+        "0": 197881,
+        "1": 17377,
+        "rows": 215258
+      },
+      "validation": {
+        "0": 42403,
+        "1": 3724,
+        "rows": 46127
+      },
+      "test": {
+        "0": 42402,
+        "1": 3724,
+        "rows": 46126
+      }
+    },
+    "profiled_feature_count": 79,
+    "feature_groups": {
+      "application": 13,
+      "bureau": 37,
+      "installments": 29
+    }
+  },
+  "feature_statistics": {
+    "DAYS_EMPLOYED_SENTINEL": {
+      "source_type": "TINYINT",
+      "family": "binary_flag",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 2,
+      "zero_count": 176694,
+      "zero_rate_observed": 0.8208475410902266,
+      "most_frequent_rate_observed": 0.8208475410902266,
+      "mean": 0.17915245890977338,
+      "std": 0.3834808190054676,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 1.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.1843683830180765,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.11975599930943201,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.16848921903372505,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "OWN_CAR_AGE_NOT_APPLICABLE": {
+      "source_type": "TINYINT",
+      "family": "binary_flag",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 2,
+      "zero_count": 73396,
+      "zero_rate_observed": 0.3409675830863429,
+      "most_frequent_rate_observed": 0.6590324169136571,
+      "mean": 0.6590324169136571,
+      "std": 0.47403558334735263,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 1.0,
+      "q3": 1.0,
+      "p99": 1.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.6561317155259979,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.6920642228232722,
+          "median": 1.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.07580128699103267,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "OWN_CAR_AGE_MISSING": {
+      "source_type": "TINYINT",
+      "family": "binary_flag",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 2,
+      "zero_count": 215255,
+      "zero_rate_observed": 0.999986063235745,
+      "most_frequent_rate_observed": 0.999986063235745,
+      "mean": 1.393676425498704e-05,
+      "std": 0.003733180248187,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 1.5160626841384469e-05,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.0,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.004061048712755606,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_CREDIT_INCOME_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 39319,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.017165447974059035,
+      "mean": 3.9575935345381645,
+      "std": 2.6873883674658745,
+      "min": 0.004807615384615385,
+      "p1": 0.5985259090909091,
+      "q1": 2.018666666666667,
+      "median": 3.272727272727273,
+      "q3": 5.161290322580645,
+      "p99": 12.977540095238089,
+      "max": 84.73684210526316,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 3.9641704106286424,
+          "median": 3.2745333333333333
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 3.8826992019341633,
+          "median": 3.2512
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.030316127613257467,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_ANNUITY_INCOME_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 215250,
+      "missing_count": 8,
+      "missing_rate": 3.7164704679965434e-05,
+      "unique_count": 72018,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.009639953542392566,
+      "mean": 0.18080238246203936,
+      "std": 0.09439919611861136,
+      "min": 0.00022388461538461538,
+      "p1": 0.03930406606606607,
+      "q1": 0.11463409090909091,
+      "median": 0.16274,
+      "q3": 0.229,
+      "p99": 0.48240687500000057,
+      "max": 1.8759649122807018,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197873,
+          "missing_rate": 4.042833824369192e-05,
+          "mean": 0.1804204254204643,
+          "median": 0.16226666666666667
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.18515175149510502,
+          "median": 0.16914285714285715
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.05012040641422273,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_CREDIT_ANNUITY_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 215250,
+      "missing_count": 8,
+      "missing_rate": 3.7164704679965434e-05,
+      "unique_count": 33398,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.09514053426248548,
+      "mean": 21.62449833208247,
+      "std": 7.821351100739032,
+      "min": 8.036674497520229,
+      "p1": 8.744019826558848,
+      "q1": 15.647226925084462,
+      "median": 20.0,
+      "q3": 27.108361254532547,
+      "p99": 37.79564420924079,
+      "max": 45.30507855316039,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197873,
+          "missing_rate": 4.042833824369192e-05,
+          "mean": 21.701117334010465,
+          "median": 20.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 20.752032902578065,
+          "median": 20.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.12134533013646734,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_CREDIT_GOODS_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 215053,
+      "missing_count": 205,
+      "missing_rate": 0.0009523455574241143,
+      "unique_count": 2752,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.3525177514380176,
+      "mean": 0.9006335466017193,
+      "std": 0.09591689427607525,
+      "min": 0.16666666666666666,
+      "p1": 0.6778741865509761,
+      "q1": 0.8347245409015025,
+      "median": 0.8938148015731141,
+      "q3": 1.0,
+      "p99": 1.0,
+      "max": 6.666666666666667,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197692,
+          "missing_rate": 0.0009551194910072215,
+          "mean": 0.9025066642695475,
+          "median": 0.8938148015731141
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17361,
+          "missing_rate": 0.0009207573228980837,
+          "mean": 0.8793041083211895,
+          "median": 0.8732099196646874
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.24190270257890767,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_INCOME_PER_FAMILY_MEMBER": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 215257,
+      "missing_count": 1,
+      "missing_rate": 4.645588084995679e-06,
+      "unique_count": 2418,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.07956535675959435,
+      "mean": 93178.16298250417,
+      "std": 110687.27722313584,
+      "min": 2812.5,
+      "p1": 18000.0,
+      "q1": 47250.0,
+      "median": 75000.0,
+      "q3": 112500.0,
+      "p99": 346500.0,
+      "max": 39000000.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197880,
+          "missing_rate": 5.05354228046149e-06,
+          "mean": 93326.47086774632,
+          "median": 75000.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 91489.31195345917,
+          "median": 69750.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.016597742399820727,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_AGE_YEARS": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 17385,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.00014401323063486607,
+      "mean": 43.88080172662486,
+      "std": 11.944962382949557,
+      "min": 20.503764544832308,
+      "p1": 22.614647501711158,
+      "q1": 33.95482546201232,
+      "median": 43.058179329226554,
+      "q3": 53.86447638603696,
+      "p99": 66.85831622176592,
+      "max": 68.99657768651609,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 44.154957821928946,
+          "median": 43.41409993155373
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 40.75884268335689,
+          "median": 39.110198494182065
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.2843135900888001,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_EMPLOYED_YEARS": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 176692,
+      "missing_count": 38566,
+      "missing_rate": 0.17916175008594337,
+      "unique_count": 11777,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.0006621691983791004,
+      "mean": 6.527917650272861,
+      "std": 6.402725932281935,
+      "min": 0.0054757015742642025,
+      "p1": 0.30390143737166325,
+      "q1": 2.099931553730322,
+      "median": 4.509240246406571,
+      "q3": 8.698151950718685,
+      "p99": 31.000930869267613,
+      "max": 49.040383299110196,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 161397,
+          "missing_rate": 0.18437343656035698,
+          "mean": 6.674562103351742,
+          "median": 4.629705681040384
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 15295,
+          "missing_rate": 0.11981354664211313,
+          "mean": 4.98048549639432,
+          "median": 3.3894592744695413
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.2645867752071112,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_EMPLOYED_AGE_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 176692,
+      "missing_count": 38566,
+      "missing_rate": 0.17916175008594337,
+      "unique_count": 175270,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 5.6595657981119686e-05,
+      "mean": 0.15690434649617496,
+      "std": 0.13354619051200278,
+      "min": 0.00010742869420422194,
+      "p1": 0.007515908947919661,
+      "q1": 0.056029706527434345,
+      "median": 0.11884931732213272,
+      "q3": 0.2192453332686013,
+      "p99": 0.5900686352285371,
+      "max": 0.7288114904178704,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 161397,
+          "missing_rate": 0.18437343656035698,
+          "mean": 0.1596808325165115,
+          "median": 0.12175249807840123
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 15295,
+          "missing_rate": 0.11981354664211313,
+          "mean": 0.12760611084895324,
+          "median": 0.09350300347771104
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.24017698703787038,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_EXT_SOURCE_OBSERVED_COUNT": {
+      "source_type": "TINYINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 4,
+      "zero_count": 117,
+      "zero_rate_observed": 0.0005435338059444945,
+      "most_frequent_rate_observed": 0.5242639065679324,
+      "mean": 2.235517379145026,
+      "std": 0.649538466101269,
+      "min": 0.0,
+      "p1": 1.0,
+      "q1": 2.0,
+      "median": 2.0,
+      "q3": 3.0,
+      "p99": 3.0,
+      "max": 3.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 2.241185358877305,
+          "median": 2.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 2.170973125395638,
+          "median": 2.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.1080955742361228,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "APP_EXT_SOURCE_MEAN": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 215141,
+      "missing_count": 117,
+      "missing_rate": 0.0005435338059444945,
+      "unique_count": 211368,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.00029283121301843906,
+      "mean": 0.5090572281995359,
+      "std": 0.14991337230162602,
+      "min": 5.9396509293128426e-06,
+      "p1": 0.11061142403202318,
+      "q1": 0.41331228524543784,
+      "median": 0.5244965063604198,
+      "q3": 0.6227257568348477,
+      "p99": 0.7723149416418691,
+      "max": 0.878903368632926,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197774,
+          "missing_rate": 0.0005407290240093793,
+          "mean": 0.5189064098372927,
+          "median": 0.5337266526879751
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17367,
+          "missing_rate": 0.0005754733268113023,
+          "mean": 0.3968955394089706,
+          "median": 0.3983954748825087
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.813875830788704,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_HAS_HISTORY": {
+      "source_type": "TINYINT",
+      "family": "binary_flag",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 2,
+      "zero_count": 30850,
+      "zero_rate_observed": 0.14331639242211672,
+      "most_frequent_rate_observed": 0.8566836075778833,
+      "mean": 0.8566836075778833,
+      "std": 0.3503960251748505,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 1.0,
+      "q3": 1.0,
+      "p99": 1.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.8597389340057914,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.821891005351902,
+          "median": 1.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.10801472030113066,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_RECORD_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 58,
+      "zero_count": 30850,
+      "zero_rate_observed": 0.14331639242211672,
+      "most_frequent_rate_observed": 0.14331639242211672,
+      "mean": 4.764324670860084,
+      "std": 4.497139824047324,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 4.0,
+      "q3": 7.0,
+      "p99": 20.0,
+      "max": 116.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 4.775551973155584,
+          "median": 4.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 4.636473499453301,
+          "median": 3.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.030925983879486255,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_LOAN_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 58,
+      "zero_count": 30850,
+      "zero_rate_observed": 0.14331639242211672,
+      "most_frequent_rate_observed": 0.14331639242211672,
+      "mean": 4.764324670860084,
+      "std": 4.497139824047324,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 4.0,
+      "q3": 7.0,
+      "p99": 20.0,
+      "max": 116.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 4.775551973155584,
+          "median": 4.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 4.636473499453301,
+          "median": 3.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.030925983879486255,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_ACTIVE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 21,
+      "zero_count": 63206,
+      "zero_rate_observed": 0.2936290405002369,
+      "most_frequent_rate_observed": 0.2936290405002369,
+      "mean": 1.7642131767460443,
+      "std": 1.8042778587744364,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 1.0,
+      "q3": 3.0,
+      "p99": 8.0,
+      "max": 22.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 1.740055892177622,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 2.039304828221212,
+          "median": 2.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.16585523930712995,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_CLOSED_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 49,
+      "zero_count": 54174,
+      "zero_rate_observed": 0.25167008891655596,
+      "most_frequent_rate_observed": 0.25167008891655596,
+      "mean": 2.9818078770591567,
+      "std": 3.3618572690688526,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 2.0,
+      "q3": 4.0,
+      "p99": 15.0,
+      "max": 108.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 3.0176115948474083,
+          "median": 2.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 2.574092190826955,
+          "median": 1.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.13192689889041503,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_SOLD_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 7,
+      "zero_count": 211623,
+      "zero_rate_observed": 0.9831132873110408,
+      "most_frequent_rate_observed": 0.9831132873110408,
+      "mean": 0.018247869997863028,
+      "std": 0.1451688087615438,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 1.0,
+      "max": 6.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.017833950707748597,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.02296138573977096,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.03532050084150484,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_BAD_DEBT_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 2,
+      "zero_count": 215246,
+      "zero_rate_observed": 0.9999442529429801,
+      "most_frequent_rate_observed": 0.9999442529429801,
+      "mean": 5.574705701994816e-05,
+      "std": 0.007466204407207952,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 5.05354228046149e-05,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.00011509466536226047,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.008646862453339666,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_CREDIT_TYPE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 7,
+      "zero_count": 30850,
+      "zero_rate_observed": 0.14331639242211672,
+      "most_frequent_rate_observed": 0.46791292309693483,
+      "mean": 1.4942208884222654,
+      "std": 0.8513383256376862,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 2.0,
+      "q3": 2.0,
+      "p99": 3.0,
+      "max": 6.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 1.4987492482855858,
+          "median": 2.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 1.4426540829832537,
+          "median": 2.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.06589056737263008,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_NON_PRIMARY_CURRENCY_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 7,
+      "zero_count": 214566,
+      "zero_rate_observed": 0.996785253045183,
+      "most_frequent_rate_observed": 0.996785253045183,
+      "mean": 0.004018433693521263,
+      "std": 0.07864948201053067,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 6.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.004103476331734729,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.0030500086320999023,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.013394464562319358,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_OVERDUE_LOAN_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 8,
+      "zero_count": 212744,
+      "zero_rate_observed": 0.9883209915543208,
+      "most_frequent_rate_observed": 0.9883209915543208,
+      "mean": 0.012756784881398137,
+      "std": 0.12621273932742635,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 1.0,
+      "max": 8.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.011314881165953274,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.029176497669333026,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.14151991786694687,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_ACTIVE_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 266,
+      "zero_count": 32356,
+      "zero_rate_observed": 0.1754587653464058,
+      "most_frequent_rate_observed": 0.1754587653464058,
+      "mean": 0.41370738566892895,
+      "std": 0.3084595524004033,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.2,
+      "median": 0.375,
+      "q3": 0.6,
+      "p99": 1.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": 0.40672863526196784,
+          "median": 0.36363636363636365
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": 0.49683768196739303,
+          "median": 0.5
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.29212597244664673,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_OVERDUE_LOAN_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 63,
+      "zero_count": 181894,
+      "zero_rate_observed": 0.9863671858053881,
+      "most_frequent_rate_observed": 0.9863671858053881,
+      "mean": 0.003147611073570774,
+      "std": 0.036201987256269254,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.1111111111111111,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": 0.0027886709353137713,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": 0.0074232762437927875,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.1280207430512374,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DAYS_CREDIT_MEAN": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 53836,
+      "zero_count": 1,
+      "zero_rate_observed": 5.422758231746996e-06,
+      "most_frequent_rate_observed": 0.00030909721920957875,
+      "mean": -1082.423489407928,
+      "std": 563.4577052143461,
+      "min": -2922.0,
+      "p1": -2649.465,
+      "q1": -1433.5714285714287,
+      "median": -1049.2,
+      "q3": -663.0,
+      "p99": -83.0,
+      "max": 0.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": -1096.90674193066,
+          "median": -1065.6
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": -909.90018604129,
+          "median": -839.1111111111111
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.33189102599676135,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DAYS_CREDIT_MIN": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 2922,
+      "zero_count": 1,
+      "zero_rate_observed": 5.422758231746996e-06,
+      "most_frequent_rate_observed": 0.0011658930198256041,
+      "mean": -1761.8651468482929,
+      "std": 864.099094325591,
+      "min": -2922.0,
+      "p1": -2912.0,
+      "q1": -2583.0,
+      "median": -1823.0,
+      "q3": -1034.75,
+      "p99": -88.0,
+      "max": 0.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": -1780.1816594759177,
+          "median": -1856.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": -1543.6803668953928,
+          "median": -1481.5
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.27369695690412527,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DAYS_CREDIT_MAX": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 2921,
+      "zero_count": 4,
+      "zero_rate_observed": 2.1691032926987982e-05,
+      "most_frequent_rate_observed": 0.002667997050019522,
+      "mean": -488.47532645004554,
+      "std": 537.704003058823,
+      "min": -2922.0,
+      "p1": -2608.0,
+      "q1": -618.0,
+      "median": -299.0,
+      "q3": -142.0,
+      "p99": -14.0,
+      "max": 0.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": -496.3095176516229,
+          "median": -307.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": -395.1550903234841,
+          "median": -222.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.18812288313403697,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DAYS_SINCE_RECENT_CREDIT": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 2921,
+      "zero_count": 4,
+      "zero_rate_observed": 2.1691032926987982e-05,
+      "most_frequent_rate_observed": 0.002667997050019522,
+      "mean": 488.47532645004554,
+      "std": 537.704003058823,
+      "min": -0.0,
+      "p1": 14.0,
+      "q1": 142.0,
+      "median": 299.0,
+      "q3": 618.0,
+      "p99": 2608.0,
+      "max": 2922.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": 496.3095176516229,
+          "median": 307.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": 395.1550903234841,
+          "median": 222.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.18812288313403697,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DAYS_OVERDUE_MEAN": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 1197,
+      "zero_count": 182032,
+      "zero_rate_observed": 0.9871155264413691,
+      "most_frequent_rate_observed": 0.9871155264413691,
+      "mean": 1.029943533882931,
+      "std": 25.42740432385143,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 2.5,
+      "max": 2776.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": 0.9477766428582121,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": 2.0087087280063978,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.04172396331280301,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_DAYS_OVERDUE_MAX": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 184408,
+      "missing_count": 30850,
+      "missing_rate": 0.14331639242211672,
+      "unique_count": 675,
+      "zero_count": 182032,
+      "zero_rate_observed": 0.9871155264413691,
+      "most_frequent_rate_observed": 0.9871155264413691,
+      "mean": 4.793501366535074,
+      "std": 89.6057983644656,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 16.0,
+      "max": 2792.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170126,
+          "missing_rate": 0.14026106599420865,
+          "mean": 4.614150688313368,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14282,
+          "missing_rate": 0.17810899464809807,
+          "mean": 6.929911777062036,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.02584387540781083,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_PROLONG_COUNT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 10,
+      "zero_count": 209310,
+      "zero_rate_observed": 0.9723680420704457,
+      "most_frequent_rate_observed": 0.9723680420704457,
+      "mean": 0.03458640329279283,
+      "std": 0.22876873767662104,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 1.0,
+      "max": 9.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.0342630166615289,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.038268976232951606,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.01751095718806378,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_CREDIT_AMOUNT_OBSERVED_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 58,
+      "zero_count": 30873,
+      "zero_rate_observed": 0.14342324094807163,
+      "most_frequent_rate_observed": 0.14342324094807163,
+      "mean": 4.760292300402308,
+      "std": 4.493728223180588,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 4.0,
+      "q3": 7.0,
+      "p99": 20.0,
+      "max": 116.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 4.771433336197007,
+          "median": 4.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 4.6334234908212,
+          "median": 3.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.030711658231553186,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_CREDIT_AMOUNT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 184385,
+      "missing_count": 30873,
+      "missing_rate": 0.14342324094807163,
+      "unique_count": 147568,
+      "zero_count": 740,
+      "zero_rate_observed": 0.00401334164926648,
+      "most_frequent_rate_observed": 0.005255308186674621,
+      "mean": 1937491.6340205276,
+      "std": 4242701.956206593,
+      "min": 0.0,
+      "p1": 20998.170000000002,
+      "q1": 343125.0,
+      "median": 959157.9000000001,
+      "q3": 2288790.0,
+      "p99": 13874222.088000007,
+      "max": 1017957917.385,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170105,
+          "missing_rate": 0.14036719038209833,
+          "mean": 1953263.1985057464,
+          "median": 964755.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14280,
+          "missing_rate": 0.17822408931346032,
+          "mean": 1749618.946572479,
+          "median": 901371.6000000001
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.04799871733515451,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_CREDIT_AMOUNT_MEAN": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 184385,
+      "missing_count": 30873,
+      "missing_rate": 0.14342324094807163,
+      "unique_count": 149919,
+      "zero_count": 740,
+      "zero_rate_observed": 0.00401334164926648,
+      "most_frequent_rate_observed": 0.0053420831412533554,
+      "mean": 373958.9024605764,
+      "std": 861377.0473221777,
+      "min": 0.0,
+      "p1": 17453.543999999998,
+      "q1": 103500.0,
+      "median": 195744.501,
+      "q3": 394262.0836363636,
+      "p99": 2925000.0,
+      "max": 198072344.25,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170105,
+          "missing_rate": 0.14036719038209833,
+          "mean": 378754.6909577665,
+          "median": 196329.2142857143
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14280,
+          "missing_rate": 0.17822408931346032,
+          "mean": 316830.9191052176,
+          "median": 187858.95
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.07188927548633386,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_CREDIT_AMOUNT_MAX": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 184385,
+      "missing_count": 30873,
+      "missing_rate": 0.14342324094807163,
+      "unique_count": 49219,
+      "zero_count": 740,
+      "zero_rate_observed": 0.00401334164926648,
+      "most_frequent_rate_observed": 0.03461236000759281,
+      "mean": 965266.327413564,
+      "std": 2034994.129230974,
+      "min": 0.0,
+      "p1": 19371.099599999998,
+      "q1": 180000.0,
+      "median": 450000.0,
+      "q3": 1043460.0,
+      "p99": 8442360.000000007,
+      "max": 396000000.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170105,
+          "missing_rate": 0.14036719038209833,
+          "mean": 976622.1399507658,
+          "median": 450000.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14280,
+          "missing_rate": 0.17822408931346032,
+          "mean": 829994.5843014707,
+          "median": 450000.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.07205306076470391,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_DEBT_OBSERVED_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 51,
+      "zero_count": 36016,
+      "zero_rate_observed": 0.1673155004692044,
+      "most_frequent_rate_observed": 0.1673155004692044,
+      "mean": 4.0374202120246405,
+      "std": 3.930191931627216,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 3.0,
+      "q3": 6.0,
+      "p99": 17.0,
+      "max": 109.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 4.044218494954038,
+          "median": 3.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 3.9600046037866146,
+          "median": 3.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.021427424571745027,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DEBT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 179242,
+      "missing_count": 36016,
+      "missing_rate": 0.1673155004692044,
+      "unique_count": 113641,
+      "zero_count": 48642,
+      "zero_rate_observed": 0.27137612836277214,
+      "most_frequent_rate_observed": 0.27137612836277214,
+      "mean": 658449.1514359637,
+      "std": 1671907.15597821,
+      "min": -6981558.210000001,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 184826.25,
+      "q3": 684124.6725,
+      "p99": 7060992.255,
+      "max": 334498331.20500004,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 165294,
+          "missing_rate": 0.16467978229339855,
+          "mean": 654747.8626110748,
+          "median": 178031.115
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 13948,
+          "missing_rate": 0.19732980376359555,
+          "mean": 702312.1307176657,
+          "median": 279456.75
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.028449108514498604,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DEBT_MEAN": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 179242,
+      "missing_count": 36016,
+      "missing_rate": 0.1673155004692044,
+      "unique_count": 121484,
+      "zero_count": 48642,
+      "zero_rate_observed": 0.27137612836277214,
+      "most_frequent_rate_observed": 0.27137612836277214,
+      "mean": 159723.29768077275,
+      "std": 503448.6130144345,
+      "min": -1163593.0350000001,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 44354.175,
+      "q3": 142583.0625,
+      "p99": 1929267.9719999987,
+      "max": 35108518.5,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 165294,
+          "missing_rate": 0.16467978229339855,
+          "mean": 159707.59520113078,
+          "median": 42462.104999999996
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 13948,
+          "missing_rate": 0.19732980376359555,
+          "mean": 159909.38354755973,
+          "median": 67490.72208791209
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.0004008122005158101,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DEBT_MAX": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 179242,
+      "missing_count": 36016,
+      "missing_rate": 0.1673155004692044,
+      "unique_count": 104301,
+      "zero_count": 49465,
+      "zero_rate_observed": 0.27596768614498834,
+      "most_frequent_rate_observed": 0.27596768614498834,
+      "mean": 520415.9844259158,
+      "std": 1318873.6221778186,
+      "min": -25959.645,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 149768.2125,
+      "q3": 495066.51,
+      "p99": 6273288.128699995,
+      "max": 170100000.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 165294,
+          "missing_rate": 0.16467978229339855,
+          "mean": 520999.48451486445,
+          "median": 144677.25
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 13948,
+          "missing_rate": 0.19732980376359555,
+          "mean": 513501.0816654717,
+          "median": 208453.5
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.005685459716004353,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_OVERDUE_AMOUNT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 184386,
+      "missing_count": 30872,
+      "missing_rate": 0.14341859535998663,
+      "unique_count": 899,
+      "zero_count": 182060,
+      "zero_rate_observed": 0.9873851593938803,
+      "most_frequent_rate_observed": 0.9873851593938803,
+      "mean": 236.84380129185516,
+      "std": 16970.055157178722,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 27.0,
+      "max": 3681063.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170106,
+          "missing_rate": 0.14036213683981788,
+          "mean": 165.62649245176536,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14280,
+          "missing_rate": 0.17822408931346032,
+          "mean": 1085.1975504201682,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.05418786500404527,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_OVERDUE_AMOUNT_MAX": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 184386,
+      "missing_count": 30872,
+      "missing_rate": 0.14341859535998663,
+      "unique_count": 891,
+      "zero_count": 182060,
+      "zero_rate_observed": 0.9873851593938803,
+      "most_frequent_rate_observed": 0.9873851593938803,
+      "mean": 194.40932380983372,
+      "std": 14238.56970135983,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 27.0,
+      "max": 3681063.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 170106,
+          "missing_rate": 0.14036213683981788,
+          "mean": 142.98001984057,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14280,
+          "missing_rate": 0.17822408931346032,
+          "mean": 807.0447006302521,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.04663844014657328,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_MAX_OVERDUE_OBSERVED_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 36,
+      "zero_count": 86412,
+      "zero_rate_observed": 0.40143455760064667,
+      "most_frequent_rate_observed": 0.40143455760064667,
+      "mean": 1.6821070529318307,
+      "std": 2.251786653882252,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 1.0,
+      "q3": 2.0,
+      "p99": 10.0,
+      "max": 46.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 1.6835320217706602,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 1.665880186453358,
+          "median": 1.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.007839035410778898,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_MAX_OVERDUE_AMOUNT": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 128846,
+      "missing_count": 86412,
+      "missing_rate": 0.40143455760064667,
+      "unique_count": 32978,
+      "zero_count": 79532,
+      "zero_rate_observed": 0.617264020613756,
+      "most_frequent_rate_observed": 0.617264020613756,
+      "mean": 8731.88942407991,
+      "std": 336222.5419230834,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 5917.37625,
+      "p99": 74584.72125000008,
+      "max": 115987185.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 118710,
+          "missing_rate": 0.4000939958864166,
+          "mean": 8543.599250568614,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 10136,
+          "missing_rate": 0.41670023594406397,
+          "mean": 10937.091327940014,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.007118773368618907,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_ACTIVE_CREDIT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 152036,
+      "missing_count": 63222,
+      "missing_rate": 0.29370336990959683,
+      "unique_count": 70209,
+      "zero_count": 2160,
+      "zero_rate_observed": 0.014207161461759057,
+      "most_frequent_rate_observed": 0.016910468573232654,
+      "mean": 1306861.643070161,
+      "std": 2364070.9706547693,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 233955.0,
+      "median": 648000.0,
+      "q3": 1522800.0,
+      "p99": 9994952.024999956,
+      "max": 334739700.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 139547,
+          "missing_rate": 0.29479333538844055,
+          "mean": 1313426.9881264737,
+          "median": 643500.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 12489,
+          "missing_rate": 0.28129136214536454,
+          "mean": 1233503.1510713426,
+          "median": 675000.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.033807714762892606,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_ACTIVE_DEBT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 144594,
+      "missing_count": 70664,
+      "missing_rate": 0.3282758364381347,
+      "unique_count": 112568,
+      "zero_count": 15085,
+      "zero_rate_observed": 0.10432659723086712,
+      "most_frequent_rate_observed": 0.10432659723086712,
+      "mean": 803801.8614331507,
+      "std": 1813911.5590145898,
+      "min": -6978830.490000001,
+      "p1": 0.0,
+      "q1": 79227.0,
+      "median": 309717.0,
+      "q3": 864371.25,
+      "p99": 7704577.755000003,
+      "max": 334498331.20500004,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 132632,
+          "missing_rate": 0.3297385802578317,
+          "mean": 803530.5811963553,
+          "median": 303895.89
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 11962,
+          "missing_rate": 0.3116188064683202,
+          "mean": 806809.756464638,
+          "median": 375072.75
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.0018077922553534978,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_DEBT_CREDIT_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 178375,
+      "missing_count": 36883,
+      "missing_rate": 0.17134322533889565,
+      "unique_count": 129377,
+      "zero_count": 47832,
+      "zero_rate_observed": 0.2681541695865452,
+      "most_frequent_rate_observed": 0.2681541695865452,
+      "mean": 0.32467417530124393,
+      "std": 0.5188058987712877,
+      "min": -175.28923076923076,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.27869610397433775,
+      "q3": 0.5519689405425536,
+      "p99": 1.0,
+      "max": 7.7891,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 164495,
+          "missing_rate": 0.16871756257548728,
+          "mean": 0.3154781862185065,
+          "median": 0.2659599560401925
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 13880,
+          "missing_rate": 0.2012430223859124,
+          "mean": 0.4336579090307027,
+          "median": 0.4432657568383641
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.2277917870480787,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "BUREAU_ANNUITY_OBSERVED_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 43,
+      "zero_count": 159291,
+      "zero_rate_observed": 0.7400003716470468,
+      "most_frequent_rate_observed": 0.7400003716470468,
+      "mean": 1.0895855206310567,
+      "std": 2.545906565156369,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 1.0,
+      "p99": 12.0,
+      "max": 81.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 1.0812104244470162,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 1.1849571272371526,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.0407503968173963,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_ANNUITY_SUM": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 55967,
+      "missing_count": 159291,
+      "missing_rate": 0.7400003716470468,
+      "unique_count": 27352,
+      "zero_count": 13888,
+      "zero_rate_observed": 0.24814622902781996,
+      "most_frequent_rate_observed": 0.24814622902781996,
+      "mean": 62310.62026113602,
+      "std": 582764.2256596341,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 450.0,
+      "median": 20250.0,
+      "q3": 54836.235,
+      "p99": 531232.0874999991,
+      "max": 68504272.875,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 51301,
+          "missing_rate": 0.7407482274700451,
+          "mean": 61390.26912438355,
+          "median": 20025.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 4666,
+          "missing_rate": 0.7314841457098463,
+          "mean": 72429.55160844405,
+          "median": 22551.1875
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.01894296526449452,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "BUREAU_ANNUITY_MEAN": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 55967,
+      "missing_count": 159291,
+      "missing_rate": 0.7400003716470468,
+      "unique_count": 29986,
+      "zero_count": 13888,
+      "zero_rate_observed": 0.24814622902781996,
+      "most_frequent_rate_observed": 0.24814622902781996,
+      "mean": 15064.284015998213,
+      "std": 142439.46040077184,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 127.28571428571429,
+      "median": 6489.0,
+      "q3": 15095.147727272728,
+      "p99": 102774.0599999997,
+      "max": 24016036.5,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 51301,
+          "missing_rate": 0.7407482274700451,
+          "mean": 15025.608351666828,
+          "median": 6398.81
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 4666,
+          "missing_rate": 0.7314841457098463,
+          "mean": 15489.509102981583,
+          "median": 7363.446428571428
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.0032568274971662386,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_HAS_HISTORY": {
+      "source_type": "TINYINT",
+      "family": "binary_flag",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 2,
+      "zero_count": 11078,
+      "zero_rate_observed": 0.05146382480558214,
+      "most_frequent_rate_observed": 0.9485361751944179,
+      "mean": 0.9485361751944179,
+      "std": 0.22094235972033505,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 1.0,
+      "q3": 1.0,
+      "p99": 1.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.9474835886214442,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.9605225297807447,
+          "median": 1.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.05901512582650493,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 292,
+      "zero_count": 11078,
+      "zero_rate_observed": 0.05146382480558214,
+      "most_frequent_rate_observed": 0.05146382480558214,
+      "mean": 35.82181382341191,
+      "std": 38.91569210010346,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 10.0,
+      "median": 22.0,
+      "q3": 45.0,
+      "p99": 178.0,
+      "max": 332.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 36.02228612145684,
+          "median": 22.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 33.538930770558785,
+          "median": 20.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.06381372697959672,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_PREV_LOAN_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 26,
+      "zero_count": 11078,
+      "zero_rate_observed": 0.05146382480558214,
+      "most_frequent_rate_observed": 0.26628975462003734,
+      "mean": 2.773471833799441,
+      "std": 2.0906733180735926,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 1.0,
+      "median": 2.0,
+      "q3": 4.0,
+      "p99": 10.0,
+      "max": 26.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 2.7881454005184936,
+          "median": 2.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 2.606376244461069,
+          "median": 2.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.08694287839523,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_PAYMENT_EVENT_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 306,
+      "zero_count": 11078,
+      "zero_rate_observed": 0.05146382480558214,
+      "most_frequent_rate_observed": 0.05146382480558214,
+      "mean": 37.655404212619274,
+      "std": 40.62061048521918,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 11.0,
+      "median": 23.0,
+      "q3": 48.0,
+      "p99": 186.0,
+      "max": 337.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 37.82032635776047,
+          "median": 23.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 35.77734936985671,
+          "median": 22.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.0502940985745931,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_PAYMENT_DATE_OBSERVED_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 292,
+      "zero_count": 11084,
+      "zero_rate_observed": 0.05149169833409211,
+      "most_frequent_rate_observed": 0.05149169833409211,
+      "mean": 35.81320090310232,
+      "std": 38.908330264877335,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 10.0,
+      "median": 22.0,
+      "q3": 45.0,
+      "p99": 178.0,
+      "max": 332.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 36.01499385994613,
+          "median": 22.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 33.51527881682684,
+          "median": 20.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.06424626875792169,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_PAYMENT_AMOUNT_OBSERVED_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 292,
+      "zero_count": 11084,
+      "zero_rate_observed": 0.05149169833409211,
+      "most_frequent_rate_observed": 0.05149169833409211,
+      "mean": 35.81320090310232,
+      "std": 38.908330264877335,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 10.0,
+      "median": 22.0,
+      "q3": 45.0,
+      "p99": 178.0,
+      "max": 332.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 36.01499385994613,
+          "median": 22.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 33.51527881682684,
+          "median": 20.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.06424626875792169,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_MISSING_PAYMENT_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 24,
+      "zero_count": 214504,
+      "zero_rate_observed": 0.9964972265839133,
+      "most_frequent_rate_observed": 0.9964972265839133,
+      "mean": 0.00861292030958199,
+      "std": 0.2886264359946584,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 57.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.007292261510705929,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.023651953731944526,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.056681198189140795,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_MISSING_PAYMENT_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 204180,
+      "missing_count": 11078,
+      "missing_rate": 0.05146382480558214,
+      "unique_count": 274,
+      "zero_count": 203426,
+      "zero_rate_observed": 0.9963071799392693,
+      "most_frequent_rate_observed": 0.9963071799392693,
+      "mean": 0.00021159662674222158,
+      "std": 0.0071646830347009425,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187489,
+          "missing_rate": 0.0525164113785558,
+          "mean": 0.0001796663880345837,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16691,
+          "missing_rate": 0.03947747021925534,
+          "mean": 0.0005702670793847425,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.05451751172499185,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_LATE_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 92,
+      "zero_count": 106793,
+      "zero_rate_observed": 0.4961162883609436,
+      "most_frequent_rate_observed": 0.4961162883609436,
+      "mean": 3.0999080173559173,
+      "std": 5.965669595452223,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 1.0,
+      "q3": 4.0,
+      "p99": 28.0,
+      "max": 142.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 3.042353737852548,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 3.7553087414398343,
+          "median": 1.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.11950963629142144,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_LATE_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 204174,
+      "missing_count": 11084,
+      "missing_rate": 0.05149169833409211,
+      "unique_count": 4227,
+      "zero_count": 95709,
+      "zero_rate_observed": 0.46876193834670427,
+      "most_frequent_rate_observed": 0.46876193834670427,
+      "mean": 0.08578454255971567,
+      "std": 0.14167724578037336,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.018518518518518517,
+      "q3": 0.11428571428571428,
+      "p99": 0.6666666666666666,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187484,
+          "missing_rate": 0.052541679089958104,
+          "mean": 0.08287307516614403,
+          "median": 0.015873015873015872
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 0.11848996813289624,
+          "median": 0.04878048780487805
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.2513945889516031,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_DAYS_LATE_MEAN": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 204174,
+      "missing_count": 11084,
+      "missing_rate": 0.05149169833409211,
+      "unique_count": 18613,
+      "zero_count": 95709,
+      "zero_rate_observed": 0.46876193834670427,
+      "most_frequent_rate_observed": 0.46876193834670427,
+      "mean": 1.2972966744876284,
+      "std": 14.3634828893403,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.038461538461538464,
+      "q3": 0.5546710871848739,
+      "p99": 17.653273155416006,
+      "max": 2813.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187484,
+          "missing_rate": 0.052541679089958104,
+          "mean": 1.268548213538748,
+          "median": 0.03125
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 1.6202371449813318,
+          "median": 0.14285714285714285
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.024484934061750844,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_DAYS_LATE_MAX": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 204174,
+      "missing_count": 11084,
+      "missing_rate": 0.05149169833409211,
+      "unique_count": 1429,
+      "zero_count": 95709,
+      "zero_rate_observed": 0.46876193834670427,
+      "most_frequent_rate_observed": 0.46876193834670427,
+      "mean": 18.400922742366806,
+      "std": 110.16183534721952,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 1.0,
+      "q3": 9.0,
+      "p99": 358.0,
+      "max": 2884.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187484,
+          "missing_rate": 0.052541679089958104,
+          "mean": 18.275959548548144,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 19.804673457159975,
+          "median": 3.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.01387698292964593,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_DAYS_LATE_SUM": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 204174,
+      "missing_count": 11084,
+      "missing_rate": 0.05149169833409211,
+      "unique_count": 1783,
+      "zero_count": 95709,
+      "zero_rate_observed": 0.46876193834670427,
+      "most_frequent_rate_observed": 0.46876193834670427,
+      "mean": 41.97234221791217,
+      "std": 355.9957654546002,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 1.0,
+      "q3": 21.0,
+      "p99": 594.2699999999895,
+      "max": 82957.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187484,
+          "missing_rate": 0.052541679089958104,
+          "mean": 41.277671694651275,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 49.775793888556024,
+          "median": 4.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.02387141370362313,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_UNDERPAID_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 9,
+      "zero_count": 213528,
+      "zero_rate_observed": 0.9919631326129574,
+      "most_frequent_rate_observed": 0.9919631326129574,
+      "mean": 0.008478198255117116,
+      "std": 0.10113078883920201,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 10.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.007691491350862387,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.01743684180238246,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.09636383304608832,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_UNDERPAID_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 204173,
+      "missing_count": 11085,
+      "missing_rate": 0.051496343922177105,
+      "unique_count": 210,
+      "zero_count": 202443,
+      "zero_rate_observed": 0.9915267934545704,
+      "most_frequent_rate_observed": 0.9915267934545704,
+      "mean": 0.0004061057292583219,
+      "std": 0.007624645074184073,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187483,
+          "missing_rate": 0.052546732632238566,
+          "mean": 0.00036810989787310376,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 0.0008329225330686791,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.0609618717557572,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_SCHEDULED_AMOUNT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 204180,
+      "missing_count": 11078,
+      "missing_rate": 0.05146382480558214,
+      "unique_count": 201817,
+      "zero_count": 1,
+      "zero_rate_observed": 4.897639337839162e-06,
+      "most_frequent_rate_observed": 9.305514741894407e-05,
+      "mean": 641978.0374478402,
+      "std": 843831.5429293491,
+      "min": 0.0,
+      "p1": 21380.1957,
+      "q1": 129510.32625,
+      "median": 312997.7475,
+      "q3": 801312.96375,
+      "p99": 3984464.124449989,
+      "max": 23242053.78,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187489,
+          "missing_rate": 0.0525164113785558,
+          "mean": 647358.950642411,
+          "median": 318045.87
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16691,
+          "missing_rate": 0.03947747021925534,
+          "mean": 581534.5628844886,
+          "median": 255978.945
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.07800655037072209,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_PAID_AMOUNT_SUM": {
+      "source_type": "DOUBLE",
+      "family": "amount",
+      "observed_count": 204174,
+      "missing_count": 11084,
+      "missing_rate": 0.05149169833409211,
+      "unique_count": 201865,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 9.305788200260562e-05,
+      "mean": 676788.1762886803,
+      "std": 913818.0724304885,
+      "min": 73.44,
+      "p1": 21410.58465,
+      "q1": 130787.22375,
+      "median": 317871.5625,
+      "q3": 830436.80625,
+      "p99": 4341608.852399998,
+      "max": 25537053.78,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187484,
+          "missing_rate": 0.052541679089958104,
+          "mean": 683191.9017866858,
+          "median": 323471.7
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 604853.1210898742,
+          "median": 259744.5
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.08572688925756677,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_PAYMENT_GAP_SUM": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 204174,
+      "missing_count": 11084,
+      "missing_rate": 0.05149169833409211,
+      "unique_count": 1556,
+      "zero_count": 202444,
+      "zero_rate_observed": 0.9915268349544996,
+      "most_frequent_rate_observed": 0.9915268349544996,
+      "mean": 63.6409367010491,
+      "std": 1429.96810430856,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 128824.425,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187484,
+          "missing_rate": 0.052541679089958104,
+          "mean": 53.405013947856894,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 178.6242645296585,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.08756786267085973,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_PAYMENT_GAP_MAX": {
+      "source_type": "DOUBLE",
+      "family": "continuous",
+      "observed_count": 204174,
+      "missing_count": 11084,
+      "missing_rate": 0.05149169833409211,
+      "unique_count": 1556,
+      "zero_count": 202444,
+      "zero_rate_observed": 0.9915268349544996,
+      "most_frequent_rate_observed": 0.9915268349544996,
+      "mean": 60.146871418495984,
+      "std": 1333.3930139549163,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 0.0,
+      "max": 128824.425,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187484,
+          "missing_rate": 0.052541679089958104,
+          "mean": 51.3690176495061,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 158.75125344517676,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.08053307214890011,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_PAYMENT_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 204173,
+      "missing_count": 11085,
+      "missing_rate": 0.051496343922177105,
+      "unique_count": 27510,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.8650898992521049,
+      "mean": 1.0308740900201856,
+      "std": 0.10877879646124085,
+      "min": 0.5121917657419639,
+      "p1": 1.0,
+      "q1": 1.0,
+      "median": 1.0,
+      "q3": 1.0,
+      "p99": 1.589749907040764,
+      "max": 2.90633166326115,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187483,
+          "missing_rate": 0.052546732632238566,
+          "mean": 1.0316358990007948,
+          "median": 1.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16690,
+          "missing_rate": 0.03953501755193647,
+          "mean": 1.022316496664192,
+          "median": 1.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.08567296789244574,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_DAYS_SINCE_RECENT_DUE": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 204180,
+      "missing_count": 11078,
+      "missing_rate": 0.05146382480558214,
+      "unique_count": 2914,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.016578509158585563,
+      "mean": 320.7012684885885,
+      "std": 541.6096186216573,
+      "min": 1.0,
+      "p1": 3.0,
+      "q1": 18.0,
+      "median": 49.0,
+      "q3": 373.0,
+      "p99": 2456.0,
+      "max": 2922.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187489,
+          "missing_rate": 0.0525164113785558,
+          "mean": 320.3593597491053,
+          "median": 49.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16691,
+          "missing_rate": 0.03947747021925534,
+          "mean": 324.5419088131328,
+          "median": 44.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.007722442364800839,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_OLDEST_DUE_AGE_DAYS": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 204180,
+      "missing_count": 11078,
+      "missing_rate": 0.05146382480558214,
+      "unique_count": 2919,
+      "zero_count": 0,
+      "zero_rate_observed": 0.0,
+      "most_frequent_rate_observed": 0.003981780781663238,
+      "mean": 1585.8366931139192,
+      "std": 913.4965987901817,
+      "min": 3.0,
+      "p1": 149.0,
+      "q1": 715.0,
+      "median": 1542.0,
+      "q3": 2471.0,
+      "p99": 2920.0,
+      "max": 2922.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187489,
+          "missing_rate": 0.0525164113785558,
+          "mean": 1601.40482374966,
+          "median": 1568.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16691,
+          "missing_rate": 0.03947747021925534,
+          "mean": 1410.960817206878,
+          "median": 1218.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.20847806855001175,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_HISTORY_SPAN_DAYS": {
+      "source_type": "DOUBLE",
+      "family": "duration",
+      "observed_count": 204180,
+      "missing_count": 11078,
+      "missing_rate": 0.05146382480558214,
+      "unique_count": 2872,
+      "zero_count": 483,
+      "zero_rate_observed": 0.002365559800176315,
+      "most_frequent_rate_observed": 0.04558232931726908,
+      "mean": 1265.1354246253306,
+      "std": 944.6293057211624,
+      "min": 0.0,
+      "p1": 60.0,
+      "q1": 330.0,
+      "median": 1059.0,
+      "q3": 2144.0,
+      "p99": 2903.0,
+      "max": 2920.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 187489,
+          "missing_rate": 0.0525164113785558,
+          "mean": 1281.0454640005546,
+          "median": 1090.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 16691,
+          "missing_rate": 0.03947747021925534,
+          "mean": 1086.4189083937451,
+          "median": 750.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": -0.20603484819711884,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_LAST_365_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 86,
+      "zero_count": 62929,
+      "zero_rate_observed": 0.2923422126006931,
+      "most_frequent_rate_observed": 0.2923422126006931,
+      "mean": 9.246058218509882,
+      "std": 9.971058543842478,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 7.0,
+      "q3": 13.0,
+      "p99": 41.0,
+      "max": 128.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 9.185293181255402,
+          "median": 7.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 9.938021522702423,
+          "median": 7.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.07549131700885064,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_LAST_365_LATE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 40,
+      "zero_count": 171797,
+      "zero_rate_observed": 0.7980980962380028,
+      "most_frequent_rate_observed": 0.7980980962380028,
+      "mean": 0.5900129147348763,
+      "std": 1.7104066680651417,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.0,
+      "p99": 8.0,
+      "max": 84.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 0.5582698692648612,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 0.9514875985498072,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.22989721487099005,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_LAST_365_LATE_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 152306,
+      "missing_count": 62952,
+      "missing_rate": 0.29244906112664804,
+      "unique_count": 524,
+      "zero_count": 108845,
+      "zero_rate_observed": 0.7146468294092156,
+      "most_frequent_rate_observed": 0.7146468294092156,
+      "mean": 0.06374721247299314,
+      "std": 0.150143791200112,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.05,
+      "p99": 0.75,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 139857,
+          "missing_rate": 0.29322673728149745,
+          "mean": 0.0602540374727305,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 12449,
+          "missing_rate": 0.28359325545260977,
+          "mean": 0.10299092490063656,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.284639724935054,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_LAST_730_SCHEDULE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 132,
+      "zero_count": 38909,
+      "zero_rate_observed": 0.18075518679909688,
+      "most_frequent_rate_observed": 0.18075518679909688,
+      "mean": 16.67561716637709,
+      "std": 16.929404751240533,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 4.0,
+      "median": 12.0,
+      "q3": 24.0,
+      "p99": 72.0,
+      "max": 182.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 16.61783597212466,
+          "median": 12.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 17.33360188755251,
+          "median": 12.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.04227944962893057,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": false
+    },
+    "INST_LAST_730_LATE_COUNT": {
+      "source_type": "BIGINT",
+      "family": "count",
+      "observed_count": 215258,
+      "missing_count": 0,
+      "missing_rate": 0.0,
+      "unique_count": 59,
+      "zero_count": 151358,
+      "zero_rate_observed": 0.7031469213687761,
+      "most_frequent_rate_observed": 0.7031469213687761,
+      "mean": 1.1852288881249478,
+      "std": 3.014389761641737,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 1.0,
+      "p99": 15.0,
+      "max": 126.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 197881,
+          "missing_rate": 0.0,
+          "mean": 1.1299417326575063,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 17377,
+          "missing_rate": 0.0,
+          "mean": 1.814812683432123,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.22720052976878913,
+      "missing_indicator_candidate": false,
+      "nonnegative_log1p_candidate": true
+    },
+    "INST_LAST_730_LATE_RATIO": {
+      "source_type": "DOUBLE",
+      "family": "ratio",
+      "observed_count": 176335,
+      "missing_count": 38923,
+      "missing_rate": 0.18082022503228684,
+      "unique_count": 1342,
+      "zero_count": 112435,
+      "zero_rate_observed": 0.6376215725749284,
+      "most_frequent_rate_observed": 0.6376215725749284,
+      "mean": 0.06660640171066703,
+      "std": 0.14081553111130474,
+      "min": 0.0,
+      "p1": 0.0,
+      "q1": 0.0,
+      "median": 0.0,
+      "q3": 0.07142857142857142,
+      "p99": 0.6875,
+      "max": 1.0,
+      "by_target": {
+        "0": {
+          "rows": 197881,
+          "observed_count": 161893,
+          "missing_rate": 0.18186687958924808,
+          "mean": 0.06305702147102715,
+          "median": 0.0
+        },
+        "1": {
+          "rows": 17377,
+          "observed_count": 14442,
+          "missing_rate": 0.16890142141911724,
+          "mean": 0.10639450689942345,
+          "median": 0.0
+        }
+      },
+      "target_1_minus_0_standardised_mean": 0.3077606929177512,
+      "missing_indicator_candidate": true,
+      "nonnegative_log1p_candidate": false
+    }
+  },
+  "rankings": {
+    "missingness_top15": [
+      {
+        "feature": "BUREAU_ANNUITY_MEAN",
+        "missing_rate": 0.7400003716470468
+      },
+      {
+        "feature": "BUREAU_ANNUITY_SUM",
+        "missing_rate": 0.7400003716470468
+      },
+      {
+        "feature": "BUREAU_MAX_OVERDUE_AMOUNT",
+        "missing_rate": 0.40143455760064667
+      },
+      {
+        "feature": "BUREAU_ACTIVE_DEBT_SUM",
+        "missing_rate": 0.3282758364381347
+      },
+      {
+        "feature": "BUREAU_ACTIVE_CREDIT_SUM",
+        "missing_rate": 0.29370336990959683
+      },
+      {
+        "feature": "INST_LAST_365_LATE_RATIO",
+        "missing_rate": 0.29244906112664804
+      },
+      {
+        "feature": "INST_LAST_730_LATE_RATIO",
+        "missing_rate": 0.18082022503228684
+      },
+      {
+        "feature": "APP_EMPLOYED_AGE_RATIO",
+        "missing_rate": 0.17916175008594337
+      },
+      {
+        "feature": "APP_EMPLOYED_YEARS",
+        "missing_rate": 0.17916175008594337
+      },
+      {
+        "feature": "BUREAU_DEBT_CREDIT_RATIO",
+        "missing_rate": 0.17134322533889565
+      },
+      {
+        "feature": "BUREAU_DEBT_MAX",
+        "missing_rate": 0.1673155004692044
+      },
+      {
+        "feature": "BUREAU_DEBT_MEAN",
+        "missing_rate": 0.1673155004692044
+      },
+      {
+        "feature": "BUREAU_DEBT_SUM",
+        "missing_rate": 0.1673155004692044
+      },
+      {
+        "feature": "BUREAU_CREDIT_AMOUNT_MAX",
+        "missing_rate": 0.14342324094807163
+      },
+      {
+        "feature": "BUREAU_CREDIT_AMOUNT_MEAN",
+        "missing_rate": 0.14342324094807163
+      }
+    ],
+    "absolute_standardised_mean_difference_top15": [
+      {
+        "feature": "APP_EXT_SOURCE_MEAN",
+        "standardised_mean_difference": -0.813875830788704
+      },
+      {
+        "feature": "BUREAU_DAYS_CREDIT_MEAN",
+        "standardised_mean_difference": 0.33189102599676135
+      },
+      {
+        "feature": "INST_LAST_730_LATE_RATIO",
+        "standardised_mean_difference": 0.3077606929177512
+      },
+      {
+        "feature": "BUREAU_ACTIVE_RATIO",
+        "standardised_mean_difference": 0.29212597244664673
+      },
+      {
+        "feature": "INST_LAST_365_LATE_RATIO",
+        "standardised_mean_difference": 0.284639724935054
+      },
+      {
+        "feature": "APP_AGE_YEARS",
+        "standardised_mean_difference": -0.2843135900888001
+      },
+      {
+        "feature": "BUREAU_DAYS_CREDIT_MIN",
+        "standardised_mean_difference": 0.27369695690412527
+      },
+      {
+        "feature": "APP_EMPLOYED_YEARS",
+        "standardised_mean_difference": -0.2645867752071112
+      },
+      {
+        "feature": "INST_LATE_RATIO",
+        "standardised_mean_difference": 0.2513945889516031
+      },
+      {
+        "feature": "APP_CREDIT_GOODS_RATIO",
+        "standardised_mean_difference": -0.24190270257890767
+      },
+      {
+        "feature": "APP_EMPLOYED_AGE_RATIO",
+        "standardised_mean_difference": -0.24017698703787038
+      },
+      {
+        "feature": "INST_LAST_365_LATE_COUNT",
+        "standardised_mean_difference": 0.22989721487099005
+      },
+      {
+        "feature": "BUREAU_DEBT_CREDIT_RATIO",
+        "standardised_mean_difference": 0.2277917870480787
+      },
+      {
+        "feature": "INST_LAST_730_LATE_COUNT",
+        "standardised_mean_difference": 0.22720052976878913
+      },
+      {
+        "feature": "INST_OLDEST_DUE_AGE_DAYS",
+        "standardised_mean_difference": -0.20847806855001175
+      }
+    ]
+  },
+  "processing_decisions": {
+    "history_absence": "이력 없음은 HAS_HISTORY=0과 건수=0으로 보존하고, 금액·평균·비율의 NULL을 임의의 0으로 바꾸지 않는다.",
+    "missing_values": "Stage 4 전처리기는 train에서만 대치값을 학습하고 결측 플래그를 함께 비교한다.",
+    "skewed_nonnegative_features": "비음수 오른쪽 꼬리 피처는 선형 모델에서 log1p 후보로 비교하고 트리 모델은 원값을 유지한다.",
+    "outliers": "행을 삭제하지 않으며 선형 모델의 clipping 경계가 필요하면 train 분위수로만 정한다.",
+    "ratios": "업무상 1을 넘을 수 있는 납부비율을 포함하므로 일괄적으로 0~1 범위에 자르지 않는다.",
+    "univariate_relationships": "TARGET별 평균 차이는 탐색 신호이며 인과관계나 단독 피처 선택 기준으로 해석하지 않는다."
+  },
+  "invariants": {
+    "customer_values_excluded_from_output": true,
+    "identifier_not_loaded_with_features": true,
+    "non_train_feature_rows_used": 0,
+    "processing_statistics_fit_on_train_only": true
+  }
+}
