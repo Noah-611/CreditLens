@@ -9,10 +9,13 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 0: 프로젝트 초기 환경 구성 완료
 - Stage 1: 데이터 확보 및 무결성 확인 완료 (`PASS`, 오류 0건)
 - Stage 2: 고객 분할·train-only EDA·전처리 및 누수 정책 설계 완료
-- 다음 작업: Stage 3 SQL·Python 고객 분석 마트와 V1·V2·V3 구축
-- 아직 전처리 적용, 피처 생성과 모델 학습은 시작하지 않았습니다.
+- Stage 3: SQL·Python 고객 분석 마트와 V1·V2·V3 구축 완료
+- Stage 4: 모델 입력 계약, train-only 전처리 파이프라인과 공통 평가 모듈 구현 완료
+- 다음 작업: Dummy Classifier, V1·V2·V3 Logistic Regression과 V3 Random Forest 학습·검증 비교
+- 아직 실제 모델 학습과 성능 비교는 수행하지 않았으며 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
+Stage 4의 전처리·평가 기준은 [Stage 4 전처리·평가 명세](docs/Stage4_Preprocessing_and_Evaluation_Spec.md)에 기록되어 있습니다.
 
 ## 핵심 분석 목표
 
@@ -42,8 +45,12 @@ CreditLens/
 │   ├── Data_Dictionary.md
 │   ├── Data_Split_Spec.md
 │   ├── Data_Validation_Report.md
+│   ├── Analysis_Mart_Spec.md
+│   ├── Feature_Dictionary.md
 │   ├── Preprocessing_and_Leakage_Spec.md
+│   ├── Stage4_Preprocessing_and_Evaluation_Spec.md
 │   ├── Stage2_EDA_Report.md
+│   ├── Stage3_Build_Report.md
 │   └── Project_Plan.md
 ├── models/                   # 학습 모델과 전처리 산출물 (Git 제외)
 ├── notebooks/
@@ -52,11 +59,17 @@ CreditLens/
 │   ├── figures/              # Stage 2 핵심 시각화
 │   ├── data_validation.json
 │   ├── stage2_eda.json
-│   └── stage2_split_summary.json
+│   ├── stage2_split_summary.json
+│   ├── stage3_build_summary.json
+│   └── stage3_feature_profile.json
+├── sql/
+│   └── stage3/              # V1·bureau·V2·installments·V3 DuckDB SQL
 ├── src/
 │   └── creditlens/
-│       ├── analysis/         # train-only EDA 모듈
-│       └── data/             # 원본 검증·고객 분할 모듈
+│       ├── analysis/         # Stage 2 EDA·Stage 3 train-only 피처 분석
+│       ├── data/             # 원본 검증·분할·고객 마트 구축
+│       ├── evaluation/       # 공통 이진분류 평가 지표
+│       └── modeling/         # 모델 입력 계약·로더·전처리 파이프라인
 ├── tests/                    # 합성 데이터 기반 자동 테스트
 ├── .gitignore
 ├── pytest.ini
@@ -135,7 +148,7 @@ PYTHONPATH=src .venv/bin/python -m creditlens.data.validate_raw \
 .venv/bin/python -m pytest -q
 ```
 
-현재 합성 데이터 기반 회귀 테스트 11개가 통과합니다.
+Stage 1 범위의 합성 데이터 기반 회귀 테스트 11개가 통과합니다.
 
 ## Stage 2 고객 분할과 EDA
 
@@ -176,7 +189,47 @@ PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage2_eda
 .venv/bin/python -m pytest -q
 ```
 
-현재 Stage 1·2 합성 회귀 테스트 34개가 통과합니다.
+Stage 2 완료 시점까지 합성 회귀 테스트 34개가 통과했습니다.
+
+## Stage 3 고객 분석 마트
+
+DuckDB SQL로 일대다 이력을 먼저 집계한 뒤 고객 신청정보와 결합합니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.data.build_feature_mart
+```
+
+| 버전 | 구성 | 고객 수 | 전체 컬럼 | 후보 피처 | 모델 입력 후보 |
+|---|---|---:|---:|---:|---:|
+| V1 | 신청정보 + 신청 파생값 | 307,511 | 136 | 133 | 132 |
+| V2 | V1 + 외부 신용이력 | 307,511 | 173 | 170 | 169 |
+| V3 | V2 + 과거 납부행동 | 307,511 | 202 | 199 | 198 |
+
+`SK_ID_CURR`, `TARGET`, `SPLIT`은 후보 피처 수에서 제외합니다. `CODE_GENDER`는 분석·공정성 점검용으로 마트에 보존하되 모델 입력에서는 제외하므로 모델 입력 후보는 한 개 더 적습니다.
+
+주요 구축 결과:
+
+- bureau 신청 이후 갱신 행 17건 제외, 263,490명의 1,465,308행 집계
+- 납부 이벤트 11,591,592건을 납부회차 11,026,627건으로 먼저 합친 뒤 291,643명 단위로 집계
+- V1→V2와 V2→V3 공통 컬럼 불일치 0건
+- 고객 키·`TARGET`·split 보존, 조인 증식과 피처 계약 위반 0건
+- 전체 빌드 87.684초, 프로세스 최대 RSS 약 2,300MiB
+
+새 파생 피처의 통계는 train 고객만 사용해 생성합니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage3_feature_profile
+```
+
+신청 파생 13개, bureau 37개, installments 29개 등 총 79개 피처를 분석하며 validation·test 피처 행은 사용하지 않습니다. 상세한 구조와 산식은 [분석 마트 명세](docs/Analysis_Mart_Spec.md), [피처 사전](docs/Feature_Dictionary.md), 실제 결과는 [Stage 3 구축 보고서](docs/Stage3_Build_Report.md)를 참고하세요.
+
+전체 자동 테스트:
+
+```bash
+.venv/bin/python -m pytest -q
+```
+
+Stage 3 완료 시점에는 합성 데이터 기반 회귀 테스트 48개가 통과했습니다.
 
 ## Git에 올리지 않는 파일
 
@@ -185,6 +238,7 @@ PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage2_eda
 - 저장 위치와 무관한 일반 모델 형식(`.pkl`, `.joblib`, `.keras`, `.h5`, `.onnx`, `.pt`, `.pth`, `.ckpt` 등)
 - `.env`, `kaggle.json`과 기타 인증정보
 - 가상환경, Python 캐시, 노트북 체크포인트와 테스트 캐시
+- 위치와 무관한 Parquet·DuckDB 파일(`*.parquet`, `*.duckdb`, `*.duckdb.wal`)
 
 제외 규칙은 다음처럼 확인할 수 있습니다. 파일을 만들 필요 없이 경로만 검사합니다.
 
@@ -196,14 +250,13 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 3에서 다음 작업을 진행합니다.
+Stage 4의 모델 입력 로더, 피처 역할 계약, train-only 전처리 파이프라인과 공통 평가 함수는 구현했습니다. 이어서 다음 작업을 진행합니다.
 
-1. 분석 단위, 예측 시점과 입력·출력 계약을 정의합니다.
-2. `application_train` 정제와 V1 피처를 구현합니다.
-3. DuckDB SQL로 `bureau`와 `installments_payments`를 고객 단위 집계해 V2·V3를 만듭니다.
-4. Python으로 전체 실행 흐름과 SQL 집계 결과를 검산합니다.
-5. 고객 수·키·`TARGET`·split과 조인 전후 행 수 보존을 자동 검증합니다.
-6. 피처 원천·산식·결측 의미·예측 시점 사용 가능 여부를 Markdown으로 기록합니다.
-7. 원본 checksum, 실행 설정과 출력 스키마를 분석 마트 빌드 명세에 남깁니다.
+현재 Stage 1~4 기반을 포함한 자동 테스트 110개가 통과하며, 실제 모델 학습과 validation 성능 측정은 아직 시작하지 않았습니다.
 
-모델 학습은 Stage 3 데이터 구축과 검증이 끝난 뒤 Stage 4에서 시작합니다.
+1. Dummy Classifier로 클래스 불균형을 반영한 최저 기준을 확인합니다.
+2. V1·V2·V3 Logistic Regression으로 데이터 원천별 추가 가치를 비교합니다.
+3. V3 Random Forest를 비선형 기준 모델로 학습합니다.
+4. 모든 모델을 동일한 validation 데이터와 공통 지표로 비교합니다.
+5. ROC·PR·Calibration Curve와 위험도 decile·Top-K 분석 결과를 문서화합니다.
+6. 모델과 전처리 설정을 선택하는 동안 test 데이터는 계속 봉인합니다.

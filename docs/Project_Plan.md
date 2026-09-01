@@ -11,8 +11,8 @@
 | 진행 방식 | Stage 단위 구현·검증 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 2 고객 분할·EDA·전처리 및 누수 정책 설계 완료 |
-| 다음 단계 | Stage 3 SQL·Python 고객 신용정보 분석 마트와 V1·V2·V3 구축 |
+| 현재 상태 | Stage 3 분석 마트 구축 완료, Stage 4 전처리·평가 기반 구현 완료 |
+| 다음 단계 | Dummy·Logistic Regression·Random Forest 기준 모델 학습·검증 비교 |
 
 ### 한 줄 정의
 
@@ -141,7 +141,7 @@ CreditLens는 데이터 분석과 신용위험 모델 개발을 학습하기 위
 - 평균·최대 지연일
 - 미납금액과 예정금액 대비 실제 납부 비율
 
-피처는 Stage 3에서 정의서와 함께 확정하며, 예측 시점 이후 정보가 포함되지 않는지 각각 검토한다.
+피처는 Stage 3에서 정의서와 함께 확정했고, 예측 시점 이후 정보가 포함되지 않는지 각각 검토했다.
 
 ### 데이터 버전
 
@@ -236,8 +236,8 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 | 1 | Stage 0 | 프로젝트 초기 환경 구성 | 완료 |
 | 2 | Stage 1 | 데이터 확보와 원본 무결성 검증 | 완료 |
 | 3 | Stage 2 | 고객 분할, train-only EDA와 처리 정책 설계 | 완료 |
-| 4 | Stage 3 | SQL·Python 고객 분석 마트와 V1·V2·V3 구축 | 다음 |
-| 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 예정 |
+| 4 | Stage 3 | SQL·Python 고객 분석 마트와 V1·V2·V3 구축 | 완료 |
+| 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 진행 중 |
 | 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 예정 |
 | 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 예정 |
 | 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 예정 |
@@ -386,6 +386,14 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 주요 집계 산식의 SQL 결과와 검산 결과가 일치한다.
 - 중간·가공 데이터가 Git에서 제외된다.
 
+**완료 기록**
+
+- V1 136개, V2 173개, V3 202개 컬럼의 고객 단위 Parquet 분석 마트를 구축했습니다.
+- 세 버전 모두 307,511명의 고객 키·`TARGET`·split을 보존하고 고객당 한 행을 유지합니다.
+- bureau와 installments 이력을 고객 단위로 집계했으며 조인 증식과 버전 간 공통 컬럼 불일치는 없습니다.
+- 피처 생성 코드, DuckDB SQL, 피처 사전과 구축 보고서를 작성하고 합성 데이터 자동 테스트로 핵심 계약을 검증했습니다.
+- 상세 결과는 [Stage 3 구축 보고서](Stage3_Build_Report.md)와 [분석 마트 명세](Analysis_Mart_Spec.md)에 기록했습니다.
+
 ### Stage 4. 전처리·평가 체계와 기준 머신러닝 모델 구축
 
 **목표**
@@ -416,6 +424,16 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 지표 단위 테스트와 수기 검산 결과가 일치한다.
 - 이후 모델이 같은 평가 인터페이스를 사용할 수 있다.
 - 테스트 세트는 사용되지 않는다.
+
+**현재 구현 상태**
+
+- V1·V2·V3 스키마와 수치형·범주형 피처 역할을 검증하는 모델 입력 계약을 구현했습니다.
+- 공개 로더는 train과 validation만 반환하며 test 요청을 거부하도록 구성했습니다.
+- 결측 대치, 결측 플래그, 희소범주 처리, 원-핫 인코딩과 모델 계열별 스케일링을 train에만 `fit`하는 전처리 파이프라인을 구현했습니다.
+- ROC-AUC, PR-AUC, KS, Gini, Brier Score, 임계값 지표와 Top-K 지표를 계산하는 공통 평가 모듈을 구현했습니다.
+- Stage 1~4 기반의 합성 데이터 자동 테스트 110개와 실제 V1·V2·V3 입력 계약 검증을 통과했습니다.
+- 실제 모델 학습과 validation 성능 비교는 아직 수행하지 않았습니다. 다음 작업은 Dummy Classifier, V1·V2·V3 Logistic Regression과 V3 Random Forest 비교입니다.
+- 세부 계약과 평가 정의는 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md)에 기록했습니다.
 
 ### Stage 5. LightGBM·TensorFlow MLP와 데이터·모델 비교
 
@@ -588,8 +606,12 @@ CreditLens/
 │   ├── Data_Dictionary.md
 │   ├── Data_Split_Spec.md
 │   ├── Data_Validation_Report.md
+│   ├── Analysis_Mart_Spec.md
+│   ├── Feature_Dictionary.md
 │   ├── Preprocessing_and_Leakage_Spec.md
 │   ├── Stage2_EDA_Report.md
+│   ├── Stage3_Build_Report.md
+│   ├── Stage4_Preprocessing_and_Evaluation_Spec.md
 │   └── Project_Plan.md       # 프로젝트 기준 계획서
 ├── models/                   # 학습 모델·전처리 산출물, Git 제외
 ├── notebooks/
@@ -598,12 +620,17 @@ CreditLens/
 │   ├── figures/              # Stage 2 핵심 시각화
 │   ├── data_validation.json
 │   ├── stage2_eda.json
-│   └── stage2_split_summary.json
-├── sql/                      # Stage 3부터 분석 마트 조회·집계·검수 SQL
+│   ├── stage2_split_summary.json
+│   ├── stage3_build_summary.json
+│   └── stage3_feature_profile.json
+├── sql/
+│   └── stage3/               # 고객 분석 마트 조회·집계·검수 SQL
 ├── src/
 │   └── creditlens/
-│       ├── analysis/         # train-only EDA 모듈
-│       └── data/             # 데이터 검증·고객 분할 모듈
+│       ├── analysis/         # train-only EDA·피처 분석 모듈
+│       ├── data/             # 데이터 검증·분할·분석 마트 구축
+│       ├── evaluation/       # 공통 이진분류 평가 지표
+│       └── modeling/         # 모델 입력 계약·로더·전처리 파이프라인
 ├── tests/                    # 자동 테스트
 ├── .gitignore
 ├── pytest.ini
@@ -612,7 +639,7 @@ CreditLens/
 └── requirements-stage5-7.txt # Stage 5·7의 MLP·시연 의존성
 ```
 
-Stage 2까지 원본 검증, 고객 분할과 train-only EDA 모듈·문서를 구현했다. Stage 3부터 SQL·Python 분석 마트, 피처 생성과 네 가지 모델 비교를 진행하고, 고정된 모델로 Stage 7의 Streamlit·FastAPI 인터페이스를 구현한다. AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
+Stage 3까지 원본 검증, 고객 분할, train-only EDA와 SQL·Python 분석 마트 구축을 완료했다. Stage 4에서는 전처리·평가 기반을 구현했으며, 다음으로 Dummy·Logistic Regression·Random Forest 기준 모델을 같은 분할과 지표로 비교한다. 고정된 모델로 Stage 7의 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
 
 ## 10. 형상관리와 개발 원칙
 
