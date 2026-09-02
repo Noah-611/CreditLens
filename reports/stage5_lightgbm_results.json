@@ -1,0 +1,607 @@
+{
+  "schema_version": "1.0",
+  "run_version": "stage5-lightgbm-baseline-v1",
+  "stage_part": "1/3",
+  "run_status": "complete",
+  "generated_at_utc": "2026-09-01T23:49:05Z",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit_learn": "1.9.0",
+    "lightgbm": "4.7.0",
+    "duckdb": "1.5.5",
+    "joblib": "1.6.0",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "settings": {
+    "random_seed": 42,
+    "classification_threshold": 0.5,
+    "top_fraction": 0.1,
+    "lightgbm": {
+      "boosting_type": "gbdt",
+      "objective": "binary",
+      "n_estimators": 500,
+      "learning_rate": 0.05,
+      "num_leaves": 31,
+      "max_depth": -1,
+      "min_child_samples": 100,
+      "min_split_gain": 0.0,
+      "subsample": 1.0,
+      "subsample_freq": 0,
+      "colsample_bytree": 1.0,
+      "reg_alpha": 0.0,
+      "reg_lambda": 1.0,
+      "class_weight": null,
+      "random_state": 42,
+      "n_jobs": 2,
+      "deterministic": true,
+      "force_col_wise": true,
+      "verbosity": -1
+    },
+    "experiment_order": [
+      "lightgbm_v1",
+      "lightgbm_v2",
+      "lightgbm_v3"
+    ],
+    "configuration_locked_before_validation": true,
+    "validation_used_for_fit": false,
+    "validation_used_for_early_stopping": false,
+    "validation_result_driven_retuning": false
+  },
+  "data_scope": {
+    "train_rows": 215258,
+    "validation_rows": 46127,
+    "validation_positive_rate": 0.08073362672621241,
+    "test_feature_rows_used": 0,
+    "test_predictions_created": false,
+    "customer_ids_in_shared_outputs": false,
+    "row_level_predictions_in_shared_outputs": false
+  },
+  "baseline_reference": {
+    "display_path": "reports/stage4_baseline_results.json",
+    "sha256": "8e91d9ea8ce4ef518e2da5eeb873f8e9cf22ad0bd006138ba7c5cd08264c425f",
+    "run_version": "stage4-baseline-v2",
+    "experiments": [
+      {
+        "key": "logistic_v1",
+        "display_name": "V1 Logistic Regression",
+        "data_version": "v1",
+        "metrics": {
+          "sample_count": 46127,
+          "positive_count": 3724,
+          "negative_count": 42403,
+          "prevalence": 0.08073362672621241,
+          "roc_auc": 0.7435706769982354,
+          "pr_auc": 0.22689643330177683,
+          "ks": 0.3655838194980074,
+          "ks_threshold": 0.08035572618246078,
+          "gini": 0.48714135399647085,
+          "brier_score": 0.06864830710280655,
+          "threshold_metrics": {
+            "threshold": 0.5,
+            "true_negative": 42362,
+            "false_positive": 41,
+            "false_negative": 3676,
+            "true_positive": 48,
+            "predicted_positive_count": 89,
+            "recall": 0.01288936627282492,
+            "precision": 0.5393258426966292,
+            "f1": 0.025177025963808025
+          },
+          "top_k_metrics": {
+            "requested_fraction": 0.1,
+            "k": 4613,
+            "actual_fraction": 0.1000065037830338,
+            "cutoff_score": 0.1798190474510193,
+            "boundary_tie_count": 1,
+            "boundary_selected_weight": 1.0,
+            "true_positive_weight": 1177.0,
+            "precision": 0.2551484933882506,
+            "recall": 0.3160580021482277,
+            "lift": 3.1603744775831992
+          },
+          "warnings": []
+        }
+      },
+      {
+        "key": "logistic_v2",
+        "display_name": "V2 Logistic Regression",
+        "data_version": "v2",
+        "metrics": {
+          "sample_count": 46127,
+          "positive_count": 3724,
+          "negative_count": 42403,
+          "prevalence": 0.08073362672621241,
+          "roc_auc": 0.748976836448326,
+          "pr_auc": 0.23235794350936076,
+          "ks": 0.37502582820414815,
+          "ks_threshold": 0.07475537806749344,
+          "gini": 0.49795367289665204,
+          "brier_score": 0.06837868499965354,
+          "threshold_metrics": {
+            "threshold": 0.5,
+            "true_negative": 42354,
+            "false_positive": 49,
+            "false_negative": 3663,
+            "true_positive": 61,
+            "predicted_positive_count": 110,
+            "recall": 0.016380236305048337,
+            "precision": 0.5545454545454546,
+            "f1": 0.03182055294731351
+          },
+          "top_k_metrics": {
+            "requested_fraction": 0.1,
+            "k": 4613,
+            "actual_fraction": 0.1000065037830338,
+            "cutoff_score": 0.178670734167099,
+            "boundary_tie_count": 1,
+            "boundary_selected_weight": 1.0,
+            "true_positive_weight": 1213.0,
+            "precision": 0.2629525254714936,
+            "recall": 0.3257250268528464,
+            "lift": 3.257038437815141
+          },
+          "warnings": []
+        }
+      },
+      {
+        "key": "logistic_v3",
+        "display_name": "V3 Logistic Regression",
+        "data_version": "v3",
+        "metrics": {
+          "sample_count": 46127,
+          "positive_count": 3724,
+          "negative_count": 42403,
+          "prevalence": 0.08073362672621241,
+          "roc_auc": 0.7585081023871176,
+          "pr_auc": 0.24239810705383197,
+          "ks": 0.3907511420581499,
+          "ks_threshold": 0.0710703507065773,
+          "gini": 0.5170162047742353,
+          "brier_score": 0.06780658781883837,
+          "threshold_metrics": {
+            "threshold": 0.5,
+            "true_negative": 42321,
+            "false_positive": 82,
+            "false_negative": 3633,
+            "true_positive": 91,
+            "predicted_positive_count": 173,
+            "recall": 0.02443609022556391,
+            "precision": 0.5260115606936416,
+            "f1": 0.04670259173723377
+          },
+          "top_k_metrics": {
+            "requested_fraction": 0.1,
+            "k": 4613,
+            "actual_fraction": 0.1000065037830338,
+            "cutoff_score": 0.18079917132854462,
+            "boundary_tie_count": 1,
+            "boundary_selected_weight": 1.0,
+            "true_positive_weight": 1257.0,
+            "precision": 0.2724907869065684,
+            "recall": 0.33754027926960256,
+            "lift": 3.3751832780986257
+          },
+          "warnings": []
+        }
+      },
+      {
+        "key": "random_forest_v3",
+        "display_name": "V3 Random Forest",
+        "data_version": "v3",
+        "metrics": {
+          "sample_count": 46127,
+          "positive_count": 3724,
+          "negative_count": 42403,
+          "prevalence": 0.08073362672621241,
+          "roc_auc": 0.7506502551992489,
+          "pr_auc": 0.23328233230520917,
+          "ks": 0.380596728343882,
+          "ks_threshold": 0.4646029209077513,
+          "gini": 0.5013005103984978,
+          "brier_score": 0.18196265186706764,
+          "threshold_metrics": {
+            "threshold": 0.5,
+            "true_negative": 32224,
+            "false_positive": 10179,
+            "false_negative": 1481,
+            "true_positive": 2243,
+            "predicted_positive_count": 12422,
+            "recall": 0.6023093447905478,
+            "precision": 0.18056673643535662,
+            "f1": 0.2778397126223213
+          },
+          "top_k_metrics": {
+            "requested_fraction": 0.1,
+            "k": 4613,
+            "actual_fraction": 0.1000065037830338,
+            "cutoff_score": 0.6158170756985256,
+            "boundary_tie_count": 1,
+            "boundary_selected_weight": 1.0,
+            "true_positive_weight": 1220.0,
+            "precision": 0.2644699761543464,
+            "recall": 0.3276047261009667,
+            "lift": 3.275834207860241
+          },
+          "warnings": []
+        }
+      }
+    ]
+  },
+  "data_versions": {
+    "v1": {
+      "schema_sha256": "04bd3db5a23efb8bbbf85d079703ea5b475b95b1f7deecffa9aa5cdeb41a7549",
+      "parquet_sha256": "b879f6607ca15be6225942ecc5d2dad6b8a3a8841597a89b1bb50a914a8f6cd4",
+      "model_feature_columns": 132,
+      "numeric_feature_columns": 118,
+      "categorical_feature_columns": 14,
+      "train_rows": 215258,
+      "validation_rows": 46127,
+      "test_feature_rows_used": 0,
+      "stage3_summary_verified": true,
+      "parquet_sha256_verified": true,
+      "stage4_reference_verified": true
+    },
+    "v2": {
+      "schema_sha256": "49df806e0575d037eeaf49817d018c08d681272a2b7cd14df141357e51c54702",
+      "parquet_sha256": "4d95d75b680b916f89a6641fd114d6b3da9ccd0c6f032c8d7cea4eda2833a02e",
+      "model_feature_columns": 169,
+      "numeric_feature_columns": 155,
+      "categorical_feature_columns": 14,
+      "train_rows": 215258,
+      "validation_rows": 46127,
+      "test_feature_rows_used": 0,
+      "stage3_summary_verified": true,
+      "parquet_sha256_verified": true,
+      "stage4_reference_verified": true
+    },
+    "v3": {
+      "schema_sha256": "846fdfb5adb20774b9ff3c1bfd9de218c7063161eadcd87f9db1ce8bdb7dd5ee",
+      "parquet_sha256": "94b761171131d1bb8fccc67fec68d30ff01e37404e052480ecf33758945c1732",
+      "model_feature_columns": 198,
+      "numeric_feature_columns": 184,
+      "categorical_feature_columns": 14,
+      "train_rows": 215258,
+      "validation_rows": 46127,
+      "test_feature_rows_used": 0,
+      "stage3_summary_verified": true,
+      "parquet_sha256_verified": true,
+      "stage4_reference_verified": true
+    }
+  },
+  "experiments": [
+    {
+      "key": "lightgbm_v1",
+      "display_name": "V1 LightGBM",
+      "data_version": "v1",
+      "estimator": "lightgbm",
+      "model_family": "tree",
+      "settings": {
+        "boosting_type": "gbdt",
+        "objective": "binary",
+        "n_estimators": 500,
+        "learning_rate": 0.05,
+        "num_leaves": 31,
+        "max_depth": -1,
+        "min_child_samples": 100,
+        "min_split_gain": 0.0,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "class_weight": null,
+        "random_state": 42,
+        "n_jobs": 2,
+        "deterministic": true,
+        "force_col_wise": true,
+        "verbosity": -1
+      },
+      "train_rows": 215258,
+      "validation_rows": 46127,
+      "input_feature_columns": 132,
+      "transformed_feature_columns": 316,
+      "fit_seconds": 65.429,
+      "validation_predict_seconds": 1.595,
+      "iteration_details": {
+        "n_estimators_requested": 500,
+        "n_estimators_fitted": 500,
+        "best_iteration": null,
+        "early_stopping_used": false
+      },
+      "warnings": [],
+      "metrics": {
+        "sample_count": 46127,
+        "positive_count": 3724,
+        "negative_count": 42403,
+        "prevalence": 0.08073362672621241,
+        "roc_auc": 0.7620893980481337,
+        "pr_auc": 0.24477604499872377,
+        "ks": 0.39381150402461496,
+        "ks_threshold": 0.07301713393285991,
+        "gini": 0.5241787960962674,
+        "brier_score": 0.06769125676378925,
+        "threshold_metrics": {
+          "threshold": 0.5,
+          "true_negative": 42317,
+          "false_positive": 86,
+          "false_negative": 3626,
+          "true_positive": 98,
+          "predicted_positive_count": 184,
+          "recall": 0.02631578947368421,
+          "precision": 0.532608695652174,
+          "f1": 0.05015353121801433
+        },
+        "top_k_metrics": {
+          "requested_fraction": 0.1,
+          "k": 4613,
+          "actual_fraction": 0.1000065037830338,
+          "cutoff_score": 0.18274751235123204,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0,
+          "true_positive_weight": 1270.0,
+          "precision": 0.275308909603295,
+          "recall": 0.341031149301826,
+          "lift": 3.4100897081823818
+        },
+        "warnings": []
+      },
+      "model_artifact": {
+        "display_path": "models/stage5/lightgbm_v1.joblib",
+        "bytes": 784119,
+        "sha256": "1e90c8ddd42a8166e0c05d62b8aebf59a97fb56bd7f9517cbc2ded01776976e6",
+        "git_ignored": true
+      }
+    },
+    {
+      "key": "lightgbm_v2",
+      "display_name": "V2 LightGBM",
+      "data_version": "v2",
+      "estimator": "lightgbm",
+      "model_family": "tree",
+      "settings": {
+        "boosting_type": "gbdt",
+        "objective": "binary",
+        "n_estimators": 500,
+        "learning_rate": 0.05,
+        "num_leaves": 31,
+        "max_depth": -1,
+        "min_child_samples": 100,
+        "min_split_gain": 0.0,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "class_weight": null,
+        "random_state": 42,
+        "n_jobs": 2,
+        "deterministic": true,
+        "force_col_wise": true,
+        "verbosity": -1
+      },
+      "train_rows": 215258,
+      "validation_rows": 46127,
+      "input_feature_columns": 169,
+      "transformed_feature_columns": 375,
+      "fit_seconds": 101.801,
+      "validation_predict_seconds": 1.777,
+      "iteration_details": {
+        "n_estimators_requested": 500,
+        "n_estimators_fitted": 500,
+        "best_iteration": null,
+        "early_stopping_used": false
+      },
+      "warnings": [],
+      "metrics": {
+        "sample_count": 46127,
+        "positive_count": 3724,
+        "negative_count": 42403,
+        "prevalence": 0.08073362672621241,
+        "roc_auc": 0.7679552596356078,
+        "pr_auc": 0.2584239059224919,
+        "ks": 0.40300415989556304,
+        "ks_threshold": 0.07238123828074282,
+        "gini": 0.5359105192712157,
+        "brier_score": 0.06714561871664985,
+        "threshold_metrics": {
+          "threshold": 0.5,
+          "true_negative": 42304,
+          "false_positive": 99,
+          "false_negative": 3595,
+          "true_positive": 129,
+          "predicted_positive_count": 228,
+          "recall": 0.034640171858216974,
+          "precision": 0.5657894736842105,
+          "f1": 0.0652834008097166
+        },
+        "top_k_metrics": {
+          "requested_fraction": 0.1,
+          "k": 4613,
+          "actual_fraction": 0.1000065037830338,
+          "cutoff_score": 0.1826624536869846,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0,
+          "true_positive_weight": 1307.0,
+          "precision": 0.283329720355517,
+          "recall": 0.35096670247046186,
+          "lift": 3.5094387784207663
+        },
+        "warnings": []
+      },
+      "model_artifact": {
+        "display_path": "models/stage5/lightgbm_v2.joblib",
+        "bytes": 786671,
+        "sha256": "edd64253647b6257b8d767b79ee95b19cc742c5cbeb2727706dc60a87067b87d",
+        "git_ignored": true
+      }
+    },
+    {
+      "key": "lightgbm_v3",
+      "display_name": "V3 LightGBM",
+      "data_version": "v3",
+      "estimator": "lightgbm",
+      "model_family": "tree",
+      "settings": {
+        "boosting_type": "gbdt",
+        "objective": "binary",
+        "n_estimators": 500,
+        "learning_rate": 0.05,
+        "num_leaves": 31,
+        "max_depth": -1,
+        "min_child_samples": 100,
+        "min_split_gain": 0.0,
+        "subsample": 1.0,
+        "subsample_freq": 0,
+        "colsample_bytree": 1.0,
+        "reg_alpha": 0.0,
+        "reg_lambda": 1.0,
+        "class_weight": null,
+        "random_state": 42,
+        "n_jobs": 2,
+        "deterministic": true,
+        "force_col_wise": true,
+        "verbosity": -1
+      },
+      "train_rows": 215258,
+      "validation_rows": 46127,
+      "input_feature_columns": 198,
+      "transformed_feature_columns": 420,
+      "fit_seconds": 108.458,
+      "validation_predict_seconds": 1.95,
+      "iteration_details": {
+        "n_estimators_requested": 500,
+        "n_estimators_fitted": 500,
+        "best_iteration": null,
+        "early_stopping_used": false
+      },
+      "warnings": [],
+      "metrics": {
+        "sample_count": 46127,
+        "positive_count": 3724,
+        "negative_count": 42403,
+        "prevalence": 0.08073362672621241,
+        "roc_auc": 0.7751808810216066,
+        "pr_auc": 0.26647928137232224,
+        "ks": 0.4180936762651793,
+        "ks_threshold": 0.07419365348914404,
+        "gini": 0.5503617620432133,
+        "brier_score": 0.06667321562245136,
+        "threshold_metrics": {
+          "threshold": 0.5,
+          "true_negative": 42279,
+          "false_positive": 124,
+          "false_negative": 3584,
+          "true_positive": 140,
+          "predicted_positive_count": 264,
+          "recall": 0.03759398496240601,
+          "precision": 0.5303030303030303,
+          "f1": 0.07021063189568706
+        },
+        "top_k_metrics": {
+          "requested_fraction": 0.1,
+          "k": 4613,
+          "actual_fraction": 0.1000065037830338,
+          "cutoff_score": 0.18437883742488284,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0,
+          "true_positive_weight": 1339.0,
+          "precision": 0.2902666377628441,
+          "recall": 0.3595596133190118,
+          "lift": 3.5953622986269362
+        },
+        "warnings": []
+      },
+      "model_artifact": {
+        "display_path": "models/stage5/lightgbm_v3.joblib",
+        "bytes": 787910,
+        "sha256": "4bd664b5adbb90a587a9e09e528cdd17bea9ca1372570ded914c40d0dbe2e966",
+        "git_ignored": true
+      }
+    }
+  ],
+  "comparisons": {
+    "data_value_same_lightgbm": {
+      "v2_minus_v1": {
+        "roc_auc": 0.005865861587474153,
+        "pr_auc": 0.013647860923768157,
+        "ks": 0.009192655870948085,
+        "gini": 0.011731723174948305,
+        "brier_score": -0.0005456380471393907,
+        "recall_at_10pct": 0.009935553168635869,
+        "lift_at_10pct": 0.09934907023838457
+      },
+      "v3_minus_v2": {
+        "roc_auc": 0.007225621385998804,
+        "pr_auc": 0.008055375449830315,
+        "ks": 0.015089516369616252,
+        "gini": 0.014451242771997608,
+        "brier_score": -0.00047240309419849247,
+        "recall_at_10pct": 0.008592910848549962,
+        "lift_at_10pct": 0.08592352020616989
+      },
+      "v3_minus_v1": {
+        "roc_auc": 0.013091482973472957,
+        "pr_auc": 0.021703236373598472,
+        "ks": 0.024282172240564337,
+        "gini": 0.026182965946945913,
+        "brier_score": -0.0010180411413378831,
+        "recall_at_10pct": 0.01852846401718583,
+        "lift_at_10pct": 0.18527259044455446
+      }
+    },
+    "model_effect_same_data": {
+      "lightgbm_v1_minus_logistic_v1": {
+        "roc_auc": 0.018518721049898268,
+        "pr_auc": 0.017879611696946934,
+        "ks": 0.028227684526607566,
+        "gini": 0.037037442099796536,
+        "brier_score": -0.0009570503390173013,
+        "recall_at_10pct": 0.024973147153598274,
+        "lift_at_10pct": 0.24971523059918255
+      },
+      "lightgbm_v2_minus_logistic_v2": {
+        "roc_auc": 0.018978423187281823,
+        "pr_auc": 0.026065962413131166,
+        "ks": 0.027978331691414893,
+        "gini": 0.037956846374563646,
+        "brier_score": -0.001233066283003681,
+        "recall_at_10pct": 0.025241675617615478,
+        "lift_at_10pct": 0.2524003406056252
+      },
+      "lightgbm_v3_minus_logistic_v3": {
+        "roc_auc": 0.016672778634489016,
+        "pr_auc": 0.024081174318490273,
+        "ks": 0.027342534207029368,
+        "gini": 0.03334555726897803,
+        "brier_score": -0.0011333721963870114,
+        "recall_at_10pct": 0.022019334049409256,
+        "lift_at_10pct": 0.2201790205283105
+      },
+      "lightgbm_v3_minus_random_forest_v3": {
+        "roc_auc": 0.024530625822357766,
+        "pr_auc": 0.03319694906711307,
+        "ks": 0.03749694792129732,
+        "gini": 0.04906125164471553,
+        "brier_score": null,
+        "recall_at_10pct": 0.031954887218045125,
+        "lift_at_10pct": 0.3195280907666951,
+        "brier_score_note": "not_comparable_random_forest_used_balanced_subsample"
+      }
+    }
+  },
+  "local_prediction_artifact": {
+    "display_path": "models/stage5/lightgbm_validation_scores.joblib",
+    "bytes": 507571,
+    "sha256": "fdba33018810ef11286bee70c2a591add5d32a28cf7997ed9b9b5486cb3edbc3",
+    "git_ignored": true
+  },
+  "resources": {
+    "total_seconds": 290.255,
+    "process_peak_rss_mb": 3212.195,
+    "measurement_scope": "current_process_lifetime"
+  },
+  "completed_at_utc": "2026-09-01T23:53:55Z"
+}

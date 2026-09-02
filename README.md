@@ -11,13 +11,15 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 2: 고객 분할·train-only EDA·전처리 및 누수 정책 설계 완료
 - Stage 3: SQL·Python 고객 분석 마트와 V1·V2·V3 구축 완료
 - Stage 4: 기준 모델 5개 학습과 ROC·PR·Calibration·Decile·Top-K validation 분석 완료
-- 다음 작업: Stage 5 LightGBM·TensorFlow MLP 학습과 데이터·모델 비교
+- Stage 5 진행 중 (1/3): 고정 설정 LightGBM V1·V2·V3 학습과 validation 비교 완료
+- 다음 작업: Stage 5 2/3 V3 TensorFlow MLP 학습
 - 모델은 train으로만 학습했고 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
 Stage 4의 전처리·평가 기준은 [Stage 4 전처리·평가 명세](docs/Stage4_Preprocessing_and_Evaluation_Spec.md)에 기록되어 있습니다.
 기준 모델의 실제 실행 결과는 [Stage 4 기준 모델 학습 보고서](docs/Stage4_Baseline_Model_Report.md)에서 확인할 수 있습니다.
 곡선·위험구간·심사 용량별 해석은 [Stage 4 Validation 상세 분석 보고서](docs/Stage4_Validation_Analysis_Report.md)에 기록되어 있습니다.
+LightGBM의 데이터 버전별 비교는 [Stage 5 1/3 LightGBM 비교 보고서](docs/Stage5_LightGBM_Report.md)에서 확인할 수 있습니다.
 
 ## 핵심 분석 목표
 
@@ -53,6 +55,7 @@ CreditLens/
 │   ├── Stage4_Preprocessing_and_Evaluation_Spec.md
 │   ├── Stage4_Baseline_Model_Report.md
 │   ├── Stage4_Validation_Analysis_Report.md
+│   ├── Stage5_LightGBM_Report.md
 │   ├── Stage2_EDA_Report.md
 │   ├── Stage3_Build_Report.md
 │   └── Project_Plan.md
@@ -67,7 +70,8 @@ CreditLens/
 │   ├── stage3_build_summary.json
 │   ├── stage3_feature_profile.json
 │   ├── stage4_baseline_results.json
-│   └── stage4_validation_analysis.json
+│   ├── stage4_validation_analysis.json
+│   └── stage5_lightgbm_results.json
 ├── sql/
 │   └── stage3/              # V1·bureau·V2·installments·V3 DuckDB SQL
 ├── src/
@@ -274,6 +278,27 @@ PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage4_validation_analysi
 
 전체 표와 그림은 [Stage 4 Validation 상세 분석 보고서](docs/Stage4_Validation_Analysis_Report.md), 집계 결과는 [기계 판독용 분석 JSON](reports/stage4_validation_analysis.json)에 기록했습니다. test 데이터는 계속 봉인했습니다.
 
+## Stage 5 1/3 LightGBM 비교
+
+LightGBM은 표 형태 데이터에서 값 하나의 영향뿐 아니라 여러 피처의 비선형 관계와 상호작용을 학습하는 트리 기반 모델입니다. 같은 고정 설정의 LightGBM에 V1(신청정보), V2(+외부 신용이력), V3(+과거 납부이력)를 차례로 사용해 데이터가 추가될 때의 변화를 비교했습니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.modeling.train_lightgbm \
+  --lightgbm-jobs 2
+```
+
+| 데이터·모델 | ROC-AUC | PR-AUC | KS | Brier | Recall@Top10% | Lift@Top10% |
+|---|---:|---:|---:|---:|---:|---:|
+| V1 LightGBM | 0.7621 | 0.2448 | 0.3938 | 0.0677 | 0.3410 | 3.4101 |
+| V2 LightGBM | 0.7680 | 0.2584 | 0.4030 | 0.0671 | 0.3510 | 3.5094 |
+| V3 LightGBM | 0.7752 | 0.2665 | 0.4181 | 0.0667 | 0.3596 | 3.5954 |
+
+같은 LightGBM에서 V1→V3로 갈 때 ROC-AUC는 `+0.0131`, PR-AUC는 `+0.0217`, Recall@Top10%는 `+0.0185` 개선됐습니다. 따라서 외부 신용이력과 과거 납부이력이 신청정보만 사용했을 때보다 추가 예측 정보를 제공한다는 결과를 얻었습니다. V3 LightGBM은 현재 V3 Logistic보다 ROC-AUC `+0.0167`, PR-AUC `+0.0241` 높았습니다.
+
+이 결과는 세 데이터에 동일하게 적용한 **튜닝 전 고정 설정 validation 비교**입니다. validation은 모델 학습·early stopping·설정 변경에 사용하지 않았고, 결과를 확인한 뒤 LightGBM 설정을 다시 맞추지 않았습니다. 아직 TensorFlow MLP와 train 내부 개선 실험이 남아 있으므로 최종 모델을 선정한 것은 아닙니다.
+
+전체 설정과 비교표는 [Stage 5 1/3 LightGBM 비교 보고서](docs/Stage5_LightGBM_Report.md), 기계 판독용 집계는 [LightGBM 결과 JSON](reports/stage5_lightgbm_results.json)에 기록했습니다. 모델과 행별 validation 점수는 `models/stage5/`에만 저장되어 Git에서 제외되며 test 피처·예측·평가는 사용하지 않았습니다.
+
 ## Git에 올리지 않는 파일
 
 - `data/raw/`, `data/interim/`, `data/processed/` 안의 모든 금융 데이터
@@ -293,12 +318,12 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 4를 완료했습니다. 다음 Stage에서는 현재 기준선인 V3 Logistic과 새로운 모델을 동일한 평가 체계로 비교합니다.
+Stage 5는 진행 중이며 1/3 LightGBM 비교를 완료했습니다. 다음은 2/3 V3 TensorFlow MLP 학습입니다.
 
-현재 Stage 1~4 범위의 자동 테스트 136개가 통과합니다.
+현재 자동 테스트 147개가 통과합니다.
 
-1. LightGBM을 V1·V2·V3에서 학습해 데이터 원천별 추가 가치를 비교합니다.
-2. V3 TensorFlow MLP를 학습해 전통적 머신러닝과 딥러닝을 비교합니다.
-3. 하이퍼파라미터 탐색과 확률 보정은 train 내부에서만 수행합니다.
+1. V3 TensorFlow MLP의 early stopping용 데이터를 train 내부에서 분리해 학습합니다.
+2. 하이퍼파라미터 탐색과 확률 보정은 train 내부에서만 수행합니다.
+3. 신청정보·외부 신용이력·납부행동 피처군의 추가 가치를 분석합니다.
 4. Logistic Regression·Random Forest·LightGBM·MLP를 같은 validation 지표로 비교합니다.
 5. 최종 모델과 cutoff를 확정하기 전까지 test는 계속 봉인합니다.

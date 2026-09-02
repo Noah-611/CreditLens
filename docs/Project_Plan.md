@@ -11,8 +11,8 @@
 | 진행 방식 | Stage 단위 구현·검증 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 4 기준 모델 학습과 validation 상세 분석 완료 |
-| 다음 단계 | Stage 5 LightGBM·TensorFlow MLP 학습과 데이터·모델 비교 |
+| 현재 상태 | Stage 5 진행 중 (1/3 고정 설정 LightGBM 비교 완료) |
+| 다음 단계 | Stage 5 2/3 V3 TensorFlow MLP 학습 |
 
 ### 한 줄 정의
 
@@ -213,13 +213,13 @@ V1·V2·V3의 데이터 추가 가치는 Logistic Regression과 LightGBM을 중�
 | V1 + Logistic Regression | 0.7436 | 0.2269 | 0.3656 | 0.4871 | 0.3161 | 3.1604 | - | - | - |
 | V2 + Logistic Regression | 0.7490 | 0.2324 | 0.3750 | 0.4980 | 0.3257 | 3.2570 | +0.0055 | +0.0094 | +0.0967 |
 | V3 + Logistic Regression | 0.7585 | 0.2424 | 0.3908 | 0.5170 | 0.3375 | 3.3752 | +0.0100 | +0.0157 | +0.1181 |
-| V1 + LightGBM |  |  |  |  |  |  | - | - | - |
-| V2 + LightGBM |  |  |  |  |  |  |  |  |  |
-| V3 + LightGBM |  |  |  |  |  |  |  |  |  |
+| V1 + LightGBM | 0.7621 | 0.2448 | 0.3938 | 0.5242 | 0.3410 | 3.4101 | - | - | - |
+| V2 + LightGBM | 0.7680 | 0.2584 | 0.4030 | 0.5359 | 0.3510 | 3.5094 | +0.0136 | +0.0092 | +0.0993 |
+| V3 + LightGBM | 0.7752 | 0.2665 | 0.4181 | 0.5504 | 0.3596 | 3.5954 | +0.0081 | +0.0151 | +0.0859 |
 | V3 + Random Forest | 0.7507 | 0.2333 | 0.3806 | 0.5013 | 0.3276 | 3.2758 | - | - | - |
 | V3 + TensorFlow MLP |  |  |  |  |  |  |  |  |  |
 
-Logistic Regression과 Random Forest 수치는 Stage 4의 실제 validation 결과다. LightGBM과 TensorFlow MLP는 Stage 5에서 학습한 뒤 기록한다.
+Logistic Regression과 Random Forest 수치는 Stage 4, LightGBM 수치는 Stage 5 1/3의 실제 validation 결과다. LightGBM은 세 데이터 버전에 동일한 고정 설정을 적용한 튜닝 전 결과이며 TensorFlow MLP는 Stage 5 2/3에서 학습한 뒤 기록한다.
 
 PR-AUC는 무작위 기준선인 양성 비율 약 8.07%와 함께 해석하고, Gini는 동일 예측점수의 `2 × ROC-AUC - 1`로 계산해 ROC-AUC와 별개의 독립 성능처럼 과장하지 않는다. F1과 우선검토 cutoff는 validation에서만 정한다.
 
@@ -238,7 +238,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 | 3 | Stage 2 | 고객 분할, train-only EDA와 처리 정책 설계 | 완료 |
 | 4 | Stage 3 | SQL·Python 고객 분석 마트와 V1·V2·V3 구축 | 완료 |
 | 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 완료 |
-| 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 다음 |
+| 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 진행 중 (1/3 완료) |
 | 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 예정 |
 | 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 예정 |
 | 9 | Stage 8 | 봉인 테스트·최종 보고서·시연 검증 | 예정 |
@@ -447,6 +447,12 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 
 외부 신용정보와 납부이력의 추가 가치 및 전통적 머신러닝·딥러닝 모델의 차이를 분석하고 최종 후보를 선정한다.
 
+**3단계 진행 단위**
+
+1. 1/3: 같은 고정 설정의 LightGBM을 V1·V2·V3에서 학습해 데이터 원천 추가 효과를 비교한다. **완료**
+2. 2/3: V3 TensorFlow MLP를 train 내부 early stopping으로 학습해 딥러닝 비교 후보를 만든다. **다음**
+3. 3/3: train 내부 제한 튜닝·확률 보정·피처군 분석을 수행하고 전체 모델을 비교해 Stage 6 후보를 선정한다. **예정**
+
 **구현 단계**
 
 1. LightGBM을 동일한 분할과 평가 인터페이스에서 학습한다.
@@ -473,6 +479,18 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 모든 후보가 같은 분할과 지표로 평가된다.
 - 데이터 버전 추가 효과와 모델 복잡도 효과를 구분해 설명할 수 있다.
 - 테스트 세트는 아직 최종 선택에 사용되지 않는다.
+
+**현재 구현 상태 (1/3 완료)**
+
+- LightGBM `4.7.0`과 기존 tree 전처리 파이프라인을 연결하고 V1·V2·V3에 같은 500-tree 고정 설정을 적용했습니다.
+- 모델과 전처리는 train 215,258명으로만 학습했으며 validation 46,127명은 고정 설정 비교에만 사용했습니다. validation을 early stopping이나 설정 변경에 사용하지 않았습니다.
+- V1→V2에서 ROC-AUC `+0.0059`, PR-AUC `+0.0136`, V2→V3에서 ROC-AUC `+0.0072`, PR-AUC `+0.0081`이 개선됐습니다.
+- V3 LightGBM은 ROC-AUC `0.7752`, PR-AUC `0.2665`, KS `0.4181`, Recall@Top10% `0.3596`, Lift@Top10% `3.5954`를 기록했습니다.
+- V3 Logistic과 비교하면 ROC-AUC `+0.0167`, PR-AUC `+0.0241`, KS `+0.0273`, Recall@Top10% `+0.0220`입니다.
+- 이것은 최종 모델 선정이 아니라 튜닝 전 LightGBM 후보의 실제 validation 결과입니다. TensorFlow MLP와 train 내부 개선 실험이 남아 있습니다.
+- 모델과 행별 validation 점수는 Git에서 제외되는 `models/stage5/`에 저장했고, 공유 결과에는 고객 ID와 행별 점수를 포함하지 않았습니다.
+- test 피처·예측·평가는 0건이며 전체 자동 테스트 147개를 통과했습니다.
+- 전체 결과는 [Stage 5 1/3 LightGBM 비교 보고서](Stage5_LightGBM_Report.md)와 [기계 판독용 결과](../reports/stage5_lightgbm_results.json)에 기록했습니다.
 
 ### Stage 6. 최종 모델 해석·위험전략·설정 고정
 
@@ -620,6 +638,7 @@ CreditLens/
 │   ├── Stage4_Preprocessing_and_Evaluation_Spec.md
 │   ├── Stage4_Baseline_Model_Report.md
 │   ├── Stage4_Validation_Analysis_Report.md
+│   ├── Stage5_LightGBM_Report.md
 │   └── Project_Plan.md       # 프로젝트 기준 계획서
 ├── models/                   # 학습 모델·전처리 산출물, Git 제외
 ├── notebooks/
@@ -632,7 +651,8 @@ CreditLens/
 │   ├── stage3_build_summary.json
 │   ├── stage3_feature_profile.json
 │   ├── stage4_baseline_results.json
-│   └── stage4_validation_analysis.json
+│   ├── stage4_validation_analysis.json
+│   └── stage5_lightgbm_results.json
 ├── sql/
 │   └── stage3/               # 고객 분석 마트 조회·집계·검수 SQL
 ├── src/
@@ -649,7 +669,7 @@ CreditLens/
 └── requirements-stage5-7.txt # Stage 5·7의 MLP·시연 의존성
 ```
 
-Stage 4까지 원본 검증, 고객 분할, train-only EDA, SQL·Python 분석 마트, 전처리·평가 기반과 기준 모델 validation 상세 분석을 완료했다. 다음 Stage에서는 LightGBM·TensorFlow MLP를 현재 V3 Logistic 기준선과 비교한다. 고정된 모델로 Stage 7의 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
+Stage 5 1/3까지 원본 검증, 고객 분할, train-only EDA, SQL·Python 분석 마트, 전처리·평가 기반, 기준 모델 상세 분석과 LightGBM V1·V2·V3 비교를 완료했다. 다음 작업은 V3 TensorFlow MLP와 train 내부 early stopping이다. 이후 고정된 모델로 Stage 7의 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
 
 ## 10. 형상관리와 개발 원칙
 
