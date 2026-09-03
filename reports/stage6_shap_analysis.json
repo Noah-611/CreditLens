@@ -1,0 +1,1788 @@
+{
+  "schema_version": "1.0",
+  "run_version": "stage6-shap-analysis-v1",
+  "stage_part": "1/3",
+  "run_status": "complete",
+  "generated_at_utc": "2026-09-03T03:49:34.744661+00:00",
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit_learn": "1.9.0",
+    "lightgbm": "4.7.0",
+    "shap": "0.52.0",
+    "joblib": "1.6.0",
+    "matplotlib": "3.11.1",
+    "platform": "Linux-5.15.167.4-microsoft-standard-WSL2-x86_64-with-glibc2.39"
+  },
+  "settings": {
+    "random_seed": 42,
+    "top_fraction_for_error_diagnosis": 0.1,
+    "shap_algorithm": "TreeExplainer_exact_tree_path_dependent",
+    "shap_model_output": "raw_log_odds",
+    "all_validation_rows_explained": true,
+    "direction_plot_sample_rows": 5000,
+    "model_or_preprocessor_refit": false,
+    "operating_cutoff_finalized": false
+  },
+  "data_scope": {
+    "validation_rows": 46127,
+    "validation_positive_rate": 0.08073362672621241,
+    "shap_rows": 46127,
+    "test_feature_rows_used": 0,
+    "test_predictions_created": false,
+    "customer_ids_in_shared_outputs": false,
+    "row_level_values_in_shared_outputs": false,
+    "customer_level_details_stored_only_in_git_ignored_artifact": true
+  },
+  "references": {
+    "stage5_result": {
+      "display_path": "reports/stage5_final_results.json",
+      "sha256": "5326581032eb766d113314f8eb782c2bbff249d5e771fed085fe1c2e79afdc23",
+      "run_version": "stage5-finalization-v1"
+    },
+    "model": {
+      "display_path": "models/stage5/stage5_v3_lightgbm_candidate.joblib",
+      "bytes": 794363,
+      "sha256": "0e8b96d1617c3c3b48ba77b4b1b34664d0914a17d89f489dc98586baae09c09a",
+      "git_ignored": true
+    },
+    "calibrator": {
+      "display_path": "models/stage5/stage5_v3_probability_calibrator.joblib",
+      "bytes": 134,
+      "sha256": "3a87e579c32ca2d7d780acb6e335b4c35024257a7dee959aa4b4ee081f768995",
+      "git_ignored": true
+    },
+    "lock_manifest": {
+      "display_path": "models/stage5/stage5_v3_candidate_lock_manifest.json",
+      "bytes": 2982,
+      "sha256": "438cc723043a8e341be60c292d417db15f4cc8d78f9f0c9cad2efcbe649e5fd2",
+      "git_ignored": true
+    },
+    "validation_scores": {
+      "display_path": "models/stage5/stage5_final_validation_scores.joblib",
+      "bytes": 341063,
+      "sha256": "72d21a783728765cf05d5c55936f3237117fd9deee6c2fd6544f47545450de99",
+      "git_ignored": true
+    }
+  },
+  "model_contract": {
+    "data_version": "v3",
+    "source_feature_columns": 198,
+    "numeric_feature_columns": 184,
+    "categorical_feature_columns": 14,
+    "transformed_feature_columns": 420,
+    "source_feature_names_sha256": "76954765f3555fbe43b3e83aa25b47a1332934033a52cd2e338f78b475c17c81",
+    "transformed_feature_names_sha256": "8a518f063e6c77708dadbbd1db0e0c400e65ea6de0f88a5d0054ccd2af145190",
+    "source_group_contract": {
+      "application": {
+        "columns": 132,
+        "columns_sha256": "45bf05c4f95064e87a68bd9d572009b89a4fde0a389440f8eec3ff30312c1281"
+      },
+      "bureau": {
+        "columns": 37,
+        "columns_sha256": "2db90e91bcf3e9b8eba962df59ad9213efe5e395ef43b1c4d2d0013286f8526e"
+      },
+      "installments": {
+        "columns": 29,
+        "columns_sha256": "6c5895e00d652c85265908332227c7f535f3a692b166690dd9b437e9eda95ead"
+      }
+    },
+    "transformed_components_by_kind": {
+      "numeric_value": 184,
+      "missing_indicator": 107,
+      "category_level": 129
+    },
+    "identifier_target_split_excluded": true
+  },
+  "validation_replay": {
+    "max_abs_probability_difference": 2.9750477192891367e-08,
+    "max_abs_additivity_error": 1.1352700735045573e-07,
+    "max_abs_probability_reconstruction_error": 2.746561456046237e-08,
+    "metrics": {
+      "sample_count": 46127,
+      "positive_count": 3724,
+      "negative_count": 42403,
+      "prevalence": 0.08073362672621241,
+      "roc_auc": 0.7765000604272954,
+      "pr_auc": 0.2699346065210402,
+      "ks": 0.4174038539163613,
+      "ks_threshold": 0.07483934070756443,
+      "gini": 0.5530001208545907,
+      "brier_score": 0.066533660661186,
+      "threshold_metrics": {
+        "threshold": 0.5,
+        "true_negative": 42275,
+        "false_positive": 128,
+        "false_negative": 3556,
+        "true_positive": 168,
+        "predicted_positive_count": 296,
+        "recall": 0.045112781954887216,
+        "precision": 0.5675675675675675,
+        "f1": 0.08358208955223881
+      },
+      "top_k_metrics": {
+        "requested_fraction": 0.1,
+        "k": 4613,
+        "actual_fraction": 0.1000065037830338,
+        "cutoff_score": 0.18607729049496233,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 1326.0,
+        "precision": 0.2874485150661175,
+        "recall": 0.3560687432867884,
+        "lift": 3.56045586854318
+      },
+      "warnings": []
+    },
+    "stage5_metrics_matched": true
+  },
+  "global_explanation": {
+    "explained_rows": 46127,
+    "base_value_raw_log_odds": -2.910580635070801,
+    "base_value_probability": 0.05163299608822759,
+    "top_source_features": [
+      {
+        "rank": 1,
+        "feature": "APP_EXT_SOURCE_MEAN",
+        "feature_label": "외부 신용평가값 평균",
+        "source_group": "application",
+        "mean_abs_shap": 0.47180735637685955,
+        "mean_shap": 0.00940465431070928,
+        "importance_share": 0.14641082797592628
+      },
+      {
+        "rank": 2,
+        "feature": "APP_CREDIT_GOODS_RATIO",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.12263718627508016,
+        "mean_shap": -0.002099811695041108,
+        "importance_share": 0.03805665965248404
+      },
+      {
+        "rank": 3,
+        "feature": "APP_CREDIT_ANNUITY_RATIO",
+        "feature_label": "연간 상환액 대비 대출금액",
+        "source_group": "application",
+        "mean_abs_shap": 0.11726478058069503,
+        "mean_shap": 3.733684531697706e-06,
+        "importance_share": 0.03638949962348859
+      },
+      {
+        "rank": 4,
+        "feature": "BUREAU_DEBT_CREDIT_RATIO",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.09459891522239952,
+        "mean_shap": -0.004602441624721488,
+        "importance_share": 0.029355848983992815
+      },
+      {
+        "rank": 5,
+        "feature": "AMT_ANNUITY",
+        "feature_label": "연간 상환액",
+        "source_group": "application",
+        "mean_abs_shap": 0.07779372229368221,
+        "mean_shap": -0.0014218976334550676,
+        "importance_share": 0.024140876860871935
+      },
+      {
+        "rank": 6,
+        "feature": "NAME_EDUCATION_TYPE",
+        "feature_label": "교육 수준",
+        "source_group": "application",
+        "mean_abs_shap": 0.07697569755067972,
+        "mean_shap": -0.00031287867474846765,
+        "importance_share": 0.023887028169644397
+      },
+      {
+        "rank": 7,
+        "feature": "INST_LAST_730_LATE_RATIO",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.065835777435233,
+        "mean_shap": 0.000795246208152806,
+        "importance_share": 0.02043009833240495
+      },
+      {
+        "rank": 8,
+        "feature": "EXT_SOURCE_1",
+        "feature_label": "외부 신용평가값 1",
+        "source_group": "application",
+        "mean_abs_shap": 0.06268532582492012,
+        "mean_shap": -0.0020071438765058027,
+        "importance_share": 0.01945245306568816
+      },
+      {
+        "rank": 9,
+        "feature": "OCCUPATION_TYPE",
+        "feature_label": "직업 유형",
+        "source_group": "application",
+        "mean_abs_shap": 0.05424927252155822,
+        "mean_shap": -0.0006441253497307237,
+        "importance_share": 0.01683458470840105
+      },
+      {
+        "rank": 10,
+        "feature": "DAYS_ID_PUBLISH",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.05365297147708919,
+        "mean_shap": -0.0012055148222092544,
+        "importance_share": 0.01664954111282412
+      },
+      {
+        "rank": 11,
+        "feature": "EXT_SOURCE_3",
+        "feature_label": "외부 신용평가값 3",
+        "source_group": "application",
+        "mean_abs_shap": 0.052997925854902636,
+        "mean_shap": -0.0044536235054912264,
+        "importance_share": 0.016446267953535494
+      },
+      {
+        "rank": 12,
+        "feature": "INST_HISTORY_SPAN_DAYS",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.05235878111201532,
+        "mean_shap": -0.003823143441395238,
+        "importance_share": 0.016247929140590308
+      },
+      {
+        "rank": 13,
+        "feature": "REGION_POPULATION_RELATIVE",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.05195764473956909,
+        "mean_shap": -0.0004630610537231646,
+        "importance_share": 0.016123448867810922
+      },
+      {
+        "rank": 14,
+        "feature": "FLAG_DOCUMENT_3",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.05080268322403431,
+        "mean_shap": -0.0006098686068748845,
+        "importance_share": 0.01576504226502216
+      },
+      {
+        "rank": 15,
+        "feature": "APP_EMPLOYED_AGE_RATIO",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.045789303932511405,
+        "mean_shap": 0.00021025691845749084,
+        "importance_share": 0.014209294981499658
+      },
+      {
+        "rank": 16,
+        "feature": "AMT_GOODS_PRICE",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.04436966099847918,
+        "mean_shap": 0.0015372444122187245,
+        "importance_share": 0.013768752682630099
+      },
+      {
+        "rank": 17,
+        "feature": "BUREAU_MAX_OVERDUE_AMOUNT",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.04358921708651706,
+        "mean_shap": -0.001079073493526554,
+        "importance_share": 0.013526566040572159
+      },
+      {
+        "rank": 18,
+        "feature": "NAME_FAMILY_STATUS",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.04357004131153926,
+        "mean_shap": -0.00030750664359949025,
+        "importance_share": 0.013520615431592387
+      },
+      {
+        "rank": 19,
+        "feature": "APP_ANNUITY_INCOME_RATIO",
+        "feature_label": "소득 대비 연간 상환액",
+        "source_group": "application",
+        "mean_abs_shap": 0.04032263303193614,
+        "mean_shap": -0.0012764754529567888,
+        "importance_share": 0.012512882659802372
+      },
+      {
+        "rank": 20,
+        "feature": "INST_DAYS_LATE_MEAN",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.039351448004892146,
+        "mean_shap": -0.001270036544581096,
+        "importance_share": 0.0122115054090972
+      },
+      {
+        "rank": 21,
+        "feature": "OWN_CAR_AGE_NOT_APPLICABLE",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.03798573184174599,
+        "mean_shap": 0.0024603689747100016,
+        "importance_share": 0.011787697616523025
+      },
+      {
+        "rank": 22,
+        "feature": "EXT_SOURCE_2",
+        "feature_label": "외부 신용평가값 2",
+        "source_group": "application",
+        "mean_abs_shap": 0.03740769397297951,
+        "mean_shap": 0.0006186225637856236,
+        "importance_share": 0.01160832143295216
+      },
+      {
+        "rank": 23,
+        "feature": "APP_AGE_YEARS",
+        "feature_label": "나이",
+        "source_group": "application",
+        "mean_abs_shap": 0.03716230009787568,
+        "mean_shap": 0.0022981996970811544,
+        "importance_share": 0.011532171029723868
+      },
+      {
+        "rank": 24,
+        "feature": "ORGANIZATION_TYPE",
+        "feature_label": "근무 조직 유형",
+        "source_group": "application",
+        "mean_abs_shap": 0.036803520189282506,
+        "mean_shap": -0.0001265159401786912,
+        "importance_share": 0.011420834776127398
+      },
+      {
+        "rank": 25,
+        "feature": "INST_LAST_365_SCHEDULE_COUNT",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.035835797004389665,
+        "mean_shap": -0.004964793929513497,
+        "importance_share": 0.011120531801117214
+      },
+      {
+        "rank": 26,
+        "feature": "INST_PAID_AMOUNT_SUM",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.0352516907499309,
+        "mean_shap": -0.00037119663948886184,
+        "importance_share": 0.010939272481639974
+      },
+      {
+        "rank": 27,
+        "feature": "APP_EXT_SOURCE_OBSERVED_COUNT",
+        "feature_label": "외부 신용평가값 관측 개수",
+        "source_group": "application",
+        "mean_abs_shap": 0.03510367555590216,
+        "mean_shap": -0.0020270133016474894,
+        "importance_share": 0.010893340541796595
+      },
+      {
+        "rank": 28,
+        "feature": "FLAG_WORK_PHONE",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.03432805383060152,
+        "mean_shap": 0.00020957475759556134,
+        "importance_share": 0.010652650316299823
+      },
+      {
+        "rank": 29,
+        "feature": "DAYS_EMPLOYED",
+        "feature_label": "재직기간 관련 상대일수",
+        "source_group": "application",
+        "mean_abs_shap": 0.033981209774210985,
+        "mean_shap": -0.0006175710061230846,
+        "importance_share": 0.010545017985459045
+      },
+      {
+        "rank": 30,
+        "feature": "INST_DAYS_SINCE_RECENT_DUE",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.033085297715711,
+        "mean_shap": 0.0014929840919570725,
+        "importance_share": 0.0102669993736131
+      },
+      {
+        "rank": 31,
+        "feature": "INST_DAYS_LATE_MAX",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.033033113210177246,
+        "mean_shap": -0.0002633725093052029,
+        "importance_share": 0.010250805525510807
+      },
+      {
+        "rank": 32,
+        "feature": "BUREAU_ACTIVE_CREDIT_SUM",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.03223373831084362,
+        "mean_shap": 0.0026084698691505024,
+        "importance_share": 0.010002744236739539
+      },
+      {
+        "rank": 33,
+        "feature": "BUREAU_CREDIT_AMOUNT_MAX",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.03104805056886636,
+        "mean_shap": -0.0009474383192789482,
+        "importance_share": 0.009634802699420365
+      },
+      {
+        "rank": 34,
+        "feature": "INST_LAST_365_LATE_RATIO",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.030692659826121182,
+        "mean_shap": -0.0010408425824277277,
+        "importance_share": 0.009524518168674856
+      },
+      {
+        "rank": 35,
+        "feature": "DAYS_BIRTH",
+        "feature_label": "나이 관련 상대일수",
+        "source_group": "application",
+        "mean_abs_shap": 0.02994167721404293,
+        "mean_shap": 0.0022944100889318786,
+        "importance_share": 0.00929147393029279
+      },
+      {
+        "rank": 36,
+        "feature": "REGION_RATING_CLIENT_W_CITY",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.029347672641287695,
+        "mean_shap": -0.0007001504215034374,
+        "importance_share": 0.009107142973720945
+      },
+      {
+        "rank": 37,
+        "feature": "INST_LAST_730_SCHEDULE_COUNT",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.028363928698566646,
+        "mean_shap": 0.0018506993268159186,
+        "importance_share": 0.008801868451771683
+      },
+      {
+        "rank": 38,
+        "feature": "NAME_INCOME_TYPE",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.02779039180436368,
+        "mean_shap": -0.0006352635776977394,
+        "importance_share": 0.008623889006517073
+      },
+      {
+        "rank": 39,
+        "feature": "INST_OLDEST_DUE_AGE_DAYS",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.027271584058095162,
+        "mean_shap": 0.001399551389254604,
+        "importance_share": 0.00846289306047077
+      },
+      {
+        "rank": 40,
+        "feature": "AMT_REQ_CREDIT_BUREAU_YEAR",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.027094314167798283,
+        "mean_shap": -0.00044189911468225424,
+        "importance_share": 0.00840788282999688
+      },
+      {
+        "rank": 41,
+        "feature": "INST_SCHEDULED_AMOUNT_SUM",
+        "feature_label": null,
+        "source_group": "installments",
+        "mean_abs_shap": 0.0269973554470942,
+        "mean_shap": 0.00018653993543115335,
+        "importance_share": 0.008377794688330787
+      },
+      {
+        "rank": 42,
+        "feature": "BUREAU_ACTIVE_COUNT",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.025708309065675,
+        "mean_shap": -0.000680530817840027,
+        "importance_share": 0.007977778992407201
+      },
+      {
+        "rank": 43,
+        "feature": "APP_EMPLOYED_YEARS",
+        "feature_label": "재직기간",
+        "source_group": "application",
+        "mean_abs_shap": 0.023077105053685272,
+        "mean_shap": 0.0014551292557994173,
+        "importance_share": 0.007161266166224635
+      },
+      {
+        "rank": 44,
+        "feature": "APP_INCOME_PER_FAMILY_MEMBER",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.022072945680864663,
+        "mean_shap": -0.00018786776391992288,
+        "importance_share": 0.006849656346650268
+      },
+      {
+        "rank": 45,
+        "feature": "DAYS_REGISTRATION",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.020589494798423903,
+        "mean_shap": 0.00015227918030209683,
+        "importance_share": 0.006389313223500053
+      },
+      {
+        "rank": 46,
+        "feature": "BUREAU_ACTIVE_DEBT_SUM",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.020007421548337907,
+        "mean_shap": -0.0005600591049457057,
+        "importance_share": 0.00620868478408323
+      },
+      {
+        "rank": 47,
+        "feature": "BUREAU_CREDIT_AMOUNT_MEAN",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.01973137182969312,
+        "mean_shap": 0.00011118913050078785,
+        "importance_share": 0.0061230212874822535
+      },
+      {
+        "rank": 48,
+        "feature": "BUREAU_DAYS_CREDIT_MEAN",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.01920012894838731,
+        "mean_shap": 0.0005903087978413157,
+        "importance_share": 0.005958166481686955
+      },
+      {
+        "rank": 49,
+        "feature": "DEF_30_CNT_SOCIAL_CIRCLE",
+        "feature_label": null,
+        "source_group": "application",
+        "mean_abs_shap": 0.019010049700262426,
+        "mean_shap": -0.00015990171844597735,
+        "importance_share": 0.005899181262989397
+      },
+      {
+        "rank": 50,
+        "feature": "BUREAU_DAYS_CREDIT_MAX",
+        "feature_label": null,
+        "source_group": "bureau",
+        "mean_abs_shap": 0.018964919485079428,
+        "mean_shap": -0.00039763447976709233,
+        "importance_share": 0.005885176495826766
+      }
+    ],
+    "source_group_importance": [
+      {
+        "source_group": "application",
+        "display_name": "신청정보",
+        "feature_count": 132,
+        "summed_mean_abs_shap": 2.22993550085415,
+        "attribution_share": 0.6919915482457724
+      },
+      {
+        "source_group": "bureau",
+        "display_name": "외부 신용이력",
+        "feature_count": 37,
+        "summed_mean_abs_shap": 0.46133498056470695,
+        "attribution_share": 0.14316104987728295
+      },
+      {
+        "source_group": "installments",
+        "display_name": "과거 납부이력",
+        "feature_count": 29,
+        "summed_mean_abs_shap": 0.5312190222566286,
+        "attribution_share": 0.16484740187694463
+      }
+    ],
+    "numeric_direction": [
+      {
+        "feature": "APP_EXT_SOURCE_MEAN",
+        "feature_label": "외부 신용평가값 평균",
+        "observed_rows": 46101,
+        "missing_rows": 26,
+        "spearman_feature_value_vs_shap": -0.9903737674198878,
+        "top20pct_minus_bottom20pct_mean_shap": -1.550099689555057,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "APP_CREDIT_GOODS_RATIO",
+        "feature_label": null,
+        "observed_rows": 46090,
+        "missing_rows": 37,
+        "spearman_feature_value_vs_shap": -0.9076124175082797,
+        "top20pct_minus_bottom20pct_mean_shap": -0.316842593552125,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "APP_CREDIT_ANNUITY_RATIO",
+        "feature_label": "연간 상환액 대비 대출금액",
+        "observed_rows": 46126,
+        "missing_rows": 1,
+        "spearman_feature_value_vs_shap": -0.14147671618997293,
+        "top20pct_minus_bottom20pct_mean_shap": 0.0006737803578226453,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "BUREAU_DEBT_CREDIT_RATIO",
+        "feature_label": null,
+        "observed_rows": 38225,
+        "missing_rows": 7902,
+        "spearman_feature_value_vs_shap": 0.8167817125260475,
+        "top20pct_minus_bottom20pct_mean_shap": 0.3088583560156438,
+        "direction": "higher_values_tend_to_raise_risk_score"
+      },
+      {
+        "feature": "AMT_ANNUITY",
+        "feature_label": "연간 상환액",
+        "observed_rows": 46126,
+        "missing_rows": 1,
+        "spearman_feature_value_vs_shap": 0.8726625713779451,
+        "top20pct_minus_bottom20pct_mean_shap": 0.2149880368289665,
+        "direction": "higher_values_tend_to_raise_risk_score"
+      },
+      {
+        "feature": "INST_LAST_730_LATE_RATIO",
+        "feature_label": null,
+        "observed_rows": 37829,
+        "missing_rows": 8298,
+        "spearman_feature_value_vs_shap": 0.8476346437580998,
+        "top20pct_minus_bottom20pct_mean_shap": 0.1990456060434147,
+        "direction": "higher_values_tend_to_raise_risk_score"
+      },
+      {
+        "feature": "EXT_SOURCE_1",
+        "feature_label": "외부 신용평가값 1",
+        "observed_rows": 20052,
+        "missing_rows": 26075,
+        "spearman_feature_value_vs_shap": -0.4384091862684236,
+        "top20pct_minus_bottom20pct_mean_shap": -0.13231472033926625,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "DAYS_ID_PUBLISH",
+        "feature_label": null,
+        "observed_rows": 46127,
+        "missing_rows": 0,
+        "spearman_feature_value_vs_shap": 0.8094997691160233,
+        "top20pct_minus_bottom20pct_mean_shap": 0.19540142003280314,
+        "direction": "higher_values_tend_to_raise_risk_score"
+      },
+      {
+        "feature": "EXT_SOURCE_3",
+        "feature_label": "외부 신용평가값 3",
+        "observed_rows": 37038,
+        "missing_rows": 9089,
+        "spearman_feature_value_vs_shap": -0.6745485618868629,
+        "top20pct_minus_bottom20pct_mean_shap": -0.15464421536284229,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "INST_HISTORY_SPAN_DAYS",
+        "feature_label": null,
+        "observed_rows": 43712,
+        "missing_rows": 2415,
+        "spearman_feature_value_vs_shap": -0.8859813278394102,
+        "top20pct_minus_bottom20pct_mean_shap": -0.1432996695439585,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "REGION_POPULATION_RELATIVE",
+        "feature_label": null,
+        "observed_rows": 46127,
+        "missing_rows": 0,
+        "spearman_feature_value_vs_shap": 0.28681284427685894,
+        "top20pct_minus_bottom20pct_mean_shap": 0.019301801006338926,
+        "direction": "higher_values_tend_to_raise_risk_score"
+      },
+      {
+        "feature": "FLAG_DOCUMENT_3",
+        "feature_label": null,
+        "observed_rows": 46127,
+        "missing_rows": 0,
+        "spearman_feature_value_vs_shap": 0.783436726525677,
+        "top20pct_minus_bottom20pct_mean_shap": 0.1244702149908658,
+        "direction": "higher_values_tend_to_raise_risk_score"
+      },
+      {
+        "feature": "APP_EMPLOYED_AGE_RATIO",
+        "feature_label": null,
+        "observed_rows": 37675,
+        "missing_rows": 8452,
+        "spearman_feature_value_vs_shap": -0.9131259011090985,
+        "top20pct_minus_bottom20pct_mean_shap": -0.14891602723935266,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "AMT_GOODS_PRICE",
+        "feature_label": null,
+        "observed_rows": 46090,
+        "missing_rows": 37,
+        "spearman_feature_value_vs_shap": -0.4397027472749955,
+        "top20pct_minus_bottom20pct_mean_shap": -0.07836108870605019,
+        "direction": "higher_values_tend_to_lower_risk_score"
+      },
+      {
+        "feature": "BUREAU_MAX_OVERDUE_AMOUNT",
+        "feature_label": null,
+        "observed_rows": 27496,
+        "missing_rows": 18631,
+        "spearman_feature_value_vs_shap": 0.7903023709759078,
+        "top20pct_minus_bottom20pct_mean_shap": 0.17215474527854882,
+        "direction": "higher_values_tend_to_raise_risk_score"
+      }
+    ],
+    "top_transformed_components": [
+      {
+        "rank": 1,
+        "transformed_feature": "numeric__APP_EXT_SOURCE_MEAN",
+        "source_feature": "APP_EXT_SOURCE_MEAN",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.47180735637685955,
+        "mean_shap": 0.00940465431070928
+      },
+      {
+        "rank": 2,
+        "transformed_feature": "numeric__APP_CREDIT_GOODS_RATIO",
+        "source_feature": "APP_CREDIT_GOODS_RATIO",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.12263718627508016,
+        "mean_shap": -0.002099811695041108
+      },
+      {
+        "rank": 3,
+        "transformed_feature": "numeric__APP_CREDIT_ANNUITY_RATIO",
+        "source_feature": "APP_CREDIT_ANNUITY_RATIO",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.11726478058069503,
+        "mean_shap": 3.733684531697706e-06
+      },
+      {
+        "rank": 4,
+        "transformed_feature": "numeric__BUREAU_DEBT_CREDIT_RATIO",
+        "source_feature": "BUREAU_DEBT_CREDIT_RATIO",
+        "component_kind": "numeric_value",
+        "source_group": "bureau",
+        "mean_abs_shap": 0.09480154019542851,
+        "mean_shap": -0.0046158605917003825
+      },
+      {
+        "rank": 5,
+        "transformed_feature": "numeric__AMT_ANNUITY",
+        "source_feature": "AMT_ANNUITY",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.07779372229368221,
+        "mean_shap": -0.0014218976334550676
+      },
+      {
+        "rank": 6,
+        "transformed_feature": "numeric__INST_LAST_730_LATE_RATIO",
+        "source_feature": "INST_LAST_730_LATE_RATIO",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.06594571299274632,
+        "mean_shap": 0.0008212908429389115
+      },
+      {
+        "rank": 7,
+        "transformed_feature": "numeric__DAYS_ID_PUBLISH",
+        "source_feature": "DAYS_ID_PUBLISH",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.05365297147708919,
+        "mean_shap": -0.0012055148222092544
+      },
+      {
+        "rank": 8,
+        "transformed_feature": "numeric__missingindicator_EXT_SOURCE_1",
+        "source_feature": "EXT_SOURCE_1",
+        "component_kind": "missing_indicator",
+        "source_group": "application",
+        "mean_abs_shap": 0.05328654310238742,
+        "mean_shap": -0.0027904775253080488
+      },
+      {
+        "rank": 9,
+        "transformed_feature": "categorical__NAME_EDUCATION_TYPE_Higher education",
+        "source_feature": "NAME_EDUCATION_TYPE",
+        "component_kind": "category_level",
+        "source_group": "application",
+        "mean_abs_shap": 0.052877629909965716,
+        "mean_shap": 1.0566530139411318e-05
+      },
+      {
+        "rank": 10,
+        "transformed_feature": "numeric__INST_HISTORY_SPAN_DAYS",
+        "source_feature": "INST_HISTORY_SPAN_DAYS",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.05235878111201532,
+        "mean_shap": -0.003823143441395238
+      },
+      {
+        "rank": 11,
+        "transformed_feature": "numeric__REGION_POPULATION_RELATIVE",
+        "source_feature": "REGION_POPULATION_RELATIVE",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.05195764473956909,
+        "mean_shap": -0.0004630610537231646
+      },
+      {
+        "rank": 12,
+        "transformed_feature": "numeric__FLAG_DOCUMENT_3",
+        "source_feature": "FLAG_DOCUMENT_3",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.05080268322403431,
+        "mean_shap": -0.0006098686068748845
+      },
+      {
+        "rank": 13,
+        "transformed_feature": "numeric__EXT_SOURCE_3",
+        "source_feature": "EXT_SOURCE_3",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.04908956312946244,
+        "mean_shap": -0.0031730013808664624
+      },
+      {
+        "rank": 14,
+        "transformed_feature": "numeric__APP_EMPLOYED_AGE_RATIO",
+        "source_feature": "APP_EMPLOYED_AGE_RATIO",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.045789303932511405,
+        "mean_shap": 0.00021025691845749084
+      },
+      {
+        "rank": 15,
+        "transformed_feature": "numeric__AMT_GOODS_PRICE",
+        "source_feature": "AMT_GOODS_PRICE",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.04436966099847918,
+        "mean_shap": 0.0015372444122187245
+      },
+      {
+        "rank": 16,
+        "transformed_feature": "numeric__BUREAU_MAX_OVERDUE_AMOUNT",
+        "source_feature": "BUREAU_MAX_OVERDUE_AMOUNT",
+        "component_kind": "numeric_value",
+        "source_group": "bureau",
+        "mean_abs_shap": 0.043951531312489515,
+        "mean_shap": -0.001107603140788248
+      },
+      {
+        "rank": 17,
+        "transformed_feature": "numeric__APP_ANNUITY_INCOME_RATIO",
+        "source_feature": "APP_ANNUITY_INCOME_RATIO",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.04032263303193614,
+        "mean_shap": -0.0012764754529567888
+      },
+      {
+        "rank": 18,
+        "transformed_feature": "categorical__NAME_FAMILY_STATUS_Married",
+        "source_feature": "NAME_FAMILY_STATUS",
+        "component_kind": "category_level",
+        "source_group": "application",
+        "mean_abs_shap": 0.03936070239522111,
+        "mean_shap": -0.0006790351961827906
+      },
+      {
+        "rank": 19,
+        "transformed_feature": "numeric__INST_DAYS_LATE_MEAN",
+        "source_feature": "INST_DAYS_LATE_MEAN",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.039351448004892146,
+        "mean_shap": -0.001270036544581096
+      },
+      {
+        "rank": 20,
+        "transformed_feature": "numeric__OWN_CAR_AGE_NOT_APPLICABLE",
+        "source_feature": "OWN_CAR_AGE_NOT_APPLICABLE",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.03798573184174599,
+        "mean_shap": 0.0024603689747100016
+      },
+      {
+        "rank": 21,
+        "transformed_feature": "numeric__EXT_SOURCE_2",
+        "source_feature": "EXT_SOURCE_2",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.03737105482777801,
+        "mean_shap": 0.0006175528590130069
+      },
+      {
+        "rank": 22,
+        "transformed_feature": "numeric__APP_AGE_YEARS",
+        "source_feature": "APP_AGE_YEARS",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.03716230009787568,
+        "mean_shap": 0.0022981996970811544
+      },
+      {
+        "rank": 23,
+        "transformed_feature": "numeric__INST_LAST_365_SCHEDULE_COUNT",
+        "source_feature": "INST_LAST_365_SCHEDULE_COUNT",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.035835797004389665,
+        "mean_shap": -0.004964793929513497
+      },
+      {
+        "rank": 24,
+        "transformed_feature": "numeric__INST_PAID_AMOUNT_SUM",
+        "source_feature": "INST_PAID_AMOUNT_SUM",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.0352516907499309,
+        "mean_shap": -0.00037119663948886184
+      },
+      {
+        "rank": 25,
+        "transformed_feature": "numeric__APP_EXT_SOURCE_OBSERVED_COUNT",
+        "source_feature": "APP_EXT_SOURCE_OBSERVED_COUNT",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.03510367555590216,
+        "mean_shap": -0.0020270133016474894
+      },
+      {
+        "rank": 26,
+        "transformed_feature": "numeric__FLAG_WORK_PHONE",
+        "source_feature": "FLAG_WORK_PHONE",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.03432805383060152,
+        "mean_shap": 0.00020957475759556134
+      },
+      {
+        "rank": 27,
+        "transformed_feature": "numeric__DAYS_EMPLOYED",
+        "source_feature": "DAYS_EMPLOYED",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.033981209774210985,
+        "mean_shap": -0.0006175710061230846
+      },
+      {
+        "rank": 28,
+        "transformed_feature": "numeric__INST_DAYS_SINCE_RECENT_DUE",
+        "source_feature": "INST_DAYS_SINCE_RECENT_DUE",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.033085297715711,
+        "mean_shap": 0.0014929840919570725
+      },
+      {
+        "rank": 29,
+        "transformed_feature": "numeric__INST_DAYS_LATE_MAX",
+        "source_feature": "INST_DAYS_LATE_MAX",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.033033113210177246,
+        "mean_shap": -0.0002633725093052029
+      },
+      {
+        "rank": 30,
+        "transformed_feature": "numeric__BUREAU_ACTIVE_CREDIT_SUM",
+        "source_feature": "BUREAU_ACTIVE_CREDIT_SUM",
+        "component_kind": "numeric_value",
+        "source_group": "bureau",
+        "mean_abs_shap": 0.03227490238289272,
+        "mean_shap": 0.0026160479300187597
+      },
+      {
+        "rank": 31,
+        "transformed_feature": "numeric__INST_LAST_365_LATE_RATIO",
+        "source_feature": "INST_LAST_365_LATE_RATIO",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.031207908384662694,
+        "mean_shap": -0.0011641900758424105
+      },
+      {
+        "rank": 32,
+        "transformed_feature": "numeric__BUREAU_CREDIT_AMOUNT_MAX",
+        "source_feature": "BUREAU_CREDIT_AMOUNT_MAX",
+        "component_kind": "numeric_value",
+        "source_group": "bureau",
+        "mean_abs_shap": 0.03104805056886636,
+        "mean_shap": -0.0009474383192789482
+      },
+      {
+        "rank": 33,
+        "transformed_feature": "numeric__DAYS_BIRTH",
+        "source_feature": "DAYS_BIRTH",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.02994167721404293,
+        "mean_shap": 0.0022944100889318786
+      },
+      {
+        "rank": 34,
+        "transformed_feature": "numeric__REGION_RATING_CLIENT_W_CITY",
+        "source_feature": "REGION_RATING_CLIENT_W_CITY",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.029347672641287695,
+        "mean_shap": -0.0007001504215034374
+      },
+      {
+        "rank": 35,
+        "transformed_feature": "numeric__INST_LAST_730_SCHEDULE_COUNT",
+        "source_feature": "INST_LAST_730_SCHEDULE_COUNT",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.028363928698566646,
+        "mean_shap": 0.0018506993268159186
+      },
+      {
+        "rank": 36,
+        "transformed_feature": "numeric__INST_OLDEST_DUE_AGE_DAYS",
+        "source_feature": "INST_OLDEST_DUE_AGE_DAYS",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.027271584058095162,
+        "mean_shap": 0.001399551389254604
+      },
+      {
+        "rank": 37,
+        "transformed_feature": "numeric__AMT_REQ_CREDIT_BUREAU_YEAR",
+        "source_feature": "AMT_REQ_CREDIT_BUREAU_YEAR",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.027094314167798283,
+        "mean_shap": -0.00044189911468225424
+      },
+      {
+        "rank": 38,
+        "transformed_feature": "numeric__INST_SCHEDULED_AMOUNT_SUM",
+        "source_feature": "INST_SCHEDULED_AMOUNT_SUM",
+        "component_kind": "numeric_value",
+        "source_group": "installments",
+        "mean_abs_shap": 0.0269973554470942,
+        "mean_shap": 0.00018653993543115335
+      },
+      {
+        "rank": 39,
+        "transformed_feature": "categorical__NAME_EDUCATION_TYPE_Secondary / secondary special",
+        "source_feature": "NAME_EDUCATION_TYPE",
+        "component_kind": "category_level",
+        "source_group": "application",
+        "mean_abs_shap": 0.026304642616560046,
+        "mean_shap": -0.00018947795803901624
+      },
+      {
+        "rank": 40,
+        "transformed_feature": "numeric__BUREAU_ACTIVE_COUNT",
+        "source_feature": "BUREAU_ACTIVE_COUNT",
+        "component_kind": "numeric_value",
+        "source_group": "bureau",
+        "mean_abs_shap": 0.025708309065675,
+        "mean_shap": -0.000680530817840027
+      },
+      {
+        "rank": 41,
+        "transformed_feature": "categorical__OCCUPATION_TYPE_Drivers",
+        "source_feature": "OCCUPATION_TYPE",
+        "component_kind": "category_level",
+        "source_group": "application",
+        "mean_abs_shap": 0.02535981383772758,
+        "mean_shap": 1.4923896780377878e-05
+      },
+      {
+        "rank": 42,
+        "transformed_feature": "categorical__OCCUPATION_TYPE_Laborers",
+        "source_feature": "OCCUPATION_TYPE",
+        "component_kind": "category_level",
+        "source_group": "application",
+        "mean_abs_shap": 0.023999971137409967,
+        "mean_shap": -0.000662051391990275
+      },
+      {
+        "rank": 43,
+        "transformed_feature": "numeric__EXT_SOURCE_1",
+        "source_feature": "EXT_SOURCE_1",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.023020727599605082,
+        "mean_shap": 0.0007833336488022456
+      },
+      {
+        "rank": 44,
+        "transformed_feature": "numeric__APP_INCOME_PER_FAMILY_MEMBER",
+        "source_feature": "APP_INCOME_PER_FAMILY_MEMBER",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.022072945680864663,
+        "mean_shap": -0.00018786776391992288
+      },
+      {
+        "rank": 45,
+        "transformed_feature": "numeric__APP_EMPLOYED_YEARS",
+        "source_feature": "APP_EMPLOYED_YEARS",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.02204319122926251,
+        "mean_shap": 0.0003858011585300567
+      },
+      {
+        "rank": 46,
+        "transformed_feature": "categorical__NAME_INCOME_TYPE_Working",
+        "source_feature": "NAME_INCOME_TYPE",
+        "component_kind": "category_level",
+        "source_group": "application",
+        "mean_abs_shap": 0.021680977429762778,
+        "mean_shap": -0.0006574900202366661
+      },
+      {
+        "rank": 47,
+        "transformed_feature": "numeric__DAYS_REGISTRATION",
+        "source_feature": "DAYS_REGISTRATION",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.020589494798423903,
+        "mean_shap": 0.00015227918030209683
+      },
+      {
+        "rank": 48,
+        "transformed_feature": "numeric__BUREAU_CREDIT_AMOUNT_MEAN",
+        "source_feature": "BUREAU_CREDIT_AMOUNT_MEAN",
+        "component_kind": "numeric_value",
+        "source_group": "bureau",
+        "mean_abs_shap": 0.01973137182969312,
+        "mean_shap": 0.00011118913050078785
+      },
+      {
+        "rank": 49,
+        "transformed_feature": "numeric__BUREAU_DAYS_CREDIT_MEAN",
+        "source_feature": "BUREAU_DAYS_CREDIT_MEAN",
+        "component_kind": "numeric_value",
+        "source_group": "bureau",
+        "mean_abs_shap": 0.01920012894838731,
+        "mean_shap": 0.0005903087978413157
+      },
+      {
+        "rank": 50,
+        "transformed_feature": "numeric__DEF_30_CNT_SOCIAL_CIRCLE",
+        "source_feature": "DEF_30_CNT_SOCIAL_CIRCLE",
+        "component_kind": "numeric_value",
+        "source_group": "application",
+        "mean_abs_shap": 0.019010049700262426,
+        "mean_shap": -0.00015990171844597735
+      }
+    ],
+    "aggregation_method": "sum transformed component SHAP values per original source feature, then mean absolute aggregated contribution",
+    "causal_interpretation_allowed": false
+  },
+  "error_analysis": {
+    "review_policy": {
+      "requested_fraction": 0.1,
+      "k": 4613,
+      "actual_fraction": 0.1000065037830338,
+      "cutoff_score": 0.18607729049496233,
+      "boundary_tie_count": 1,
+      "tie_policy_for_group_analysis": "stable_row_order_exact_k"
+    },
+    "common_metric_result": {
+      "requested_fraction": 0.1,
+      "k": 4613,
+      "actual_fraction": 0.1000065037830338,
+      "cutoff_score": 0.18607729049496233,
+      "boundary_tie_count": 1,
+      "boundary_selected_weight": 1.0,
+      "true_positive_weight": 1326.0,
+      "precision": 0.2874485150661175,
+      "recall": 0.3560687432867884,
+      "lift": 3.56045586854318
+    },
+    "groups": {
+      "captured_positive": {
+        "rows": 1326,
+        "mean_score": 0.33778272157684025,
+        "median_score": 0.3040855270641407,
+        "top_features": [
+          {
+            "feature": "APP_EXT_SOURCE_MEAN",
+            "feature_label": "외부 신용평가값 평균",
+            "source_group": "application",
+            "mean_abs_shap": 0.9383113682245467,
+            "mean_shap": 0.9269489864562392
+          },
+          {
+            "feature": "APP_CREDIT_ANNUITY_RATIO",
+            "feature_label": "연간 상환액 대비 대출금액",
+            "source_group": "application",
+            "mean_abs_shap": 0.16571490162911534,
+            "mean_shap": 0.1373816682200254
+          },
+          {
+            "feature": "BUREAU_DEBT_CREDIT_RATIO",
+            "feature_label": null,
+            "source_group": "bureau",
+            "mean_abs_shap": 0.14361456429663816,
+            "mean_shap": 0.08157436843506827
+          },
+          {
+            "feature": "APP_CREDIT_GOODS_RATIO",
+            "feature_label": null,
+            "source_group": "application",
+            "mean_abs_shap": 0.1417456381773572,
+            "mean_shap": 0.06629217923806734
+          },
+          {
+            "feature": "EXT_SOURCE_3",
+            "feature_label": "외부 신용평가값 3",
+            "source_group": "application",
+            "mean_abs_shap": 0.10877906633267426,
+            "mean_shap": 0.07202622475078911
+          },
+          {
+            "feature": "AMT_ANNUITY",
+            "feature_label": "연간 상환액",
+            "source_group": "application",
+            "mean_abs_shap": 0.08439485819978786,
+            "mean_shap": 0.01860804091248771
+          },
+          {
+            "feature": "EXT_SOURCE_1",
+            "feature_label": "외부 신용평가값 1",
+            "source_group": "application",
+            "mean_abs_shap": 0.07723712934115175,
+            "mean_shap": 0.05294509569000778
+          },
+          {
+            "feature": "NAME_EDUCATION_TYPE",
+            "feature_label": "교육 수준",
+            "source_group": "application",
+            "mean_abs_shap": 0.07689009446417576,
+            "mean_shap": 0.03339438764129754
+          },
+          {
+            "feature": "INST_HISTORY_SPAN_DAYS",
+            "feature_label": null,
+            "source_group": "installments",
+            "mean_abs_shap": 0.07674630103763797,
+            "mean_shap": 0.03625841715081095
+          },
+          {
+            "feature": "INST_LAST_730_LATE_RATIO",
+            "feature_label": null,
+            "source_group": "installments",
+            "mean_abs_shap": 0.07092265223624057,
+            "mean_shap": 0.03859916637522164
+          }
+        ]
+      },
+      "missed_positive": {
+        "rows": 2398,
+        "mean_score": 0.08871042604874384,
+        "median_score": 0.08230666950898441,
+        "top_features": [
+          {
+            "feature": "APP_EXT_SOURCE_MEAN",
+            "feature_label": "외부 신용평가값 평균",
+            "source_group": "application",
+            "mean_abs_shap": 0.4427815757725382,
+            "mean_shap": 0.1744658119939115
+          },
+          {
+            "feature": "APP_CREDIT_GOODS_RATIO",
+            "feature_label": null,
+            "source_group": "application",
+            "mean_abs_shap": 0.12373101092978214,
+            "mean_shap": 0.009236406337785759
+          },
+          {
+            "feature": "APP_CREDIT_ANNUITY_RATIO",
+            "feature_label": "연간 상환액 대비 대출금액",
+            "source_group": "application",
+            "mean_abs_shap": 0.11702333964537295,
+            "mean_shap": 0.0339666683812948
+          },
+          {
+            "feature": "BUREAU_DEBT_CREDIT_RATIO",
+            "feature_label": null,
+            "source_group": "bureau",
+            "mean_abs_shap": 0.09710766675690231,
+            "mean_shap": 6.24308581341499e-05
+          },
+          {
+            "feature": "AMT_ANNUITY",
+            "feature_label": "연간 상환액",
+            "source_group": "application",
+            "mean_abs_shap": 0.08087671357608862,
+            "mean_shap": 0.002563813424921401
+          },
+          {
+            "feature": "NAME_EDUCATION_TYPE",
+            "feature_label": "교육 수준",
+            "source_group": "application",
+            "mean_abs_shap": 0.07442777210089495,
+            "mean_shap": 0.011693950411934533
+          },
+          {
+            "feature": "INST_LAST_730_LATE_RATIO",
+            "feature_label": null,
+            "source_group": "installments",
+            "mean_abs_shap": 0.07111619411373889,
+            "mean_shap": 0.011563787373770985
+          },
+          {
+            "feature": "EXT_SOURCE_1",
+            "feature_label": "외부 신용평가값 1",
+            "source_group": "application",
+            "mean_abs_shap": 0.06591233306381278,
+            "mean_shap": 0.005051861102674844
+          },
+          {
+            "feature": "OCCUPATION_TYPE",
+            "feature_label": "직업 유형",
+            "source_group": "application",
+            "mean_abs_shap": 0.05699855482051705,
+            "mean_shap": 0.006358943564892102
+          },
+          {
+            "feature": "INST_HISTORY_SPAN_DAYS",
+            "feature_label": null,
+            "source_group": "installments",
+            "mean_abs_shap": 0.05649521253322894,
+            "mean_shap": -0.0037487335770928195
+          }
+        ]
+      },
+      "reviewed_negative": {
+        "rows": 3287,
+        "mean_score": 0.2830934847455987,
+        "median_score": 0.25215162066773944,
+        "top_features": [
+          {
+            "feature": "APP_EXT_SOURCE_MEAN",
+            "feature_label": "외부 신용평가값 평균",
+            "source_group": "application",
+            "mean_abs_shap": 0.8572026646416344,
+            "mean_shap": 0.842831976545698
+          },
+          {
+            "feature": "APP_CREDIT_ANNUITY_RATIO",
+            "feature_label": "연간 상환액 대비 대출금액",
+            "source_group": "application",
+            "mean_abs_shap": 0.15144734674171903,
+            "mean_shap": 0.1089859153077677
+          },
+          {
+            "feature": "BUREAU_DEBT_CREDIT_RATIO",
+            "feature_label": null,
+            "source_group": "bureau",
+            "mean_abs_shap": 0.14052448298695386,
+            "mean_shap": 0.0737480923210559
+          },
+          {
+            "feature": "APP_CREDIT_GOODS_RATIO",
+            "feature_label": null,
+            "source_group": "application",
+            "mean_abs_shap": 0.13843607781537443,
+            "mean_shap": 0.06133770494984836
+          },
+          {
+            "feature": "EXT_SOURCE_3",
+            "feature_label": "외부 신용평가값 3",
+            "source_group": "application",
+            "mean_abs_shap": 0.10310966958530941,
+            "mean_shap": 0.06340352255780778
+          },
+          {
+            "feature": "AMT_ANNUITY",
+            "feature_label": "연간 상환액",
+            "source_group": "application",
+            "mean_abs_shap": 0.08271001902335637,
+            "mean_shap": 0.018975512624695875
+          },
+          {
+            "feature": "NAME_EDUCATION_TYPE",
+            "feature_label": "교육 수준",
+            "source_group": "application",
+            "mean_abs_shap": 0.07515544266630246,
+            "mean_shap": 0.03344390677648155
+          },
+          {
+            "feature": "INST_HISTORY_SPAN_DAYS",
+            "feature_label": null,
+            "source_group": "installments",
+            "mean_abs_shap": 0.07302339222611667,
+            "mean_shap": 0.027044823866732907
+          },
+          {
+            "feature": "EXT_SOURCE_1",
+            "feature_label": "외부 신용평가값 1",
+            "source_group": "application",
+            "mean_abs_shap": 0.07148258665839281,
+            "mean_shap": 0.04294387000450864
+          },
+          {
+            "feature": "INST_LAST_730_LATE_RATIO",
+            "feature_label": null,
+            "source_group": "installments",
+            "mean_abs_shap": 0.06874163917600007,
+            "mean_shap": 0.033843015098100206
+          }
+        ]
+      },
+      "not_reviewed_negative": {
+        "rows": 39116,
+        "mean_score": 0.053033453122742616,
+        "median_score": 0.039548004413696325,
+        "top_features": [
+          {
+            "feature": "APP_EXT_SOURCE_MEAN",
+            "feature_label": "외부 신용평가값 평균",
+            "source_group": "application",
+            "mean_abs_shap": 0.4253870967366309,
+            "mean_shap": -0.10185304199606288
+          },
+          {
+            "feature": "APP_CREDIT_GOODS_RATIO",
+            "feature_label": null,
+            "source_group": "application",
+            "mean_abs_shap": 0.12059475465535059,
+            "mean_shap": -0.010443996888613362
+          },
+          {
+            "feature": "APP_CREDIT_ANNUITY_RATIO",
+            "feature_label": "연간 상환액 대비 대출금액",
+            "source_group": "application",
+            "mean_abs_shap": 0.11276472995899064,
+            "mean_shap": -0.01589335931046982
+          },
+          {
+            "feature": "BUREAU_DEBT_CREDIT_RATIO",
+            "feature_label": null,
+            "source_group": "bureau",
+            "mean_abs_shap": 0.08892430437020944,
+            "mean_shap": -0.014393704009242897
+          },
+          {
+            "feature": "NAME_EDUCATION_TYPE",
+            "feature_label": "교육 수준",
+            "source_group": "application",
+            "mean_abs_shap": 0.07728775943651253,
+            "mean_shap": -0.005028257677282876
+          },
+          {
+            "feature": "AMT_ANNUITY",
+            "feature_label": "연간 상환액",
+            "source_group": "application",
+            "mean_abs_shap": 0.07696782019077941,
+            "mean_shap": -0.004059276740430449
+          },
+          {
+            "feature": "INST_LAST_730_LATE_RATIO",
+            "feature_label": null,
+            "source_group": "installments",
+            "mean_abs_shap": 0.06509543581740156,
+            "mean_shap": -0.003923512770217753
+          },
+          {
+            "feature": "EXT_SOURCE_1",
+            "feature_label": "외부 신용평가값 1",
+            "source_group": "application",
+            "mean_abs_shap": 0.061254948199881455,
+            "mean_shap": -0.008080058955557003
+          },
+          {
+            "feature": "DAYS_ID_PUBLISH",
+            "feature_label": null,
+            "source_group": "application",
+            "mean_abs_shap": 0.05386697166979227,
+            "mean_shap": -0.004391885164033025
+          },
+          {
+            "feature": "OCCUPATION_TYPE",
+            "feature_label": "직업 유형",
+            "source_group": "application",
+            "mean_abs_shap": 0.05285243911861725,
+            "mean_shap": -0.004174757142242314
+          }
+        ]
+      }
+    },
+    "captured_vs_missed_positive": [
+      {
+        "rank": 1,
+        "feature": "APP_EXT_SOURCE_MEAN",
+        "feature_label": "외부 신용평가값 평균",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.9269489864562392,
+        "missed_positive_mean_shap": 0.1744658119939115,
+        "captured_minus_missed_mean_shap": 0.7524831744623277,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 2,
+        "feature": "APP_CREDIT_ANNUITY_RATIO",
+        "feature_label": "연간 상환액 대비 대출금액",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.1373816682200254,
+        "missed_positive_mean_shap": 0.0339666683812948,
+        "captured_minus_missed_mean_shap": 0.10341499983873059,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 3,
+        "feature": "BUREAU_DEBT_CREDIT_RATIO",
+        "feature_label": null,
+        "source_group": "bureau",
+        "captured_positive_mean_shap": 0.08157436843506827,
+        "missed_positive_mean_shap": 6.24308581341499e-05,
+        "captured_minus_missed_mean_shap": 0.08151193757693412,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 4,
+        "feature": "EXT_SOURCE_3",
+        "feature_label": "외부 신용평가값 3",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.07202622475078911,
+        "missed_positive_mean_shap": 0.002273289460855408,
+        "captured_minus_missed_mean_shap": 0.0697529352899337,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 5,
+        "feature": "APP_CREDIT_GOODS_RATIO",
+        "feature_label": null,
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.06629217923806734,
+        "missed_positive_mean_shap": 0.009236406337785759,
+        "captured_minus_missed_mean_shap": 0.057055772900281576,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 6,
+        "feature": "EXT_SOURCE_1",
+        "feature_label": "외부 신용평가값 1",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.05294509569000778,
+        "missed_positive_mean_shap": 0.005051861102674844,
+        "captured_minus_missed_mean_shap": 0.04789323458733293,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 7,
+        "feature": "INST_HISTORY_SPAN_DAYS",
+        "feature_label": null,
+        "source_group": "installments",
+        "captured_positive_mean_shap": 0.03625841715081095,
+        "missed_positive_mean_shap": -0.0037487335770928195,
+        "captured_minus_missed_mean_shap": 0.04000715072790377,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 8,
+        "feature": "EXT_SOURCE_2",
+        "feature_label": "외부 신용평가값 2",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.04766778680127429,
+        "missed_positive_mean_shap": 0.009716238856901337,
+        "captured_minus_missed_mean_shap": 0.03795154794437295,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 9,
+        "feature": "AMT_GOODS_PRICE",
+        "feature_label": null,
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.03609094395885399,
+        "missed_positive_mean_shap": 0.0075106748329477726,
+        "captured_minus_missed_mean_shap": 0.028580269125906218,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 10,
+        "feature": "INST_LAST_730_LATE_RATIO",
+        "feature_label": null,
+        "source_group": "installments",
+        "captured_positive_mean_shap": 0.03859916637522164,
+        "missed_positive_mean_shap": 0.011563787373770985,
+        "captured_minus_missed_mean_shap": 0.027035379001450657,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 11,
+        "feature": "FLAG_DOCUMENT_3",
+        "feature_label": null,
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.024211089242303106,
+        "missed_positive_mean_shap": -0.0007628294385098126,
+        "captured_minus_missed_mean_shap": 0.024973918680812918,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 12,
+        "feature": "APP_EMPLOYED_AGE_RATIO",
+        "feature_label": null,
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.027007889222859568,
+        "missed_positive_mean_shap": 0.00485746619022824,
+        "captured_minus_missed_mean_shap": 0.022150423032631327,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 13,
+        "feature": "NAME_EDUCATION_TYPE",
+        "feature_label": "교육 수준",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.03339438764129754,
+        "missed_positive_mean_shap": 0.011693950411934533,
+        "captured_minus_missed_mean_shap": 0.021700437229363007,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 14,
+        "feature": "INST_PAID_AMOUNT_SUM",
+        "feature_label": null,
+        "source_group": "installments",
+        "captured_positive_mean_shap": 0.023250966570465534,
+        "missed_positive_mean_shap": 0.0019878460495250704,
+        "captured_minus_missed_mean_shap": 0.021263120520940464,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 15,
+        "feature": "OCCUPATION_TYPE",
+        "feature_label": "직업 유형",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.02725662530137276,
+        "missed_positive_mean_shap": 0.006358943564892102,
+        "captured_minus_missed_mean_shap": 0.020897681736480656,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 16,
+        "feature": "BUREAU_ACTIVE_COUNT",
+        "feature_label": null,
+        "source_group": "bureau",
+        "captured_positive_mean_shap": 0.019788416763040183,
+        "missed_positive_mean_shap": 0.0008250564788250207,
+        "captured_minus_missed_mean_shap": 0.018963360284215164,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 17,
+        "feature": "DAYS_ID_PUBLISH",
+        "feature_label": null,
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.022865641938421243,
+        "missed_positive_mean_shap": 0.003910856516630549,
+        "captured_minus_missed_mean_shap": 0.018954785421790694,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 18,
+        "feature": "INST_DAYS_LATE_MEAN",
+        "feature_label": null,
+        "source_group": "installments",
+        "captured_positive_mean_shap": 0.0208666616517707,
+        "missed_positive_mean_shap": 0.002983236423497177,
+        "captured_minus_missed_mean_shap": 0.017883425228273526,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 19,
+        "feature": "INST_OLDEST_DUE_AGE_DAYS",
+        "feature_label": null,
+        "source_group": "installments",
+        "captured_positive_mean_shap": 0.020424648820372867,
+        "missed_positive_mean_shap": 0.003157195992090822,
+        "captured_minus_missed_mean_shap": 0.017267452828282046,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      },
+      {
+        "rank": 20,
+        "feature": "AMT_ANNUITY",
+        "feature_label": "연간 상환액",
+        "source_group": "application",
+        "captured_positive_mean_shap": 0.01860804091248771,
+        "missed_positive_mean_shap": 0.002563813424921401,
+        "captured_minus_missed_mean_shap": 0.016044227487566308,
+        "interpretation": "stronger_risk_raising_signal_in_captured_positive"
+      }
+    ],
+    "scope": "validation_top10_error_diagnosis_not_final_operating_cutoff"
+  },
+  "local_artifact": {
+    "display_path": "models/stage6/stage6_local_shap_explanations.joblib",
+    "bytes": 1913,
+    "sha256": "4726a6519383f38c2758986d4cd0dcf3f93c808ccda7c276ebe0f7b4cda2c586",
+    "git_ignored": true
+  },
+  "figures": {
+    "global_importance": {
+      "display_path": "reports/figures/stage6_shap_global_importance.png",
+      "bytes": 121977,
+      "sha256": "3088d0ad3219cd09323ee5280bf264109796c7d41d77ab063e34cc670350ce4c"
+    },
+    "direction": {
+      "display_path": "reports/figures/stage6_shap_direction.png",
+      "bytes": 285437,
+      "sha256": "b3c5b67c7a0714abd0d16001db47de705a001a64c75a7a8c099a3a9582456e94"
+    },
+    "captured_vs_missed": {
+      "display_path": "reports/figures/stage6_shap_captured_vs_missed.png",
+      "bytes": 83952,
+      "sha256": "8da75e10dfcdfef10c911bbc5b110b4ecd2bb34fdd4e6f483820afd8b3a85ddc"
+    }
+  },
+  "resources": {
+    "total_seconds": 90.15,
+    "process_peak_rss_mb": 1600.465,
+    "shap_matrix_shape": [
+      46127,
+      420
+    ],
+    "source_aggregated_matrix_shape": [
+      46127,
+      198
+    ]
+  },
+  "stage6_next": {
+    "part": "2/3",
+    "work": "risk_bands_top_k_scenarios_and_subgroup_diagnostics",
+    "model_improvement_decision_pending": true,
+    "test_remains_sealed": true
+  }
+}

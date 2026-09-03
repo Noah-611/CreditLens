@@ -12,7 +12,8 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 3: SQL·Python 고객 분석 마트와 V1·V2·V3 구축 완료
 - Stage 4: 기준 모델 5개 학습과 ROC·PR·Calibration·Decile·Top-K validation 분석 완료
 - Stage 5: LightGBM·TensorFlow MLP 비교, 제한 튜닝, 확률 보정 검토와 피처군 분석 완료
-- 다음 작업: Stage 6 최종 모델 해석·위험전략·설정 고정
+- Stage 6: 1/3 고정 LightGBM의 validation SHAP·Top 10% 오류 분석 완료
+- 다음 작업: Stage 6 2/3 위험구간·Top-K/cutoff 시나리오·하위그룹 분석
 - 모델은 train으로만 학습했고 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
@@ -22,6 +23,7 @@ Stage 4의 전처리·평가 기준은 [Stage 4 전처리·평가 명세](docs/S
 LightGBM의 데이터 버전별 비교는 [Stage 5 1/3 LightGBM 비교 보고서](docs/Stage5_LightGBM_Report.md)에서 확인할 수 있습니다.
 V3 신경망의 학습 절차와 비교 결과는 [Stage 5 2/3 TensorFlow MLP 보고서](docs/Stage5_MLP_Report.md)에 기록되어 있습니다.
 제한 튜닝·확률 보정·피처군 분석과 Stage 6 전달 후보는 [Stage 5 3/3 최종 후보 선정 보고서](docs/Stage5_Final_Model_Selection_Report.md)에서 확인할 수 있습니다.
+고정 후보의 예측 근거와 Top 10% 포착·누락 분석은 [Stage 6 1/3 SHAP·오류 분석 보고서](docs/Stage6_SHAP_Analysis_Report.md)에 기록되어 있습니다.
 
 ## 핵심 분석 목표
 
@@ -60,6 +62,7 @@ CreditLens/
 │   ├── Stage5_LightGBM_Report.md
 │   ├── Stage5_MLP_Report.md
 │   ├── Stage5_Final_Model_Selection_Report.md
+│   ├── Stage6_SHAP_Analysis_Report.md
 │   ├── Stage2_EDA_Report.md
 │   ├── Stage3_Build_Report.md
 │   └── Project_Plan.md
@@ -77,7 +80,8 @@ CreditLens/
 │   ├── stage4_validation_analysis.json
 │   ├── stage5_lightgbm_results.json
 │   ├── stage5_mlp_results.json
-│   └── stage5_final_results.json
+│   ├── stage5_final_results.json
+│   └── stage6_shap_analysis.json
 ├── sql/
 │   └── stage3/              # V1·bureau·V2·installments·V3 DuckDB SQL
 ├── src/
@@ -364,7 +368,23 @@ PYTHONPATH=src .venv/bin/python -m creditlens.modeling.finalize_stage5 \
 |---|---:|---:|---:|---:|---:|---:|
 | V3 LightGBM · 규제·행/열 표본추출 · 원 확률 유지 | 0.7765 | 0.2699 | 0.4174 | 0.0665 | 0.3561 | 3.5605 |
 
-현재 결과는 Stage 6에서 해석과 활용 기준을 검토할 개발 후보입니다. SHAP 분석, 위험구간과 운영 cutoff 결정, 봉인 test 최종 평가는 아직 수행하지 않았습니다. 상세 결과는 [Stage 5 3/3 최종 후보 선정 보고서](docs/Stage5_Final_Model_Selection_Report.md)와 [기계 판독용 결과](reports/stage5_final_results.json)에 기록했습니다. 피처군과 확률 보정 그림은 각각 [ablation 결과](reports/figures/stage5_feature_ablation.png), [calibration 결과](reports/figures/stage5_calibration_comparison.png)에서 확인할 수 있습니다. 모델·보정기·OOF 및 validation 행별 점수는 `models/stage5/`에만 저장되어 Git에서 제외됩니다.
+Stage 5 종료 시점에는 이 결과를 Stage 6에서 해석과 활용 기준을 검토할 개발 후보로 전달했습니다. 당시에는 SHAP 분석, 위험구간과 운영 cutoff 결정, 봉인 test 최종 평가를 수행하지 않았습니다. 상세 결과는 [Stage 5 3/3 최종 후보 선정 보고서](docs/Stage5_Final_Model_Selection_Report.md)와 [기계 판독용 결과](reports/stage5_final_results.json)에 기록했습니다. 피처군과 확률 보정 그림은 각각 [ablation 결과](reports/figures/stage5_feature_ablation.png), [calibration 결과](reports/figures/stage5_calibration_comparison.png)에서 확인할 수 있습니다. 모델·보정기·OOF 및 validation 행별 점수는 `models/stage5/`에만 저장되어 Git에서 제외됩니다.
+
+## Stage 6 1/3 SHAP·Top 10% 오류 분석
+
+Stage 5에서 선택한 V3 LightGBM을 다시 학습하거나 바꾸지 않고 validation 46,127명 전체를 SHAP으로 해석했습니다. 전처리 후 420개 구성요소의 SHAP 값을 사람이 이해할 수 있는 원래 피처 198개로 다시 합쳤으며, 양수 SHAP은 해당 피처가 모델의 위험점수를 높인 방향을 뜻합니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage6_shap_analysis
+```
+
+- 전역 중요도 1위는 외부 신용평가값 평균인 `APP_EXT_SOURCE_MEAN`이며 전체 평균 절대 SHAP의 14.64%를 차지했습니다.
+- 정보 원천별 SHAP 비중은 신청정보 69.20%, 외부 신용이력 14.32%, 과거 납부이력 16.48%였습니다. 피처 수가 다르므로 이 비중만으로 원천의 우열이나 인과효과를 뜻하지는 않습니다.
+- 위험점수 상위 10%인 4,613명에서 실제 상환곤란 고객 1,326명을 포착했습니다. Recall@Top10%는 35.61%, Lift@Top10%는 3.56입니다.
+- 상위 10% 밖에서 놓친 상환곤란 고객은 2,398명입니다. 포착 고객과 누락 고객의 SHAP 차이를 비교해 다음 단계의 위험구간·심사 용량·하위그룹 분석 대상을 만들었습니다.
+- 공유 보고서와 JSON에는 고객 ID나 행별 값이 없습니다. 대표 고객별 설명은 Git에서 제외되는 `models/stage6/`에만 저장하며 test 피처·예측·평가는 0건입니다.
+
+SHAP은 모델이 사용한 패턴을 설명하는 도구이며 실제 상환곤란의 원인을 증명하지 않습니다. 전체 결과는 [Stage 6 1/3 보고서](docs/Stage6_SHAP_Analysis_Report.md), 기계 판독용 집계는 [SHAP 분석 JSON](reports/stage6_shap_analysis.json)에서 확인할 수 있습니다.
 
 ## Git에 올리지 않는 파일
 
@@ -385,10 +405,10 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 5의 모델 비교와 train 내부 제한 튜닝·확률 보정 검토·피처군 분석을 완료했습니다. 다음은 Stage 6입니다.
+Stage 6 1/3에서 고정 V3 LightGBM의 전역 SHAP과 Top 10% 포착·누락 분석을 완료했습니다. 다음은 Stage 6 2/3입니다.
 
-1. 선택한 V3 LightGBM 후보의 전역·고객별 SHAP 설명을 분석합니다.
-2. validation에서 모델 위험구간과 심사 가능 인원별 Top-K·cutoff 시나리오를 비교합니다.
-3. 금융이력 부족자 등 주요 하위그룹의 성능과 오류를 점검합니다.
-4. 모델 설정과 활용 한계, 자동 승인·거절 금지 원칙을 모델 카드에 기록합니다.
+1. validation에서 위험구간과 심사 가능 인원별 Top-K·cutoff 시나리오를 비교합니다.
+2. 금융이력 부족자 등 주요 하위그룹의 성능·오류·확률 품질을 점검합니다.
+3. 분석 결과로 개선 필요 여부를 판단하되 test는 열지 않습니다.
+4. Stage 6 3/3에서 설정·cutoff·산출물 checksum과 활용 한계를 모델 카드에 고정합니다.
 5. Stage 8 최종 평가 전까지 test는 계속 봉인합니다.

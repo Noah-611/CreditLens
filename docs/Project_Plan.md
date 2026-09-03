@@ -11,8 +11,8 @@
 | 진행 방식 | Stage 단위 구현·검증 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 5 완료 (LightGBM·MLP 비교, 제한 튜닝·확률 보정 검토·피처군 분석) |
-| 다음 단계 | Stage 6 최종 모델 해석·위험전략·설정 고정 |
+| 현재 상태 | Stage 6 1/3 완료 (고정 LightGBM validation SHAP·Top 10% 오류 분석) |
+| 다음 단계 | Stage 6 2/3 위험구간·Top-K/cutoff·하위그룹 분석 |
 
 ### 한 줄 정의
 
@@ -242,7 +242,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 | 4 | Stage 3 | SQL·Python 고객 분석 마트와 V1·V2·V3 구축 | 완료 |
 | 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 완료 |
 | 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 완료 |
-| 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 다음 |
+| 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 진행 (1/3 완료) |
 | 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 예정 |
 | 9 | Stage 8 | 봉인 테스트·최종 보고서·시연 검증 | 예정 |
 
@@ -492,7 +492,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 신청정보 132개, 외부 신용이력 37개, 납부이력 29개를 서로 겹치지 않는 피처군으로 고정했습니다. 별도 train fold에서 하나씩 제거했을 때 전체 V3 대비 PR-AUC가 각각 `0.0895`, `0.0117`, `0.0096` 낮아졌습니다. 이는 같은 train 안의 탐색적 연관성 비교이며 인과효과로 해석하지 않습니다.
 - `identity`, sigmoid, isotonic을 train 내부에서 비교했습니다. sigmoid의 Brier 개선 폭이 선택 기준보다 작아 **추가 보정은 불필요하다고 판단하고 원 확률을 유지하는 `identity`**를 선택했습니다.
 - 설정·모델·보정기와 잠금 명세를 저장한 뒤 이번 실행에서 validation 피처와 TARGET을 처음 로드해 base model 예측을 한 번 수행했습니다. 선택 후보는 ROC-AUC `0.7765`, PR-AUC `0.2699`, KS `0.4174`, Brier `0.0665`, Recall@Top10% `0.3561`, Lift@Top10% `3.5605`를 기록했습니다.
-- Stage 6 전달 후보는 **V3 LightGBM(규제·행/열 표본추출 설정, 원 확률 유지)**입니다. SHAP 설명, 위험구간, 운영 cutoff와 봉인 test 최종 평가는 아직 수행하지 않았습니다.
+- Stage 6 전달 후보는 **V3 LightGBM(규제·행/열 표본추출 설정, 원 확률 유지)**입니다. Stage 5 종료 시점에는 SHAP 설명, 위험구간, 운영 cutoff와 봉인 test 최종 평가를 수행하지 않았습니다.
 - 모델·보정기·OOF 및 validation 행별 점수는 Git에서 제외되는 `models/stage5/`에 저장했고, 공유 결과에는 고객 ID와 행별 정답·점수를 포함하지 않았습니다. test 피처·예측·평가는 0건입니다.
 - 1/3 결과는 [LightGBM 비교 보고서](Stage5_LightGBM_Report.md)와 [결과 JSON](../reports/stage5_lightgbm_results.json), 2/3 결과는 [TensorFlow MLP 보고서](Stage5_MLP_Report.md)와 [결과 JSON](../reports/stage5_mlp_results.json)에 기록했습니다.
 - 최종 비교와 선정 근거는 [Stage 5 3/3 최종 후보 선정 보고서](Stage5_Final_Model_Selection_Report.md)와 [기계 판독용 결과](../reports/stage5_final_results.json)에 기록했습니다. 피처군과 확률 보정 시각화는 각각 [ablation 그림](../reports/figures/stage5_feature_ablation.png), [calibration 그림](../reports/figures/stage5_calibration_comparison.png)으로 남겼습니다.
@@ -502,6 +502,12 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 **목표**
 
 최종 모델의 예측 근거와 활용 기준을 validation에서 분석하고, Stage 8 봉인 테스트 전에 모든 설정과 cutoff를 고정한다.
+
+**3단계 진행 단위**
+
+1. 1/3: Stage 5 고정 후보를 validation에서 SHAP으로 해석하고 Top 10% 포착·누락 오류를 분석한다. **완료**
+2. 2/3: 위험구간·심사 용량별 Top-K/cutoff 시나리오와 금융이력 부족자 등 주요 하위그룹을 분석한다. **다음**
+3. 3/3: 개선 필요 여부를 판단하고 최종 설정·cutoff·산출물 checksum·활용 한계를 모델 카드에 고정한다. **예정**
 
 **구현 단계**
 
@@ -527,6 +533,15 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 테스트 세트는 Stage 8의 최종 평가 전까지 사용되지 않는다.
 - 모델의 한계와 사용 금지 범위가 문서화되어 있다.
 - 결과가 공식 신용등급이나 자동 승인·거절 기준이 아님을 명시한다.
+
+**현재 구현 상태 (1/3 완료)**
+
+- Stage 5에서 선택한 V3 LightGBM과 `identity` 보정기를 다시 학습하거나 변경하지 않고, 저장 해시와 validation 예측 재현을 먼저 확인했습니다.
+- validation 46,127명 전체에서 LightGBM Tree SHAP을 계산했습니다. 원본 피처 198개가 전처리 후 만든 420개 구성요소를 원본 피처 단위로 다시 합쳤으며, SHAP 합과 모델 raw 점수의 최대 차이는 `0.0000001135`였습니다.
+- 전역 중요도 1위는 `APP_EXT_SOURCE_MEAN`으로 전체 평균 절대 SHAP의 14.64%였습니다. 정보 원천별 비중은 신청정보 69.20%, 외부 신용이력 14.32%, 과거 납부이력 16.48%였습니다. 이는 모델 내부 연관성이며 인과효과나 정보 원천의 단순 우열로 해석하지 않습니다.
+- 위험점수 상위 10%인 4,613명에서 실제 상환곤란 고객 1,326명을 포착하고 2,398명을 상위 10% 밖에서 놓쳤습니다. Recall@Top10%는 `0.3561`, Lift@Top10%는 `3.5605`입니다.
+- 공유 Markdown·JSON·그림에는 고객 ID와 행별 값을 포함하지 않았습니다. 대표 고객별 설명은 Git 제외 로컬 산출물에만 저장했고 test 피처·예측·평가는 0건입니다.
+- 상세 결과는 [Stage 6 1/3 SHAP·오류 분석 보고서](Stage6_SHAP_Analysis_Report.md)와 [기계 판독용 집계](../reports/stage6_shap_analysis.json)에 기록했습니다.
 
 ### Stage 7. Streamlit·FastAPI 예측 프로그램과 데이터서비스 요건
 
@@ -646,6 +661,7 @@ CreditLens/
 │   ├── Stage5_LightGBM_Report.md
 │   ├── Stage5_MLP_Report.md
 │   ├── Stage5_Final_Model_Selection_Report.md
+│   ├── Stage6_SHAP_Analysis_Report.md
 │   └── Project_Plan.md       # 프로젝트 기준 계획서
 ├── models/                   # 학습 모델·전처리 산출물, Git 제외
 ├── notebooks/
@@ -661,7 +677,8 @@ CreditLens/
 │   ├── stage4_validation_analysis.json
 │   ├── stage5_lightgbm_results.json
 │   ├── stage5_mlp_results.json
-│   └── stage5_final_results.json
+│   ├── stage5_final_results.json
+│   └── stage6_shap_analysis.json
 ├── sql/
 │   └── stage3/               # 고객 분석 마트 조회·집계·검수 SQL
 ├── src/
@@ -678,7 +695,7 @@ CreditLens/
 └── requirements-stage5-7.txt # Stage 5·7의 MLP·시연 의존성
 ```
 
-Stage 5까지 원본 검증, 고객 분할, train-only EDA, SQL·Python 분석 마트, 전처리·평가 기반, 기준 모델 상세 분석, LightGBM·TensorFlow MLP 비교와 train 내부 제한 튜닝·확률 보정 검토·피처군 분석을 완료했다. 다음 작업은 Stage 6에서 선택한 LightGBM 후보의 SHAP 설명, 위험구간, Top-K·cutoff 시나리오와 하위그룹을 분석하고 모델 설정과 한계를 고정하는 것이다. 이후 Stage 7에서 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
+Stage 5까지 모델 비교와 후보 선정을 완료했고, Stage 6 1/3에서 고정 LightGBM 후보의 validation SHAP과 Top 10% 포착·누락 분석을 완료했다. 다음 작업은 Stage 6 2/3의 위험구간, Top-K·cutoff 시나리오와 하위그룹 분석이다. 이후 3/3에서 설정·산출물과 한계를 고정하고, Stage 7에서 Streamlit·FastAPI 인터페이스를 구현한다. AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
 
 ## 10. 형상관리와 개발 원칙
 
