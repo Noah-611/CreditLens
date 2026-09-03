@@ -317,8 +317,8 @@ def make_preprocessor(
 
     if model_family not in {"linear", "tree"}:
         raise PreprocessingContractError("model_family는 linear 또는 tree여야 합니다.")
-    if not roles.numeric_columns or not roles.categorical_columns:
-        raise PreprocessingContractError("수치형과 범주형 피처가 모두 필요합니다.")
+    if not roles.numeric_columns and not roles.categorical_columns:
+        raise PreprocessingContractError("수치형 또는 범주형 피처가 하나 이상 필요합니다.")
 
     numeric_value_steps: list[tuple[str, Any]] = [
         (
@@ -387,11 +387,17 @@ def make_preprocessor(
             ),
         ]
     )
+    transformers: list[tuple[str, Any, list[str]]] = []
+    if roles.numeric_columns:
+        transformers.append(
+            ("numeric", numeric_pipeline, list(roles.numeric_columns))
+        )
+    if roles.categorical_columns:
+        transformers.append(
+            ("categorical", categorical_pipeline, list(roles.categorical_columns))
+        )
     columns = ColumnTransformer(
-        [
-            ("numeric", numeric_pipeline, list(roles.numeric_columns)),
-            ("categorical", categorical_pipeline, list(roles.categorical_columns)),
-        ],
+        transformers,
         remainder="drop",
         sparse_threshold=1.0,
         verbose_feature_names_out=True,

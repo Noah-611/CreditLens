@@ -1,7 +1,7 @@
 -r requirements.txt
 
-# Planned Stage 5 TensorFlow MLP comparison
-tensorflow>=2.16,<3.0
+# Stage 5 TensorFlow MLP comparison (Python 3.12 verified)
+tensorflow>=2.21,<2.22
 
 # Planned Stage 7 minimal API and visualization prototype
 fastapi>=0.110,<1.0

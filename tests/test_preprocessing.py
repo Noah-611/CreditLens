@@ -216,6 +216,37 @@ def test_invalid_model_family_is_rejected() -> None:
         make_preprocessor(_roles(), model_family="neural")  # type: ignore[arg-type]
 
 
+def test_numeric_only_feature_group_is_supported() -> None:
+    roles = _Roles(
+        feature_columns=("BUREAU_HAS_HISTORY", "INST_LATE_RATIO"),
+        numeric_columns=("BUREAU_HAS_HISTORY", "INST_LATE_RATIO"),
+        categorical_columns=(),
+    )
+    frame = pd.DataFrame(
+        {
+            "BUREAU_HAS_HISTORY": [0, 1, 1],
+            "INST_LATE_RATIO": [np.nan, 0.0, 0.5],
+        }
+    )
+
+    preprocessor = make_preprocessor(roles, model_family="tree")
+    matrix = preprocessor.fit_transform(frame)
+
+    assert sparse.isspmatrix_csr(matrix)
+    assert matrix.dtype == np.float32
+    assert np.isfinite(matrix.data).all()
+    assert all(
+        not name.startswith("categorical__")
+        for name in transformed_feature_names(preprocessor)
+    )
+
+
+def test_empty_feature_group_is_rejected() -> None:
+    roles = _Roles(feature_columns=(), numeric_columns=(), categorical_columns=())
+    with pytest.raises(PreprocessingContractError, match="하나 이상"):
+        make_preprocessor(roles, model_family="tree")
+
+
 @pytest.mark.parametrize("reserved", [MISSING_CATEGORY, RARE_CATEGORY])
 def test_reserved_category_tokens_are_rejected_during_transform(
     reserved: str,

@@ -11,8 +11,8 @@
 | 진행 방식 | Stage 단위 구현·검증 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 5 진행 중 (1/3 고정 설정 LightGBM 비교 완료) |
-| 다음 단계 | Stage 5 2/3 V3 TensorFlow MLP 학습 |
+| 현재 상태 | Stage 5 완료 (LightGBM·MLP 비교, 제한 튜닝·확률 보정 검토·피처군 분석) |
+| 다음 단계 | Stage 6 최종 모델 해석·위험전략·설정 고정 |
 
 ### 한 줄 정의
 
@@ -101,7 +101,7 @@ CreditLens는 데이터 분석과 신용위험 모델 개발을 학습하기 위
 - 성능 수치와 분석 결과는 실제 실행 결과만 기록한다.
 - 원본·중간·가공 금융 데이터와 학습 모델 파일, 인증정보가 Git에 포함되지 않는다.
 
-구체적인 목표 성능은 데이터를 확인하기 전에 임의로 정하지 않는다. Stage 4 기준 모델 결과를 측정한 뒤 개선 목표와 최종 선정 기준을 확정한다.
+구체적인 목표 성능은 데이터를 확인하기 전에 임의로 정하지 않았다. Stage 4 기준 모델 결과를 확인한 뒤 Stage 5에서 train 내부 비교 기준과 보호 조건을 정해 후보를 선택했다.
 
 ## 4. 데이터 계획
 
@@ -217,11 +217,14 @@ V1·V2·V3의 데이터 추가 가치는 Logistic Regression과 LightGBM을 중�
 | V2 + LightGBM | 0.7680 | 0.2584 | 0.4030 | 0.5359 | 0.3510 | 3.5094 | +0.0136 | +0.0092 | +0.0993 |
 | V3 + LightGBM | 0.7752 | 0.2665 | 0.4181 | 0.5504 | 0.3596 | 3.5954 | +0.0081 | +0.0151 | +0.0859 |
 | V3 + Random Forest | 0.7507 | 0.2333 | 0.3806 | 0.5013 | 0.3276 | 3.2758 | - | - | - |
-| V3 + TensorFlow MLP |  |  |  |  |  |  |  |  |  |
+| V3 + TensorFlow MLP | 0.7602 | 0.2437 | 0.3917 | 0.5203 | 0.3405 | 3.4047 | +0.0013 | +0.0010 | +0.0295 |
+| Stage 5 전달 후보 V3 + LightGBM | 0.7765 | 0.2699 | 0.4174 | 0.5530 | 0.3561 | 3.5605 | +0.0035 | -0.0007 | -0.0349 |
 
-Logistic Regression과 Random Forest 수치는 Stage 4, LightGBM 수치는 Stage 5 1/3의 실제 validation 결과다. LightGBM은 세 데이터 버전에 동일한 고정 설정을 적용한 튜닝 전 결과이며 TensorFlow MLP는 Stage 5 2/3에서 학습한 뒤 기록한다.
+Logistic Regression과 Random Forest 수치는 Stage 4, LightGBM과 TensorFlow MLP 수치는 Stage 5의 실제 validation 결과다. V1·V2·V3 LightGBM에는 동일한 고정 설정을 적용했으며, 마지막 행은 train 내부 제한 튜닝으로 선택한 규제·행/열 표본추출 설정이다. MLP 행의 Δ값은 같은 V3 Logistic Regression 대비, V2·V3 누적 데이터 행은 같은 모델의 직전 데이터 버전 대비, 마지막 행은 튜닝 전 V3 LightGBM 대비 차이다.
 
-PR-AUC는 무작위 기준선인 양성 비율 약 8.07%와 함께 해석하고, Gini는 동일 예측점수의 `2 × ROC-AUC - 1`로 계산해 ROC-AUC와 별개의 독립 성능처럼 과장하지 않는다. F1과 우선검토 cutoff는 validation에서만 정한다.
+Stage 5 전달 후보의 validation Brier Score는 `0.0665`다. train 내부에서 sigmoid와 isotonic 보정을 비교했지만 개선 폭이 선택 기준보다 작아, 추가 보정 없이 원 확률을 유지하는 `identity`를 선택했다. 이 결과는 Stage 6에서 해석과 활용 기준을 확정할 개발 후보이며 봉인 test의 최종 결과가 아니다.
+
+PR-AUC는 무작위 기준선인 양성 비율 약 8.07%와 함께 해석하고, Gini는 동일 예측점수의 `2 × ROC-AUC - 1`로 계산해 ROC-AUC와 별개의 독립 성능처럼 과장하지 않는다. F1과 우선검토 cutoff는 Stage 6에서 validation으로 정한다.
 
 Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 PSI를 실제 시간 경과 안정성으로 과장하지 않는다. 현재 분할의 분포 차이와 별도 변화 시나리오에서 계산법·경보 기준을 검증하고, 진정한 시점 외 검증이 불가능하다는 한계를 문서화한다.
 
@@ -238,8 +241,8 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 | 3 | Stage 2 | 고객 분할, train-only EDA와 처리 정책 설계 | 완료 |
 | 4 | Stage 3 | SQL·Python 고객 분석 마트와 V1·V2·V3 구축 | 완료 |
 | 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 완료 |
-| 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 진행 중 (1/3 완료) |
-| 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 예정 |
+| 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 완료 |
+| 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 다음 |
 | 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 예정 |
 | 9 | Stage 8 | 봉인 테스트·최종 보고서·시연 검증 | 예정 |
 
@@ -307,7 +310,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 데이터 사전: `docs/Data_Dictionary.md`
 - 검증 보고서: `docs/Data_Validation_Report.md`
 - 기계 판독 결과: `reports/data_validation.json`
-- 합성 데이터 기반 자동 테스트 11개 통과
+- 합성 데이터 기반 자동 테스트로 원본 검증 계약 확인
 
 ### Stage 2. 분할 전략·EDA·전처리 설계
 
@@ -349,7 +352,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - EDA 보고서: `docs/Stage2_EDA_Report.md`
 - 전처리·누수 명세: `docs/Preprocessing_and_Leakage_Spec.md`
 - EDA 노트북: `notebooks/01_stage2_eda.ipynb`
-- Stage 1·2 합성 데이터 기반 자동 테스트 34개 통과
+- 합성 데이터 기반 자동 테스트로 고객 분할과 누수 방지 계약 확인
 - 실제 전처리 적용·피처 생성·모델 학습은 수행하지 않고 Stage 3 이후로 유지
 
 ### Stage 3. 고객 단위 신용정보 분석 마트와 V1·V2·V3 구축
@@ -437,9 +440,9 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 저장된 validation 점수로 ROC·PR·Calibration 곡선, 위험도 decile과 Top 5%·10%·20% 시나리오를 생성했습니다.
 - V3 Logistic의 상위 5%·10%·20% Recall은 21.11%·33.75%·52.07%였으며 상위·하위 decile 실제 위험률은 27.25%·1.69%였습니다.
 - V3 Random Forest는 평균 예측점수 40.81%로 실제 위험률 8.07%를 크게 넘으므로 현재 출력값을 실제 확률로 해석하지 않습니다.
-- test 피처·예측·평가는 사용하지 않았으며 Stage 1~4 자동 테스트 136개를 통과했습니다.
+- test 피처·예측·평가는 사용하지 않았으며, 합성 데이터 기반 자동 테스트로 전처리·평가 계약을 확인했습니다.
 - 세부 계약은 [Stage 4 전처리·평가 명세](Stage4_Preprocessing_and_Evaluation_Spec.md), 학습 결과는 [Stage 4 기준 모델 학습 보고서](Stage4_Baseline_Model_Report.md), 상세 진단은 [Stage 4 Validation 분석 보고서](Stage4_Validation_Analysis_Report.md)에 기록했습니다.
-- V3 Logistic은 Stage 5 비교 기준선이며 최종 모델·확률 보정·운영 cutoff는 아직 확정하지 않았습니다.
+- V3 Logistic은 Stage 4 종료 당시 Stage 5 비교 기준선이었으며, 이 단계에서는 최종 모델·확률 보정·운영 cutoff를 확정하지 않았습니다.
 
 ### Stage 5. LightGBM·TensorFlow MLP와 데이터·모델 비교
 
@@ -450,8 +453,8 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 **3단계 진행 단위**
 
 1. 1/3: 같은 고정 설정의 LightGBM을 V1·V2·V3에서 학습해 데이터 원천 추가 효과를 비교한다. **완료**
-2. 2/3: V3 TensorFlow MLP를 train 내부 early stopping으로 학습해 딥러닝 비교 후보를 만든다. **다음**
-3. 3/3: train 내부 제한 튜닝·확률 보정·피처군 분석을 수행하고 전체 모델을 비교해 Stage 6 후보를 선정한다. **예정**
+2. 2/3: V3 TensorFlow MLP를 train 내부 early stopping으로 학습해 딥러닝 비교 후보를 만든다. **완료**
+3. 3/3: train 내부 제한 튜닝·확률 보정·피처군 분석을 수행하고 전체 모델을 비교해 Stage 6 후보를 선정한다. **완료**
 
 **구현 단계**
 
@@ -464,7 +467,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 7. MLP의 early stopping용 데이터도 train 내부에서 분리하고 validation을 신경망 학습에 사용하지 않는다.
 8. 확률 보정은 train 내부 OOF 예측 또는 내부 calibration split으로 수행하고 validation에는 보정기를 `fit`하지 않는다.
 9. 성능뿐 아니라 안정성, 설명 가능성, 학습·추론 비용을 함께 비교한다.
-10. validation은 데이터 버전·후보 모델의 성능과 Top-K 잠정 시나리오 비교에만 사용하고, 그 결과로 최종 설정을 고정한다.
+10. LightGBM 세부 설정과 확률 보정 방법은 train 내부 비교로 잠근 뒤, 공식 validation은 잠금 이후 성능 확인에 사용한다.
 11. 채택·기각한 실험과 그 이유를 의사결정 기록에 남긴다.
 
 **산출물**
@@ -480,17 +483,19 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 데이터 버전 추가 효과와 모델 복잡도 효과를 구분해 설명할 수 있다.
 - 테스트 세트는 아직 최종 선택에 사용되지 않는다.
 
-**현재 구현 상태 (1/3 완료)**
+**현재 구현 상태 (3/3 완료)**
 
 - LightGBM `4.7.0`과 기존 tree 전처리 파이프라인을 연결하고 V1·V2·V3에 같은 500-tree 고정 설정을 적용했습니다.
-- 모델과 전처리는 train 215,258명으로만 학습했으며 validation 46,127명은 고정 설정 비교에만 사용했습니다. validation을 early stopping이나 설정 변경에 사용하지 않았습니다.
-- V1→V2에서 ROC-AUC `+0.0059`, PR-AUC `+0.0136`, V2→V3에서 ROC-AUC `+0.0072`, PR-AUC `+0.0081`이 개선됐습니다.
-- V3 LightGBM은 ROC-AUC `0.7752`, PR-AUC `0.2665`, KS `0.4181`, Recall@Top10% `0.3596`, Lift@Top10% `3.5954`를 기록했습니다.
-- V3 Logistic과 비교하면 ROC-AUC `+0.0167`, PR-AUC `+0.0241`, KS `+0.0273`, Recall@Top10% `+0.0220`입니다.
-- 이것은 최종 모델 선정이 아니라 튜닝 전 LightGBM 후보의 실제 validation 결과입니다. TensorFlow MLP와 train 내부 개선 실험이 남아 있습니다.
-- 모델과 행별 validation 점수는 Git에서 제외되는 `models/stage5/`에 저장했고, 공유 결과에는 고객 ID와 행별 점수를 포함하지 않았습니다.
-- test 피처·예측·평가는 0건이며 전체 자동 테스트 147개를 통과했습니다.
-- 전체 결과는 [Stage 5 1/3 LightGBM 비교 보고서](Stage5_LightGBM_Report.md)와 [기계 판독용 결과](../reports/stage5_lightgbm_results.json)에 기록했습니다.
+- V1→V2에서 ROC-AUC `+0.0059`, PR-AUC `+0.0136`, V2→V3에서 ROC-AUC `+0.0072`, PR-AUC `+0.0081`이 개선돼 외부 신용이력과 납부이력의 추가 예측 신호를 확인했습니다.
+- V3 MLP는 train 내부 early stopping으로 선택한 20 epoch만큼 새 모델을 train 전체로 재학습했고, validation ROC-AUC `0.7602`, PR-AUC `0.2437`을 기록했습니다. 고정 설정 V3 LightGBM의 `0.7752`, `0.2665`보다 낮았습니다.
+- 3/3에서는 미리 정한 LightGBM 후보 3개만 train 내부 3-fold로 비교했습니다. 규제·행/열 표본추출 설정이 평균 ROC-AUC `0.7746`, PR-AUC `0.2633`으로 기준 설정의 `0.7724`, `0.2613`보다 높고 모든 보호 조건을 통과해 선택됐습니다.
+- 신청정보 132개, 외부 신용이력 37개, 납부이력 29개를 서로 겹치지 않는 피처군으로 고정했습니다. 별도 train fold에서 하나씩 제거했을 때 전체 V3 대비 PR-AUC가 각각 `0.0895`, `0.0117`, `0.0096` 낮아졌습니다. 이는 같은 train 안의 탐색적 연관성 비교이며 인과효과로 해석하지 않습니다.
+- `identity`, sigmoid, isotonic을 train 내부에서 비교했습니다. sigmoid의 Brier 개선 폭이 선택 기준보다 작아 **추가 보정은 불필요하다고 판단하고 원 확률을 유지하는 `identity`**를 선택했습니다.
+- 설정·모델·보정기와 잠금 명세를 저장한 뒤 이번 실행에서 validation 피처와 TARGET을 처음 로드해 base model 예측을 한 번 수행했습니다. 선택 후보는 ROC-AUC `0.7765`, PR-AUC `0.2699`, KS `0.4174`, Brier `0.0665`, Recall@Top10% `0.3561`, Lift@Top10% `3.5605`를 기록했습니다.
+- Stage 6 전달 후보는 **V3 LightGBM(규제·행/열 표본추출 설정, 원 확률 유지)**입니다. SHAP 설명, 위험구간, 운영 cutoff와 봉인 test 최종 평가는 아직 수행하지 않았습니다.
+- 모델·보정기·OOF 및 validation 행별 점수는 Git에서 제외되는 `models/stage5/`에 저장했고, 공유 결과에는 고객 ID와 행별 정답·점수를 포함하지 않았습니다. test 피처·예측·평가는 0건입니다.
+- 1/3 결과는 [LightGBM 비교 보고서](Stage5_LightGBM_Report.md)와 [결과 JSON](../reports/stage5_lightgbm_results.json), 2/3 결과는 [TensorFlow MLP 보고서](Stage5_MLP_Report.md)와 [결과 JSON](../reports/stage5_mlp_results.json)에 기록했습니다.
+- 최종 비교와 선정 근거는 [Stage 5 3/3 최종 후보 선정 보고서](Stage5_Final_Model_Selection_Report.md)와 [기계 판독용 결과](../reports/stage5_final_results.json)에 기록했습니다. 피처군과 확률 보정 시각화는 각각 [ablation 그림](../reports/figures/stage5_feature_ablation.png), [calibration 그림](../reports/figures/stage5_calibration_comparison.png)으로 남겼습니다.
 
 ### Stage 6. 최종 모델 해석·위험전략·설정 고정
 
@@ -639,12 +644,14 @@ CreditLens/
 │   ├── Stage4_Baseline_Model_Report.md
 │   ├── Stage4_Validation_Analysis_Report.md
 │   ├── Stage5_LightGBM_Report.md
+│   ├── Stage5_MLP_Report.md
+│   ├── Stage5_Final_Model_Selection_Report.md
 │   └── Project_Plan.md       # 프로젝트 기준 계획서
 ├── models/                   # 학습 모델·전처리 산출물, Git 제외
 ├── notebooks/
 │   └── 01_stage2_eda.ipynb   # train-only EDA 실행 진입점
 ├── reports/
-│   ├── figures/              # Stage 2 EDA·Stage 4 모델 평가 시각화
+│   ├── figures/              # EDA·모델 평가·학습 이력·보정·피처군 시각화
 │   ├── data_validation.json
 │   ├── stage2_eda.json
 │   ├── stage2_split_summary.json
@@ -652,7 +659,9 @@ CreditLens/
 │   ├── stage3_feature_profile.json
 │   ├── stage4_baseline_results.json
 │   ├── stage4_validation_analysis.json
-│   └── stage5_lightgbm_results.json
+│   ├── stage5_lightgbm_results.json
+│   ├── stage5_mlp_results.json
+│   └── stage5_final_results.json
 ├── sql/
 │   └── stage3/               # 고객 분석 마트 조회·집계·검수 SQL
 ├── src/
@@ -669,7 +678,7 @@ CreditLens/
 └── requirements-stage5-7.txt # Stage 5·7의 MLP·시연 의존성
 ```
 
-Stage 5 1/3까지 원본 검증, 고객 분할, train-only EDA, SQL·Python 분석 마트, 전처리·평가 기반, 기준 모델 상세 분석과 LightGBM V1·V2·V3 비교를 완료했다. 다음 작업은 V3 TensorFlow MLP와 train 내부 early stopping이다. 이후 고정된 모델로 Stage 7의 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
+Stage 5까지 원본 검증, 고객 분할, train-only EDA, SQL·Python 분석 마트, 전처리·평가 기반, 기준 모델 상세 분석, LightGBM·TensorFlow MLP 비교와 train 내부 제한 튜닝·확률 보정 검토·피처군 분석을 완료했다. 다음 작업은 Stage 6에서 선택한 LightGBM 후보의 SHAP 설명, 위험구간, Top-K·cutoff 시나리오와 하위그룹을 분석하고 모델 설정과 한계를 고정하는 것이다. 이후 Stage 7에서 Streamlit·FastAPI 인터페이스를 구현하며 AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
 
 ## 10. 형상관리와 개발 원칙
 

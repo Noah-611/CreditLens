@@ -1,6 +1,8 @@
 # Stage 5 1/3 LightGBM 비교 보고서
 
 > 같은 고정 설정의 LightGBM을 V1·V2·V3 train으로 학습하고 같은 validation에서 평가한 결과입니다. test는 사용하지 않았습니다.
+>
+> 이 문서는 Stage 5 1/3 당시의 비교 기록입니다. 후속 튜닝과 최종 후보 선정 결과는 [Stage 5 3/3 보고서](Stage5_Final_Model_Selection_Report.md)에 정리했습니다.
 
 ## 왜 이 실험을 했는가
 
@@ -45,8 +47,8 @@ V3 Random Forest는 `balanced_subsample` 가중치를 사용해 현재 점수를
 
 - LightGBM 세 버전 중 validation PR-AUC가 가장 높은 데이터는 V3이며 값은 0.2665입니다.
 - V3 LightGBM의 ROC-AUC/PR-AUC는 0.7752/0.2665, V3 Logistic은 0.7585/0.2424입니다.
-- 이것은 고정 설정의 validation 비교 결과이지 최종 모델 선정이 아닙니다. TensorFlow MLP와 train 내부 개선 실험이 남아 있습니다.
-- validation 결과를 보고 LightGBM 설정을 다시 바꾸지 않았습니다. 제한 튜닝은 Stage 5 3/3에서 train 내부 데이터로만 수행합니다.
+- 이것은 1/3 시점의 고정 설정 validation 비교 결과이며, 이 결과만으로 최종 후보를 선정하지 않았습니다.
+- validation 결과를 보고 LightGBM 설정을 다시 바꾸지 않았습니다. 제한 튜닝은 Stage 5 3/3에서 train 내부 데이터로만 수행했습니다.
 
 ## 고정한 조건과 데이터 감사
 
@@ -63,6 +65,6 @@ V3 Random Forest는 `balanced_subsample` 가중치를 사용해 현재 점수를
 - test 예측·평가: 없음
 - 공유 JSON·Markdown에 고객 ID와 행별 예측값을 저장하지 않음
 
-## 다음 작업
+## 후속 결과
 
-Stage 5 2/3에서 V3 TensorFlow MLP를 train 내부 early stopping으로 학습합니다. Stage 5 3/3에서 train 내부 제한 튜닝·확률 보정·피처군 분석 후 후보를 비교합니다. test는 계속 봉인합니다.
+Stage 5 2/3의 V3 TensorFlow MLP 비교와 3/3의 train 내부 제한 튜닝·확률 보정·피처군 분석을 완료했습니다. 최종 비교와 Stage 6 전달 후보는 [Stage 5 3/3 보고서](Stage5_Final_Model_Selection_Report.md)에서 확인할 수 있으며, test는 계속 봉인했습니다.
