@@ -1,0 +1,1021 @@
+{
+  "schema_version": "1.0",
+  "run_version": "stage6-strategy-analysis-v1",
+  "stage_part": "2/3",
+  "run_status": "complete",
+  "generated_at_utc": "2026-09-06T06:18:31Z",
+  "data_scope": {
+    "validation_rows": 46127,
+    "validation_positive_count": 3724,
+    "validation_positive_rate": 0.08073362672621241,
+    "test_feature_rows_used": 0,
+    "test_predictions_created": false,
+    "customer_ids_in_shared_outputs": false,
+    "row_level_values_in_shared_outputs": false,
+    "policy_excluded_gender_used_for_aggregate_audit_only": true
+  },
+  "references": {
+    "stage5_result": {
+      "display_path": "reports/stage5_final_results.json",
+      "sha256": "5326581032eb766d113314f8eb782c2bbff249d5e771fed085fe1c2e79afdc23",
+      "run_version": "stage5-finalization-v1"
+    },
+    "stage6_shap_result": {
+      "display_path": "reports/stage6_shap_analysis.json",
+      "sha256": "bc6f5512718186c7e72efbee375b37702b9bece95dd4ee49afab3a77850d1d41",
+      "run_version": "stage6-shap-analysis-v1"
+    },
+    "model": {
+      "display_path": "models/stage5/stage5_v3_lightgbm_candidate.joblib",
+      "bytes": 794363,
+      "sha256": "0e8b96d1617c3c3b48ba77b4b1b34664d0914a17d89f489dc98586baae09c09a",
+      "git_ignored": true
+    },
+    "calibrator": {
+      "display_path": "models/stage5/stage5_v3_probability_calibrator.joblib",
+      "bytes": 134,
+      "sha256": "3a87e579c32ca2d7d780acb6e335b4c35024257a7dee959aa4b4ee081f768995",
+      "git_ignored": true
+    },
+    "lock_manifest": {
+      "display_path": "models/stage5/stage5_v3_candidate_lock_manifest.json",
+      "bytes": 2982,
+      "sha256": "438cc723043a8e341be60c292d417db15f4cc8d78f9f0c9cad2efcbe649e5fd2",
+      "git_ignored": true
+    },
+    "validation_scores": {
+      "display_path": "models/stage5/stage5_final_validation_scores.joblib",
+      "bytes": 341063,
+      "sha256": "72d21a783728765cf05d5c55936f3237117fd9deee6c2fd6544f47545450de99",
+      "git_ignored": true
+    }
+  },
+  "model_contract": {
+    "data_version": "v3",
+    "model_family": "LightGBM",
+    "source_feature_columns": 198,
+    "calibration_method": "identity",
+    "model_or_preprocessor_refit": false,
+    "group_specific_cutoffs_allowed": false,
+    "automatic_credit_decision_allowed": false
+  },
+  "validation_replay": {
+    "metrics": {
+      "sample_count": 46127,
+      "positive_count": 3724,
+      "negative_count": 42403,
+      "prevalence": 0.08073362672621241,
+      "roc_auc": 0.7765000604272954,
+      "pr_auc": 0.2699346065210402,
+      "ks": 0.4174038539163613,
+      "ks_threshold": 0.07483934070756443,
+      "gini": 0.5530001208545907,
+      "brier_score": 0.066533660661186,
+      "threshold_metrics": {
+        "threshold": 0.5,
+        "true_negative": 42275,
+        "false_positive": 128,
+        "false_negative": 3556,
+        "true_positive": 168,
+        "predicted_positive_count": 296,
+        "recall": 0.045112781954887216,
+        "precision": 0.5675675675675675,
+        "f1": 0.08358208955223881
+      },
+      "top_k_metrics": {
+        "requested_fraction": 0.1,
+        "k": 4613,
+        "actual_fraction": 0.1000065037830338,
+        "cutoff_score": 0.18607729049496233,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 1326.0,
+        "precision": 0.2874485150661175,
+        "recall": 0.3560687432867884,
+        "lift": 3.56045586854318
+      },
+      "warnings": []
+    },
+    "max_abs_probability_difference": 2.9750477192891367e-08,
+    "calibration_method": "identity",
+    "stage6_part1_metrics_matched": true
+  },
+  "risk_strategy": {
+    "deciles": {
+      "method": "cumulative_fractional_top_k_differences",
+      "band_count": 10,
+      "direction": "decile_1_is_highest_risk",
+      "sample_count": 46127,
+      "positive_count": 3724,
+      "prevalence": 0.08073362672621241,
+      "bands": [
+        {
+          "decile": 1,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_weight": 1326.0,
+          "negative_weight": 3287.0,
+          "score_upper_bound": 0.8267199456526272,
+          "score_lower_bound": 0.18607729049496233,
+          "mean_predicted_probability": 0.2988138246628383,
+          "observed_positive_rate": 0.2874485150661175,
+          "lift": 3.56045586854318,
+          "cumulative_customer_count": 4613,
+          "cumulative_population_fraction": 0.1000065037830338,
+          "cumulative_positive_weight": 1326.0,
+          "cumulative_recall": 0.3560687432867884,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 2,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_weight": 718.0,
+          "negative_weight": 3895.0,
+          "score_upper_bound": 0.18607729049496233,
+          "score_lower_bound": 0.11692861817884581,
+          "mean_predicted_probability": 0.1466866991487745,
+          "observed_positive_rate": 0.15564708432690225,
+          "lift": 1.9279089846259452,
+          "cumulative_customer_count": 9226,
+          "cumulative_population_fraction": 0.2000130075660676,
+          "cumulative_positive_weight": 2044.0,
+          "cumulative_recall": 0.5488721804511278,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 3,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_weight": 478.0,
+          "negative_weight": 4135.0,
+          "score_upper_bound": 0.11692861817884581,
+          "score_lower_bound": 0.08251815922901691,
+          "mean_predicted_probability": 0.09810593453742089,
+          "observed_positive_rate": 0.10362020377194885,
+          "lift": 1.2834825830796683,
+          "cumulative_customer_count": 13839,
+          "cumulative_population_fraction": 0.3000195113491014,
+          "cumulative_positive_weight": 2522.0,
+          "cumulative_recall": 0.6772287862513426,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 4,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4612,
+          "population_fraction": 0.09998482450625447,
+          "positive_weight": 367.0,
+          "negative_weight": 4245.0,
+          "score_upper_bound": 0.08251815922901691,
+          "score_lower_bound": 0.06145868282967908,
+          "mean_predicted_probability": 0.07125825727190113,
+          "observed_positive_rate": 0.07957502168256722,
+          "lift": 0.9856490400514979,
+          "cumulative_customer_count": 18451,
+          "cumulative_population_fraction": 0.4000043358553559,
+          "cumulative_positive_weight": 2889.0,
+          "cumulative_recall": 0.7757787325456499,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 5,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_weight": 251.0,
+          "negative_weight": 4362.0,
+          "score_upper_bound": 0.06145868282967908,
+          "score_lower_bound": 0.04683223857207231,
+          "mean_predicted_probability": 0.05365685427313791,
+          "observed_positive_rate": 0.05441144591372209,
+          "lift": 0.6739626116171479,
+          "cumulative_customer_count": 23064,
+          "cumulative_population_fraction": 0.5000108396383897,
+          "cumulative_positive_weight": 3140.0,
+          "cumulative_recall": 0.8431793770139635,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 6,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_weight": 194.0,
+          "negative_weight": 4419.0,
+          "score_upper_bound": 0.04683223857207231,
+          "score_lower_bound": 0.03628412687627942,
+          "mean_predicted_probability": 0.04132955635736366,
+          "observed_positive_rate": 0.04205506178192066,
+          "lift": 0.5209113412499071,
+          "cumulative_customer_count": 27677,
+          "cumulative_population_fraction": 0.6000173434214234,
+          "cumulative_positive_weight": 3334.0,
+          "cumulative_recall": 0.8952738990332976,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 7,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4612,
+          "population_fraction": 0.09998482450625447,
+          "positive_weight": 142.0,
+          "negative_weight": 4470.0,
+          "score_upper_bound": 0.03628412687627942,
+          "score_lower_bound": 0.028034018538508954,
+          "mean_predicted_probability": 0.03201541741592969,
+          "observed_positive_rate": 0.030789245446660885,
+          "lift": 0.38136829342592016,
+          "cumulative_customer_count": 32289,
+          "cumulative_population_fraction": 0.7000021679276779,
+          "cumulative_positive_weight": 3476.0,
+          "cumulative_recall": 0.9334049409237379,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 8,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_weight": 111.0,
+          "negative_weight": 4502.0,
+          "score_upper_bound": 0.028034018538508954,
+          "score_lower_bound": 0.0210463682765817,
+          "mean_predicted_probability": 0.024445998440630997,
+          "observed_positive_rate": 0.024062432256665944,
+          "lift": 0.29804721071515305,
+          "cumulative_customer_count": 36902,
+          "cumulative_population_fraction": 0.8000086717107118,
+          "cumulative_positive_weight": 3587.0,
+          "cumulative_recall": 0.9632116004296455,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 9,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_weight": 90.0,
+          "negative_weight": 4523.0,
+          "score_upper_bound": 0.0210463682765817,
+          "score_lower_bound": 0.014551299469468874,
+          "mean_predicted_probability": 0.017836381675378644,
+          "observed_positive_rate": 0.019510080208107523,
+          "lift": 0.24165990057985384,
+          "cumulative_customer_count": 41515,
+          "cumulative_population_fraction": 0.9000151754937455,
+          "cumulative_positive_weight": 3677.0,
+          "cumulative_recall": 0.9873791621911923,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        },
+        {
+          "decile": 10,
+          "direction": "1_is_highest_risk",
+          "customer_count": 4612,
+          "population_fraction": 0.09998482450625447,
+          "positive_weight": 47.0,
+          "negative_weight": 4565.0,
+          "score_upper_bound": 0.014551299469468874,
+          "score_lower_bound": 0.0024877509215862565,
+          "mean_predicted_probability": 0.010502301701157212,
+          "observed_positive_rate": 0.010190806591500434,
+          "lift": 0.12622753373956513,
+          "cumulative_customer_count": 46127,
+          "cumulative_population_fraction": 1.0,
+          "cumulative_positive_weight": 3724.0,
+          "cumulative_recall": 1.0,
+          "boundary_tie_count": 1,
+          "boundary_selected_weight": 1.0
+        }
+      ]
+    },
+    "risk_bands": {
+      "status": "provisional_until_stage6_part3_lock",
+      "policy": {
+        "high": "score >= validation Top 10% cutoff",
+        "medium": "validation Top 30% cutoff <= score < Top 10% cutoff",
+        "low": "score < validation Top 30% cutoff",
+        "high_cutoff": 0.18607729049496233,
+        "medium_cutoff": 0.08251815922901691,
+        "equal_score_policy": "inclusive_threshold_for_reusable_score_bands"
+      },
+      "bands": [
+        {
+          "band": "high",
+          "rows": 4613,
+          "population_fraction": 0.1000065037830338,
+          "positive_count": 1326,
+          "positive_recall_share": 0.3560687432867884,
+          "mean_predicted_probability": 0.29881382466283823,
+          "observed_positive_rate": 0.2874485150661175,
+          "calibration_gap": 0.011365309596720718,
+          "lift": 3.56045586854318,
+          "score_min": 0.18607729049496233,
+          "score_max": 0.8267199456526272
+        },
+        {
+          "band": "medium",
+          "rows": 9226,
+          "population_fraction": 0.2000130075660676,
+          "positive_count": 1196,
+          "positive_recall_share": 0.32116004296455425,
+          "mean_predicted_probability": 0.12239631684309767,
+          "observed_positive_rate": 0.12963364404942554,
+          "calibration_gap": -0.007237327206327873,
+          "lift": 1.6056957838528065,
+          "score_min": 0.08251815922901691,
+          "score_max": 0.18607317594770637
+        },
+        {
+          "band": "low",
+          "rows": 32288,
+          "population_fraction": 0.6999804886508986,
+          "positive_count": 1202,
+          "positive_recall_share": 0.32277121374865736,
+          "mean_predicted_probability": 0.03586334659377071,
+          "observed_positive_rate": 0.037227452923686816,
+          "calibration_gap": -0.0013641063299161052,
+          "lift": 0.4611145867376213,
+          "score_min": 0.0024877509215862565,
+          "score_max": 0.08251116693560089
+        }
+      ],
+      "observed_risk_strictly_descends": true,
+      "mean_score_strictly_descends": true,
+      "high_to_low_observed_risk_ratio": 7.721412358115477
+    },
+    "top_k_scenarios": [
+      {
+        "review_fraction": 0.05,
+        "selected_customer_count": 2307,
+        "actual_review_fraction": 0.05001409152990656,
+        "observed_cutoff_score": 0.26405011483868746,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 850.0,
+        "precision": 0.3684438664932813,
+        "recall": 0.22824919441460795,
+        "lift": 4.563697698640061,
+        "false_positive_weight": 1457.0,
+        "missed_positive_weight": 2874.0,
+        "incremental_review_rows": 2307,
+        "incremental_true_positive_weight": 850.0,
+        "incremental_precision": 0.3684438664932813
+      },
+      {
+        "review_fraction": 0.1,
+        "selected_customer_count": 4613,
+        "actual_review_fraction": 0.1000065037830338,
+        "observed_cutoff_score": 0.18607729049496233,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 1326.0,
+        "precision": 0.2874485150661175,
+        "recall": 0.3560687432867884,
+        "lift": 3.56045586854318,
+        "false_positive_weight": 3287.0,
+        "missed_positive_weight": 2398.0,
+        "incremental_review_rows": 2306,
+        "incremental_true_positive_weight": 476.0,
+        "incremental_precision": 0.20641803989592367
+      },
+      {
+        "review_fraction": 0.15,
+        "selected_customer_count": 6920,
+        "actual_review_fraction": 0.15002059531294035,
+        "observed_cutoff_score": 0.14511674779395023,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 1733.0,
+        "precision": 0.2504335260115607,
+        "recall": 0.465359828141783,
+        "lift": 3.1019729469213915,
+        "false_positive_weight": 5187.0,
+        "missed_positive_weight": 1991.0,
+        "incremental_review_rows": 2307,
+        "incremental_true_positive_weight": 407.0,
+        "incremental_precision": 0.17641959254443
+      },
+      {
+        "review_fraction": 0.2,
+        "selected_customer_count": 9226,
+        "actual_review_fraction": 0.2000130075660676,
+        "observed_cutoff_score": 0.11692861817884581,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 2044.0,
+        "precision": 0.22154779969650987,
+        "recall": 0.5488721804511278,
+        "lift": 2.7441824265845627,
+        "false_positive_weight": 7182.0,
+        "missed_positive_weight": 1680.0,
+        "incremental_review_rows": 2306,
+        "incremental_true_positive_weight": 311.0,
+        "incremental_precision": 0.13486556808326106
+      },
+      {
+        "review_fraction": 0.25,
+        "selected_customer_count": 11532,
+        "actual_review_fraction": 0.25000541981919483,
+        "observed_cutoff_score": 0.09720052559246709,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 2302.0,
+        "precision": 0.19961845300034686,
+        "recall": 0.6181525241675617,
+        "lift": 2.4725564934336735,
+        "false_positive_weight": 9230.0,
+        "missed_positive_weight": 1422.0,
+        "incremental_review_rows": 2306,
+        "incremental_true_positive_weight": 258.0,
+        "incremental_precision": 0.11188204683434519
+      },
+      {
+        "review_fraction": 0.3,
+        "selected_customer_count": 13839,
+        "actual_review_fraction": 0.3000195113491014,
+        "observed_cutoff_score": 0.08251815922901691,
+        "boundary_tie_count": 1,
+        "boundary_selected_weight": 1.0,
+        "true_positive_weight": 2522.0,
+        "precision": 0.1822386010549895,
+        "recall": 0.6772287862513426,
+        "lift": 2.2572824787495978,
+        "false_positive_weight": 11317.0,
+        "missed_positive_weight": 1202.0,
+        "incremental_review_rows": 2307,
+        "incremental_true_positive_weight": 220.0,
+        "incremental_precision": 0.0953619419159081
+      }
+    ],
+    "top10_status": "comparison_reference_not_final_operating_cutoff"
+  },
+  "subgroup_analysis": {
+    "purpose": "aggregate_diagnostic_not_group_specific_credit_policy",
+    "global_cutoff": 0.18607729049496233,
+    "overall_at_global_cutoff": {
+      "roc_auc": 0.7765000604272954,
+      "brier_score": 0.066533660661186,
+      "global_cutoff_recall": 0.3560687432867884,
+      "global_cutoff_selection_rate": 0.1000065037830338
+    },
+    "publication_minimum_rows": 20,
+    "reliable_alert_minimums": {
+      "rows": 1000,
+      "positives": 50,
+      "negatives": 50
+    },
+    "alert_thresholds": {
+      "roc_auc_drop": 0.05,
+      "brier_increase": 0.02,
+      "absolute_calibration_bias": 0.03,
+      "global_cutoff_recall_drop": 0.1
+    },
+    "families": [
+      {
+        "family": "financial_history_coverage",
+        "display_name": "금융이력 가용성",
+        "groups": [
+          {
+            "group": "both_histories",
+            "display_name": "외부 신용·납부이력 모두 있음",
+            "rows": 37517,
+            "positive_count": 2959,
+            "negative_count": 34558,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.07887091185329317,
+            "mean_predicted_probability": 0.07772424688460328,
+            "mean_probability_bias": -0.0011466649686898978,
+            "expected_calibration_error": 0.003721816629614438,
+            "brier_score": 0.06504858821020758,
+            "roc_auc": 0.7759506961285298,
+            "pr_auc": 0.2700975395223456,
+            "pr_auc_over_prevalence": 3.424552007522758,
+            "ks": 0.41604157410180187,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 3606,
+              "selection_rate": 0.09611642721966042,
+              "true_positive": 1039,
+              "false_positive": 2567,
+              "recall": 0.35113213923622844,
+              "precision": 0.28813089295618416
+            },
+            "delta_vs_overall": {
+              "roc_auc": -0.000549364298765509,
+              "brier_score": -0.0014850724509784252,
+              "global_cutoff_recall": -0.004936604050559956,
+              "selection_rate": -0.003890076563373382
+            },
+            "diagnostic_alerts": []
+          },
+          {
+            "group": "installments_only",
+            "display_name": "납부이력만 있음",
+            "rows": 6195,
+            "positive_count": 641,
+            "negative_count": 5554,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.10347054075867636,
+            "mean_predicted_probability": 0.09868702040673194,
+            "mean_probability_bias": -0.0047835203519444175,
+            "expected_calibration_error": 0.00972545034119943,
+            "brier_score": 0.08402040518452812,
+            "roc_auc": 0.7546471826463984,
+            "pr_auc": 0.2831661576440615,
+            "pr_auc_over_prevalence": 2.736683848057661,
+            "ks": 0.3717484889528818,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 881,
+              "selection_rate": 0.14221146085552866,
+              "true_positive": 259,
+              "false_positive": 622,
+              "recall": 0.4040561622464899,
+              "precision": 0.2939841089670829
+            },
+            "delta_vs_overall": {
+              "roc_auc": -0.02185287778089695,
+              "brier_score": 0.017486744523342118,
+              "global_cutoff_recall": 0.04798741895970149,
+              "selection_rate": 0.04220495707249486
+            },
+            "diagnostic_alerts": []
+          },
+          {
+            "group": "bureau_only",
+            "display_name": "외부 신용이력만 있음",
+            "rows": 2059,
+            "positive_count": 101,
+            "negative_count": 1958,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.04905293831957261,
+            "mean_predicted_probability": 0.05616266246119771,
+            "mean_probability_bias": 0.007109724141625098,
+            "expected_calibration_error": 0.015759372311305562,
+            "brier_score": 0.043318824803439356,
+            "roc_auc": 0.8141364698267579,
+            "pr_auc": 0.1884766358033083,
+            "pr_auc_over_prevalence": 3.842310822960513,
+            "ks": 0.5677191314637082,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 107,
+              "selection_rate": 0.0519669742593492,
+              "true_positive": 22,
+              "false_positive": 85,
+              "recall": 0.21782178217821782,
+              "precision": 0.205607476635514
+            },
+            "delta_vs_overall": {
+              "roc_auc": 0.037636409399462556,
+              "brier_score": -0.023214835857746648,
+              "global_cutoff_recall": -0.13824696110857057,
+              "selection_rate": -0.0480395295236846
+            },
+            "diagnostic_alerts": [
+              "global_cutoff_recall_drop"
+            ]
+          },
+          {
+            "group": "neither_history",
+            "display_name": "두 이력 모두 관측되지 않음",
+            "rows": 356,
+            "positive_count": 23,
+            "negative_count": 333,
+            "detail_status": "reported",
+            "reliable_for_alerts": false,
+            "support_note": "exploratory_small_support",
+            "positive_rate": 0.06460674157303371,
+            "mean_predicted_probability": 0.06355826794041991,
+            "mean_probability_bias": -0.0010484736326138028,
+            "expected_calibration_error": 0.021450147438710716,
+            "brier_score": 0.05300677260599978,
+            "roc_auc": 0.8263480872176524,
+            "pr_auc": 0.2980615788776503,
+            "pr_auc_over_prevalence": 4.613474873062761,
+            "ks": 0.596291944118031,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 19,
+              "selection_rate": 0.05337078651685393,
+              "true_positive": 6,
+              "false_positive": 13,
+              "recall": 0.2608695652173913,
+              "precision": 0.3157894736842105
+            },
+            "delta_vs_overall": {
+              "roc_auc": 0.04984802679035705,
+              "brier_score": -0.013526888055186224,
+              "global_cutoff_recall": -0.0951991780693971,
+              "selection_rate": -0.04663571726617987
+            },
+            "diagnostic_alerts": []
+          }
+        ]
+      },
+      {
+        "family": "external_score_coverage",
+        "display_name": "외부 신용평가값 가용성",
+        "groups": [
+          {
+            "group": "zero_or_one_score",
+            "display_name": "외부 신용평가값 0~1개 관측",
+            "rows": 5513,
+            "positive_count": 532,
+            "negative_count": 4981,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.09649918374750589,
+            "mean_predicted_probability": 0.09794043942474574,
+            "mean_probability_bias": 0.00144125567723985,
+            "expected_calibration_error": 0.012916253656305172,
+            "brier_score": 0.07907488760362899,
+            "roc_auc": 0.758722619638838,
+            "pr_auc": 0.2734993062656238,
+            "pr_auc_over_prevalence": 2.834213675643579,
+            "ks": 0.38388507909001574,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 769,
+              "selection_rate": 0.13948848177036097,
+              "true_positive": 213,
+              "false_positive": 556,
+              "recall": 0.40037593984962405,
+              "precision": 0.27698309492847856
+            },
+            "delta_vs_overall": {
+              "roc_auc": -0.017777440788457333,
+              "brier_score": 0.012541226942442987,
+              "global_cutoff_recall": 0.04430719656283566,
+              "selection_rate": 0.039481977987327166
+            },
+            "diagnostic_alerts": []
+          },
+          {
+            "group": "two_scores",
+            "display_name": "외부 신용평가값 2개 관측",
+            "rows": 24211,
+            "positive_count": 1981,
+            "negative_count": 22230,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.08182231217215315,
+            "mean_predicted_probability": 0.08076413793121351,
+            "mean_probability_bias": -0.0010581742409396383,
+            "expected_calibration_error": 0.003866793312033586,
+            "brier_score": 0.06675462696270329,
+            "roc_auc": 0.7785690328930053,
+            "pr_auc": 0.2861607855781225,
+            "pr_auc_over_prevalence": 3.4973441593295935,
+            "ks": 0.4162671333584482,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 2475,
+              "selection_rate": 0.10222626079054975,
+              "true_positive": 734,
+              "false_positive": 1741,
+              "recall": 0.37051993942453304,
+              "precision": 0.2965656565656566
+            },
+            "delta_vs_overall": {
+              "roc_auc": 0.0020689724657099173,
+              "brier_score": 0.00022096630151728636,
+              "global_cutoff_recall": 0.014451196137744649,
+              "selection_rate": 0.002219757007515949
+            },
+            "diagnostic_alerts": []
+          },
+          {
+            "group": "three_scores",
+            "display_name": "외부 신용평가값 3개 관측",
+            "rows": 16403,
+            "positive_count": 1211,
+            "negative_count": 15192,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.07382795830031091,
+            "mean_predicted_probability": 0.0713458599757683,
+            "mean_probability_bias": -0.002482098324542617,
+            "expected_calibration_error": 0.006034400294655731,
+            "brier_score": 0.06199244263645132,
+            "roc_auc": 0.777238737498853,
+            "pr_auc": 0.24451063399581707,
+            "pr_auc_over_prevalence": 3.3118975470135323,
+            "ks": 0.4277961063430751,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 1369,
+              "selection_rate": 0.0834603426202524,
+              "true_positive": 379,
+              "false_positive": 990,
+              "recall": 0.3129644921552436,
+              "precision": 0.2768444119795471
+            },
+            "delta_vs_overall": {
+              "roc_auc": 0.0007386770715576141,
+              "brier_score": -0.004541218024734686,
+              "global_cutoff_recall": -0.04310425113154481,
+              "selection_rate": -0.016546161162781403
+            },
+            "diagnostic_alerts": []
+          }
+        ]
+      },
+      {
+        "family": "age_band",
+        "display_name": "연령대",
+        "groups": [
+          {
+            "group": "under_30",
+            "display_name": "30세 미만",
+            "rows": 6735,
+            "positive_count": 742,
+            "negative_count": 5993,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.11017074981440238,
+            "mean_predicted_probability": 0.11290688206916731,
+            "mean_probability_bias": 0.0027361322547649336,
+            "expected_calibration_error": 0.007259142770867134,
+            "brier_score": 0.08816617253197026,
+            "roc_auc": 0.7531511381427478,
+            "pr_auc": 0.2998935660518934,
+            "pr_auc_over_prevalence": 2.722079740376687,
+            "ks": 0.3959140560663092,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 1218,
+              "selection_rate": 0.18084632516703786,
+              "true_positive": 338,
+              "false_positive": 880,
+              "recall": 0.4555256064690027,
+              "precision": 0.277504105090312
+            },
+            "delta_vs_overall": {
+              "roc_auc": -0.023348922284547546,
+              "brier_score": 0.021632511870784257,
+              "global_cutoff_recall": 0.0994568631822143,
+              "selection_rate": 0.08083982138400406
+            },
+            "diagnostic_alerts": [
+              "brier_increase"
+            ]
+          },
+          {
+            "group": "age_30_to_49",
+            "display_name": "30~49세",
+            "rows": 23720,
+            "positive_count": 2100,
+            "negative_count": 21620,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.08853288364249579,
+            "mean_predicted_probability": 0.08484973778203164,
+            "mean_probability_bias": -0.003683145860464143,
+            "expected_calibration_error": 0.006324781302874919,
+            "brier_score": 0.07144299778082357,
+            "roc_auc": 0.7844967842826307,
+            "pr_auc": 0.29453700063783456,
+            "pr_auc_over_prevalence": 3.326865550061636,
+            "ks": 0.4295528831329017,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 2701,
+              "selection_rate": 0.11387015177065768,
+              "true_positive": 810,
+              "false_positive": 1891,
+              "recall": 0.38571428571428573,
+              "precision": 0.2998889300259163
+            },
+            "delta_vs_overall": {
+              "roc_auc": 0.007996723855335341,
+              "brier_score": 0.0049093371196375635,
+              "global_cutoff_recall": 0.02964554242749734,
+              "selection_rate": 0.013863647987623878
+            },
+            "diagnostic_alerts": []
+          },
+          {
+            "group": "age_50_plus",
+            "display_name": "50세 이상",
+            "rows": 15672,
+            "positive_count": 882,
+            "negative_count": 14790,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.05627871362940275,
+            "mean_predicted_probability": 0.056951805529487545,
+            "mean_probability_bias": 0.0006730919000847921,
+            "expected_calibration_error": 0.004451932465779597,
+            "brier_score": 0.04980673085468175,
+            "roc_auc": 0.7481036859188119,
+            "pr_auc": 0.18176829458919735,
+            "pr_auc_over_prevalence": 3.229787656237983,
+            "ks": 0.38046528956410147,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 694,
+              "selection_rate": 0.04428279734558448,
+              "true_positive": 178,
+              "false_positive": 516,
+              "recall": 0.2018140589569161,
+              "precision": 0.2564841498559078
+            },
+            "delta_vs_overall": {
+              "roc_auc": -0.028396374508483424,
+              "brier_score": -0.016726929806504254,
+              "global_cutoff_recall": -0.1542546843298723,
+              "selection_rate": -0.05572370643744932
+            },
+            "diagnostic_alerts": [
+              "global_cutoff_recall_drop"
+            ]
+          }
+        ]
+      },
+      {
+        "family": "gender_audit",
+        "display_name": "성별 기록 감사",
+        "groups": [
+          {
+            "group": "female_recorded",
+            "display_name": "여성으로 기록",
+            "rows": 30513,
+            "positive_count": 2168,
+            "negative_count": 28345,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.07105168288926031,
+            "mean_predicted_probability": 0.0722857246309436,
+            "mean_probability_bias": 0.0012340417416832894,
+            "expected_calibration_error": 0.003800180041752915,
+            "brier_score": 0.05988130254385677,
+            "roc_auc": 0.7710988876514273,
+            "pr_auc": 0.24349837765185872,
+            "pr_auc_over_prevalence": 3.4270599618501687,
+            "ks": 0.4080869674457902,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 2508,
+              "selection_rate": 0.08219447448628453,
+              "true_positive": 690,
+              "false_positive": 1818,
+              "recall": 0.3182656826568266,
+              "precision": 0.2751196172248804
+            },
+            "delta_vs_overall": {
+              "roc_auc": -0.005401172775868046,
+              "brier_score": -0.006652358117329234,
+              "global_cutoff_recall": -0.037803060629961804,
+              "selection_rate": -0.01781202929674927
+            },
+            "diagnostic_alerts": []
+          },
+          {
+            "group": "male_recorded",
+            "display_name": "남성으로 기록",
+            "rows": 15613,
+            "positive_count": 1556,
+            "negative_count": 14057,
+            "detail_status": "reported",
+            "reliable_for_alerts": true,
+            "support_note": "reliable",
+            "positive_rate": 0.09966053929417792,
+            "mean_predicted_probability": 0.09350633455142018,
+            "mean_probability_bias": -0.006154204742757741,
+            "expected_calibration_error": 0.006724953825471317,
+            "brier_score": 0.07953872279197031,
+            "roc_auc": 0.7760913471464784,
+            "pr_auc": 0.3072817999111818,
+            "pr_auc_over_prevalence": 3.083284538568947,
+            "ks": 0.41209559390311906,
+            "global_cutoff": {
+              "score": 0.18607729049496233,
+              "selected_count": 2105,
+              "selection_rate": 0.1348235444821623,
+              "true_positive": 636,
+              "false_positive": 1469,
+              "recall": 0.4087403598971722,
+              "precision": 0.30213776722090263
+            },
+            "delta_vs_overall": {
+              "roc_auc": -0.00040871328081693026,
+              "brier_score": 0.013005062130784312,
+              "global_cutoff_recall": 0.05267161661038383,
+              "selection_rate": 0.0348170406991285
+            },
+            "diagnostic_alerts": []
+          },
+          {
+            "group": "other_or_unknown",
+            "display_name": "기타·미상 기록",
+            "rows": 1,
+            "positive_count": null,
+            "detail_status": "suppressed_small_group",
+            "reliable_for_alerts": false,
+            "suppression_reason": "fewer_than_20_rows"
+          }
+        ]
+      }
+    ],
+    "reliable_group_alerts": [
+      {
+        "family": "financial_history_coverage",
+        "group": "bureau_only",
+        "alert": "global_cutoff_recall_drop",
+        "observed_value": 0.21782178217821782,
+        "overall_reference": 0.3560687432867884,
+        "difference_from_overall": -0.13824696110857057,
+        "trigger_threshold": -0.1
+      },
+      {
+        "family": "age_band",
+        "group": "under_30",
+        "alert": "brier_increase",
+        "observed_value": 0.08816617253197026,
+        "overall_reference": 0.066533660661186,
+        "difference_from_overall": 0.021632511870784257,
+        "trigger_threshold": 0.02
+      },
+      {
+        "family": "age_band",
+        "group": "age_50_plus",
+        "alert": "global_cutoff_recall_drop",
+        "observed_value": 0.2018140589569161,
+        "overall_reference": 0.3560687432867884,
+        "difference_from_overall": -0.1542546843298723,
+        "trigger_threshold": -0.1
+      }
+    ],
+    "reliable_group_alert_count": 3,
+    "group_specific_cutoffs_allowed": false,
+    "causal_or_fairness_conclusion_allowed": false
+  },
+  "diagnostic_summary": {
+    "risk_band_order_passed": true,
+    "reliable_subgroup_alert_count": 3,
+    "model_improvement_decision": "pending_stage6_part3",
+    "operating_cutoff_finalized": false,
+    "test_remains_sealed": true
+  },
+  "figures": {
+    "risk_deciles": {
+      "display_path": "reports/figures/stage6_risk_deciles.png",
+      "bytes": 62817,
+      "sha256": "ae83b32e878470c9a660bbd2220d9c8e0bb0ad4ed56754ae2918dc56e7981eea"
+    },
+    "top_k_scenarios": {
+      "display_path": "reports/figures/stage6_topk_scenarios.png",
+      "bytes": 73246,
+      "sha256": "38052631762d5920a281a0b5e0b8fafe14b4faceb78d3aefd1bc3329b144ba67"
+    },
+    "subgroup_diagnostics": {
+      "display_path": "reports/figures/stage6_subgroup_diagnostics.png",
+      "bytes": 115534,
+      "sha256": "1553678032e0d915563a1467e9f41db70992ef436447213f8d28243ce6c48072"
+    }
+  },
+  "resources": {
+    "total_seconds": 6.267,
+    "process_peak_rss_mb": 924.07
+  },
+  "environment": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scikit_learn": "1.9.0",
+    "duckdb": "1.5.5"
+  },
+  "stage6_next": {
+    "part": "3/3",
+    "work": "improvement_decision_and_final_artifact_lock",
+    "test_remains_sealed": true,
+    "test_first_use_stage": 8
+  }
+}

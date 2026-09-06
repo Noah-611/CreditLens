@@ -12,8 +12,8 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 3: SQL·Python 고객 분석 마트와 V1·V2·V3 구축 완료
 - Stage 4: 기준 모델 5개 학습과 ROC·PR·Calibration·Decile·Top-K validation 분석 완료
 - Stage 5: LightGBM·TensorFlow MLP 비교, 제한 튜닝, 확률 보정 검토와 피처군 분석 완료
-- Stage 6: 1/3 고정 LightGBM의 validation SHAP·Top 10% 오류 분석 완료
-- 다음 작업: Stage 6 2/3 위험구간·Top-K/cutoff 시나리오·하위그룹 분석
+- Stage 6: 2/3 고정 LightGBM의 SHAP·위험구간·Top-K·하위그룹 validation 분석 완료
+- 다음 작업: Stage 6 3/3 개선 여부 판단과 최종 설정·cutoff·산출물 고정
 - 모델은 train으로만 학습했고 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
@@ -24,6 +24,7 @@ LightGBM의 데이터 버전별 비교는 [Stage 5 1/3 LightGBM 비교 보고서
 V3 신경망의 학습 절차와 비교 결과는 [Stage 5 2/3 TensorFlow MLP 보고서](docs/Stage5_MLP_Report.md)에 기록되어 있습니다.
 제한 튜닝·확률 보정·피처군 분석과 Stage 6 전달 후보는 [Stage 5 3/3 최종 후보 선정 보고서](docs/Stage5_Final_Model_Selection_Report.md)에서 확인할 수 있습니다.
 고정 후보의 예측 근거와 Top 10% 포착·누락 분석은 [Stage 6 1/3 SHAP·오류 분석 보고서](docs/Stage6_SHAP_Analysis_Report.md)에 기록되어 있습니다.
+위험구간·심사 용량과 하위그룹 진단은 [Stage 6 2/3 위험전략·하위그룹 분석 보고서](docs/Stage6_Risk_Strategy_and_Subgroup_Report.md)에서 확인할 수 있습니다.
 
 ## 핵심 분석 목표
 
@@ -63,6 +64,7 @@ CreditLens/
 │   ├── Stage5_MLP_Report.md
 │   ├── Stage5_Final_Model_Selection_Report.md
 │   ├── Stage6_SHAP_Analysis_Report.md
+│   ├── Stage6_Risk_Strategy_and_Subgroup_Report.md
 │   ├── Stage2_EDA_Report.md
 │   ├── Stage3_Build_Report.md
 │   └── Project_Plan.md
@@ -81,7 +83,8 @@ CreditLens/
 │   ├── stage5_lightgbm_results.json
 │   ├── stage5_mlp_results.json
 │   ├── stage5_final_results.json
-│   └── stage6_shap_analysis.json
+│   ├── stage6_shap_analysis.json
+│   └── stage6_strategy_analysis.json
 ├── sql/
 │   └── stage3/              # V1·bureau·V2·installments·V3 DuckDB SQL
 ├── src/
@@ -386,6 +389,26 @@ PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage6_shap_analysis
 
 SHAP은 모델이 사용한 패턴을 설명하는 도구이며 실제 상환곤란의 원인을 증명하지 않습니다. 전체 결과는 [Stage 6 1/3 보고서](docs/Stage6_SHAP_Analysis_Report.md), 기계 판독용 집계는 [SHAP 분석 JSON](reports/stage6_shap_analysis.json)에서 확인할 수 있습니다.
 
+## Stage 6 2/3 위험구간·Top-K·하위그룹 분석
+
+같은 고정 V3 LightGBM을 다시 학습하지 않고 validation에서 점수 활용 방법을 분석했습니다. 고위험은 상위 10%, 중위험은 다음 20%, 저위험은 나머지 70%로 잠정 구분했으며 최종 cutoff는 아직 고정하지 않았습니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage6_strategy_analysis
+```
+
+| 잠정 위험구간 | 고객 수 | 실제 상환곤란 비율 | 전체 위험고객 중 포함 비중 | Lift |
+|---|---:|---:|---:|---:|
+| 고위험 | 4,613 | 28.74% | 35.61% | 3.56 |
+| 중위험 | 9,226 | 12.96% | 32.12% | 1.61 |
+| 저위험 | 32,288 | 3.72% | 32.28% | 0.46 |
+
+고위험 구간의 실제 위험률은 저위험보다 7.72배 높았고, 10개 decile의 실제 위험률도 높은 점수부터 낮은 점수까지 순서대로 감소했습니다. 심사 용량을 5%에서 30%로 늘리면 위험고객 Recall은 22.82%에서 67.72%로 증가하지만 Precision은 36.84%에서 18.22%로 낮아지는 교환관계도 확인했습니다.
+
+금융이력 가용성, 외부 신용평가값 개수, 연령대와 성별 기록을 같은 공통 cutoff로 점검했습니다. 외부 신용이력만 있는 그룹과 50세 이상 그룹의 cutoff Recall 저하, 30세 미만 그룹의 Brier 증가 등 3개 진단 경고가 발생했습니다. 이는 개선 검토 신호이지 차별·인과관계 판정이 아니며, 표본 위험률과 선택률을 함께 검토해야 합니다. 성별은 모델 입력에서 제외되어 있고 집계 감사에만 사용했습니다.
+
+상세 결과는 [Stage 6 2/3 보고서](docs/Stage6_Risk_Strategy_and_Subgroup_Report.md), 기계 판독용 집계는 [위험전략 분석 JSON](reports/stage6_strategy_analysis.json)에서 확인할 수 있습니다. 공유 산출물에는 고객 ID와 행별 값이 없고 test 피처·예측·평가는 0건입니다.
+
 ## Git에 올리지 않는 파일
 
 - `data/raw/`, `data/interim/`, `data/processed/` 안의 모든 금융 데이터
@@ -405,10 +428,10 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 6 1/3에서 고정 V3 LightGBM의 전역 SHAP과 Top 10% 포착·누락 분석을 완료했습니다. 다음은 Stage 6 2/3입니다.
+Stage 6 2/3까지 고정 V3 LightGBM의 설명, 위험구간, Top-K와 하위그룹 분석을 완료했습니다. 다음은 Stage 6 3/3입니다.
 
-1. validation에서 위험구간과 심사 가능 인원별 Top-K·cutoff 시나리오를 비교합니다.
-2. 금융이력 부족자 등 주요 하위그룹의 성능·오류·확률 품질을 점검합니다.
-3. 분석 결과로 개선 필요 여부를 판단하되 test는 열지 않습니다.
-4. Stage 6 3/3에서 설정·cutoff·산출물 checksum과 활용 한계를 모델 카드에 고정합니다.
+1. 하위그룹 진단 경고 3건과 모델 개선 필요 여부를 검토합니다.
+2. 최종 모델·전처리·확률 보정·위험구간·우선검토 cutoff를 결정합니다.
+3. 모든 설정과 산출물 checksum을 잠그고 모델 카드를 작성합니다.
+4. 자동 승인·거절 금지와 데이터·하위그룹 한계를 명시합니다.
 5. Stage 8 최종 평가 전까지 test는 계속 봉인합니다.
