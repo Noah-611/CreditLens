@@ -12,8 +12,8 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 3: SQL·Python 고객 분석 마트와 V1·V2·V3 구축 완료
 - Stage 4: 기준 모델 5개 학습과 ROC·PR·Calibration·Decile·Top-K validation 분석 완료
 - Stage 5: LightGBM·TensorFlow MLP 비교, 제한 튜닝, 확률 보정 검토와 피처군 분석 완료
-- Stage 6: 2/3 고정 LightGBM의 SHAP·위험구간·Top-K·하위그룹 validation 분석 완료
-- 다음 작업: Stage 6 3/3 개선 여부 판단과 최종 설정·cutoff·산출물 고정
+- Stage 6: SHAP·위험전략·하위그룹 검토와 최종 모델·cutoff 동결 완료
+- 다음 작업: Stage 7 동결 모델을 사용하는 Streamlit·FastAPI 프로토타입
 - 모델은 train으로만 학습했고 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
@@ -25,6 +25,7 @@ V3 신경망의 학습 절차와 비교 결과는 [Stage 5 2/3 TensorFlow MLP �
 제한 튜닝·확률 보정·피처군 분석과 Stage 6 전달 후보는 [Stage 5 3/3 최종 후보 선정 보고서](docs/Stage5_Final_Model_Selection_Report.md)에서 확인할 수 있습니다.
 고정 후보의 예측 근거와 Top 10% 포착·누락 분석은 [Stage 6 1/3 SHAP·오류 분석 보고서](docs/Stage6_SHAP_Analysis_Report.md)에 기록되어 있습니다.
 위험구간·심사 용량과 하위그룹 진단은 [Stage 6 2/3 위험전략·하위그룹 분석 보고서](docs/Stage6_Risk_Strategy_and_Subgroup_Report.md)에서 확인할 수 있습니다.
+최종 모델과 활용 기준은 [Stage 6 최종 판단 보고서](docs/Stage6_Finalization_Report.md)와 [모델 카드](docs/Model_Card.md)에 정리했습니다.
 
 ## 핵심 분석 목표
 
@@ -65,6 +66,8 @@ CreditLens/
 │   ├── Stage5_Final_Model_Selection_Report.md
 │   ├── Stage6_SHAP_Analysis_Report.md
 │   ├── Stage6_Risk_Strategy_and_Subgroup_Report.md
+│   ├── Stage6_Finalization_Report.md
+│   ├── Model_Card.md
 │   ├── Stage2_EDA_Report.md
 │   ├── Stage3_Build_Report.md
 │   └── Project_Plan.md
@@ -84,7 +87,8 @@ CreditLens/
 │   ├── stage5_mlp_results.json
 │   ├── stage5_final_results.json
 │   ├── stage6_shap_analysis.json
-│   └── stage6_strategy_analysis.json
+│   ├── stage6_strategy_analysis.json
+│   └── stage6_final_results.json
 ├── sql/
 │   └── stage3/              # V1·bureau·V2·installments·V3 DuckDB SQL
 ├── src/
@@ -391,7 +395,7 @@ SHAP은 모델이 사용한 패턴을 설명하는 도구이며 실제 상환곤
 
 ## Stage 6 2/3 위험구간·Top-K·하위그룹 분석
 
-같은 고정 V3 LightGBM을 다시 학습하지 않고 validation에서 점수 활용 방법을 분석했습니다. 고위험은 상위 10%, 중위험은 다음 20%, 저위험은 나머지 70%로 잠정 구분했으며 최종 cutoff는 아직 고정하지 않았습니다.
+같은 고정 V3 LightGBM을 다시 학습하지 않고 validation에서 점수 활용 방법을 분석했습니다. 2/3 당시에는 고위험을 상위 10%, 중위험을 다음 20%, 저위험을 나머지 70%로 잠정 구분했고, 3/3에서 해당 점수 경계를 시연 기준으로 확정했습니다.
 
 ```bash
 PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage6_strategy_analysis
@@ -408,6 +412,26 @@ PYTHONPATH=src .venv/bin/python -m creditlens.analysis.stage6_strategy_analysis
 금융이력 가용성, 외부 신용평가값 개수, 연령대와 성별 기록을 같은 공통 cutoff로 점검했습니다. 외부 신용이력만 있는 그룹과 50세 이상 그룹의 cutoff Recall 저하, 30세 미만 그룹의 Brier 증가 등 3개 진단 경고가 발생했습니다. 이는 개선 검토 신호이지 차별·인과관계 판정이 아니며, 표본 위험률과 선택률을 함께 검토해야 합니다. 성별은 모델 입력에서 제외되어 있고 집계 감사에만 사용했습니다.
 
 상세 결과는 [Stage 6 2/3 보고서](docs/Stage6_Risk_Strategy_and_Subgroup_Report.md), 기계 판독용 집계는 [위험전략 분석 JSON](reports/stage6_strategy_analysis.json)에서 확인할 수 있습니다. 공유 산출물에는 고객 ID와 행별 값이 없고 test 피처·예측·평가는 0건입니다.
+
+## Stage 6 3/3 최종 모델과 정책 동결
+
+V3 LightGBM과 원 확률을 유지하는 `identity`를 최종 프로토타입 버전 `creditlens-v3-lightgbm-v1`으로 고정했습니다. 하위그룹 경고 3건을 집단별 상수 Brier·선택 비율·순위 성능과 함께 재검토했고, 추가 학습 없이 기존 모델을 유지했습니다. 경고는 해결된 것으로 처리하지 않고 모델 카드의 잔여 한계로 기록했습니다.
+
+| 구간 | 확정 점수 기준 |
+|---|---|
+| 고위험·우선검토 | 0.18607729049496233 이상 |
+| 중위험 | 0.08251815922901691 이상, 고위험 경계 미만 |
+| 저위험 | 0.08251815922901691 미만 |
+
+고정 cutoff의 validation Recall은 35.61%, Precision은 28.74%, F1은 0.3181입니다. 새로운 배치에서도 정확히 10%를 선택한다는 의미는 아니며, 비용·인력 자료에 근거한 최적 운영 정책을 주장하지 않습니다.
+
+동결 모델(전처리 포함)·보정기·정책·manifest는 Git 제외 경로 `models/stage6/frozen_v1/`에 저장합니다. manifest에는 파일 해시, 입력 피처 순서, 모델 설정, 데이터 버전, 추론 코드와 패키지 버전을 기록합니다. 기존 버전은 덮어쓰지 않으며 검증은 데이터 조회 없이 실행됩니다.
+
+```bash
+PYTHONPATH=src .venv/bin/python -m creditlens.modeling.finalize_stage6 --verify
+```
+
+동결 산출물이 없는 환경에서는 Stage 5·Stage 6 1/3~2/3 산출물을 준비한 뒤 위 명령의 `--verify`를 빼고 생성합니다. Stage 7은 `creditlens.modeling.frozen_model`의 검증된 로더와 점수 정책을 재사용합니다. 최종 결과는 [보고서](docs/Stage6_Finalization_Report.md), [모델 카드](docs/Model_Card.md), [집계 JSON](reports/stage6_final_results.json)에 있습니다.
 
 ## Git에 올리지 않는 파일
 
@@ -428,10 +452,9 @@ git check-ignore -v --no-index models/creditlens.joblib
 
 ## 다음 작업
 
-Stage 6 2/3까지 고정 V3 LightGBM의 설명, 위험구간, Top-K와 하위그룹 분석을 완료했습니다. 다음은 Stage 6 3/3입니다.
+Stage 6을 완료했습니다. 다음은 Stage 7의 결과 제공 프로그램입니다.
 
-1. 하위그룹 진단 경고 3건과 모델 개선 필요 여부를 검토합니다.
-2. 최종 모델·전처리·확률 보정·위험구간·우선검토 cutoff를 결정합니다.
-3. 모든 설정과 산출물 checksum을 잠그고 모델 카드를 작성합니다.
-4. 자동 승인·거절 금지와 데이터·하위그룹 한계를 명시합니다.
-5. Stage 8 최종 평가 전까지 test는 계속 봉인합니다.
+1. 동결 모델이 요구하는 입력 피처와 출력 명세를 정의합니다.
+2. 같은 추론 함수를 쓰는 Streamlit 화면·FastAPI API·배치 실행을 구현합니다.
+3. 입력 검수와 데이터·모델 모니터링 기준을 정리합니다.
+4. Stage 8 구현 항목 3에서 내부 holdout test 46,126명을 한 번 최종 평가합니다. 그전까지 test는 봉인합니다.

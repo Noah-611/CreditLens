@@ -11,8 +11,8 @@
 | 진행 방식 | Stage 단위 구현·검증 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 6 2/3 완료 (SHAP·위험구간·Top-K·하위그룹 validation 분석) |
-| 다음 단계 | Stage 6 3/3 개선 여부 판단과 최종 설정·cutoff·산출물 고정 |
+| 현재 상태 | Stage 6 완료 (해석·경고 검토·최종 모델과 cutoff 동결) |
+| 다음 단계 | Stage 7 Streamlit·FastAPI 프로토타입과 데이터서비스 요건 |
 
 ### 한 줄 정의
 
@@ -242,8 +242,8 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 | 4 | Stage 3 | SQL·Python 고객 분석 마트와 V1·V2·V3 구축 | 완료 |
 | 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 완료 |
 | 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 완료 |
-| 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 진행 (2/3 완료) |
-| 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 예정 |
+| 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 완료 |
+| 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 다음 |
 | 9 | Stage 8 | 봉인 테스트·최종 보고서·시연 검증 | 예정 |
 
 ### Stage 0. 프로젝트 초기 환경 구성
@@ -507,7 +507,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 
 1. 1/3: Stage 5 고정 후보를 validation에서 SHAP으로 해석하고 Top 10% 포착·누락 오류를 분석한다. **완료**
 2. 2/3: 위험구간·심사 용량별 Top-K/cutoff 시나리오와 금융이력 부족자 등 주요 하위그룹을 분석한다. **완료**
-3. 3/3: 개선 필요 여부를 판단하고 최종 설정·cutoff·산출물 checksum·활용 한계를 모델 카드에 고정한다. **다음**
+3. 3/3: 개선 필요 여부를 판단하고 최종 설정·cutoff·산출물 checksum·활용 한계를 모델 카드에 고정한다. **완료**
 
 **구현 단계**
 
@@ -534,7 +534,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 모델의 한계와 사용 금지 범위가 문서화되어 있다.
 - 결과가 공식 신용등급이나 자동 승인·거절 기준이 아님을 명시한다.
 
-**현재 구현 상태 (2/3 완료)**
+**현재 구현 상태 (3/3 완료)**
 
 - Stage 5에서 선택한 V3 LightGBM과 `identity` 보정기를 다시 학습하거나 변경하지 않고, 저장 해시와 validation 예측 재현을 먼저 확인했습니다.
 - validation 46,127명 전체에서 LightGBM Tree SHAP을 계산했습니다. 원본 피처 198개가 전처리 후 만든 420개 구성요소를 원본 피처 단위로 다시 합쳤으며, SHAP 합과 모델 raw 점수의 최대 차이는 `0.0000001135`였습니다.
@@ -543,10 +543,14 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 - 공유 Markdown·JSON·그림에는 고객 ID와 행별 값을 포함하지 않았습니다. 대표 고객별 설명은 Git 제외 로컬 산출물에만 저장했고 test 피처·예측·평가는 0건입니다.
 - 상세 결과는 [Stage 6 1/3 SHAP·오류 분석 보고서](Stage6_SHAP_Analysis_Report.md)와 [기계 판독용 집계](../reports/stage6_shap_analysis.json)에 기록했습니다.
 - 2/3에서는 validation 점수 상위 10%를 잠정 고위험, 다음 20%를 중위험, 나머지 70%를 저위험으로 나눴습니다. 실제 상환곤란 비율은 각각 `28.74%`, `12.96%`, `3.72%`로 순서대로 감소했고 고위험은 저위험의 `7.72`배였습니다.
-- 심사 용량 5%·10%·15%·20%·25%·30%를 비교했습니다. 검토 비중을 5%에서 30%로 늘리면 Recall은 `22.82%`에서 `67.72%`로 증가하고 Precision은 `36.84%`에서 `18.22%`로 감소했습니다. Top 10%는 아직 비교 기준이며 운영 cutoff로 고정하지 않았습니다.
+- 심사 용량 5%·10%·15%·20%·25%·30%를 비교했습니다. 검토 비중을 5%에서 30%로 늘리면 Recall은 `22.82%`에서 `67.72%`로 증가하고 Precision은 `36.84%`에서 `18.22%`로 감소했습니다. 2/3 당시에는 Top 10%를 비교 기준으로 두었고, 3/3에서 해당 점수 경계를 시연 cutoff로 확정했습니다.
 - 금융이력 가용성, 외부 신용평가값 관측 개수, 연령대와 성별 기록을 전체 공통 cutoff로 진단했습니다. 외부 신용이력만 있는 그룹과 50세 이상 그룹의 Recall 저하, 30세 미만 그룹의 Brier 증가 등 사전 기준에 따른 경고 3건을 Stage 6 3/3 검토 대상으로 남겼습니다.
 - 성별은 모델 입력에서 제외한 채 집계 감사에만 사용했습니다. 20명 미만 그룹은 세부 지표를 억제했고 하위그룹별 별도 cutoff는 만들지 않았습니다. 경고는 개선 검토 신호이며 차별·인과관계 판정이 아닙니다.
 - 2/3 상세 결과는 [위험전략·하위그룹 분석 보고서](Stage6_Risk_Strategy_and_Subgroup_Report.md)와 [기계 판독용 집계](../reports/stage6_strategy_analysis.json)에 기록했습니다. 공유 산출물 고객 ID·행별 값과 test 사용은 모두 0건입니다.
+- 3/3에서는 경고 3건을 집단별 상수 Brier·동일 검토 비율의 진단과 함께 검토했습니다. 세 집단의 모델 Brier는 집단 위험률 상수 기준보다 낮았습니다. 추가 학습 없이 기존 LightGBM·identity를 유지하고 집단별 포착률 격차는 해결되지 않은 한계로 기록했습니다.
+- 고위험·우선검토 cutoff `0.18607729049496233`, 중위험 하한 `0.08251815922901691`을 확정했습니다. 경계는 이상(≥) 비교로 포함하며, 고정 cutoff가 미래 배치의 상위 10%를 보장하지 않음을 명시했습니다. 확정 cutoff의 validation F1은 `0.3181`입니다.
+- `models/stage6/frozen_v1/`에 전처리 포함 모델·보정기·정책·manifest를 저장했습니다. 바이트 복사와 validation 예측의 완전 일치를 검증했고 데이터·입력 순서·설정·패키지 버전·추론 코드 해시를 기록했습니다. 기존 동결 결과는 덮어쓰지 않으며 `--verify`로 변경을 검출합니다.
+- 최종 근거는 [Stage 6 최종 판단 보고서](Stage6_Finalization_Report.md), [모델 카드](Model_Card.md), [동결 결과 JSON](../reports/stage6_final_results.json)에 기록했습니다. test 최초 평가는 Stage 8 구현 항목 3이며, 내부 holdout 46,126명을 고정 산출물로 한 번 평가합니다.
 
 ### Stage 7. Streamlit·FastAPI 예측 프로그램과 데이터서비스 요건
 
@@ -668,6 +672,8 @@ CreditLens/
 │   ├── Stage5_Final_Model_Selection_Report.md
 │   ├── Stage6_SHAP_Analysis_Report.md
 │   ├── Stage6_Risk_Strategy_and_Subgroup_Report.md
+│   ├── Stage6_Finalization_Report.md
+│   ├── Model_Card.md
 │   └── Project_Plan.md       # 프로젝트 기준 계획서
 ├── models/                   # 학습 모델·전처리 산출물, Git 제외
 ├── notebooks/
@@ -685,7 +691,8 @@ CreditLens/
 │   ├── stage5_mlp_results.json
 │   ├── stage5_final_results.json
 │   ├── stage6_shap_analysis.json
-│   └── stage6_strategy_analysis.json
+│   ├── stage6_strategy_analysis.json
+│   └── stage6_final_results.json
 ├── sql/
 │   └── stage3/               # 고객 분석 마트 조회·집계·검수 SQL
 ├── src/
@@ -702,7 +709,7 @@ CreditLens/
 └── requirements-stage5-7.txt # Stage 5·7의 MLP·시연 의존성
 ```
 
-Stage 5까지 모델 비교와 후보 선정을 완료했고, Stage 6 1/3~2/3에서 고정 LightGBM 후보의 SHAP, 위험구간, Top-K와 하위그룹 validation 분석을 완료했다. 다음 작업은 Stage 6 3/3에서 진단 경고를 검토해 개선 여부를 판단하고 모델·cutoff·산출물과 한계를 고정하는 것이다. 이후 Stage 7에서 Streamlit·FastAPI 인터페이스를 구현한다. AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
+Stage 6까지 SHAP·위험구간·하위그룹 분석과 경고 재검토를 완료하고 최종 LightGBM·정책·산출물을 동결했다. 다음 작업은 Stage 7에서 공통 동결 모델을 사용하는 Streamlit·FastAPI 인터페이스와 입력 검수·모니터링 요건을 구현하는 것이다. Stage 8에서 내부 holdout test를 한 번 평가한다. AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
 
 ## 10. 형상관리와 개발 원칙
 

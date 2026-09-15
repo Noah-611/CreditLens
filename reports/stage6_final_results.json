@@ -1,0 +1,231 @@
+{
+  "schema_version": "1.0",
+  "run_status": "complete",
+  "stage_part": "3/3",
+  "release": "creditlens-v3-lightgbm-v1",
+  "frozen_at_utc": "2026-09-15T22:55:06.366234+00:00",
+  "data_scope": {
+    "validation_rows": 46127,
+    "test_feature_rows_used": 0,
+    "test_predictions_created": false,
+    "model_refit": false,
+    "customer_ids_in_shared_outputs": false,
+    "row_level_values_in_shared_outputs": false
+  },
+  "decision": {
+    "model": "retain_stage5_lightgbm",
+    "calibration": "identity",
+    "new_training": false,
+    "alerts_resolved": false,
+    "alert_disposition": "reviewed_and_accepted_for_prototype_only",
+    "cost_optimal_policy_claimed": false
+  },
+  "policy": {
+    "schema_version": "1.0",
+    "status": "frozen",
+    "release": "creditlens-v3-lightgbm-v1",
+    "medium_cutoff": 0.08251815922901691,
+    "high_cutoff": 0.18607729049496233,
+    "review_cutoff": 0.18607729049496233,
+    "comparison": ">=",
+    "calibration_method": "identity",
+    "group_specific_cutoffs": false,
+    "automatic_credit_decision": false,
+    "purpose": "public_data_review_priority_prototype",
+    "source": "validation_top10_and_top30_score_boundaries",
+    "new_batch_selection_fraction_is_fixed": false,
+    "round_before_comparison": false
+  },
+  "alert_review": [
+    {
+      "group": "bureau_only",
+      "display_name": "외부 신용이력만 있음",
+      "rows": 2059,
+      "positive_count": 101,
+      "positive_rate": 0.04905293831957261,
+      "roc_auc": 0.8141364698267579,
+      "model_brier": 0.043318824803439356,
+      "constant_prevalence_brier": 0.04664674756178881,
+      "descriptive_brier_skill": 0.0713430824719613,
+      "mean_probability_bias": 0.007109724141625098,
+      "common_cutoff_recall": 0.21782178217821782,
+      "common_cutoff_selected_fraction": 0.0519669742593492,
+      "within_group_top10_recall_diagnostic_only": 0.37623762376237624,
+      "disposition": "accepted_limitation_for_public_data_prototype",
+      "reason": "공통 cutoff 선택률이 낮지만 집단 내 순위 성능은 유효하다. 포착률 격차는 잔여 한계로 유지한다."
+    },
+    {
+      "group": "under_30",
+      "display_name": "30세 미만",
+      "rows": 6735,
+      "positive_count": 742,
+      "positive_rate": 0.11017074981440238,
+      "roc_auc": 0.7531511381427478,
+      "model_brier": 0.08816617253197026,
+      "constant_prevalence_brier": 0.09803315569973474,
+      "descriptive_brier_skill": 0.1006494496411603,
+      "mean_probability_bias": 0.0027361322547649336,
+      "common_cutoff_recall": 0.4555256064690027,
+      "common_cutoff_selected_fraction": 0.18084632516703786,
+      "within_group_top10_recall_diagnostic_only": 0.3059299191374663,
+      "disposition": "accepted_limitation_for_public_data_prototype",
+      "reason": "위험률을 반영한 상수 예측보다 Brier가 낮다. 전체 대비 Brier 증가만으로 재보정 필요성을 확정하지 않는다."
+    },
+    {
+      "group": "age_50_plus",
+      "display_name": "50세 이상",
+      "rows": 15672,
+      "positive_count": 882,
+      "positive_rate": 0.05627871362940275,
+      "roc_auc": 0.7481036859188119,
+      "model_brier": 0.04980673085468175,
+      "constant_prevalence_brier": 0.05311142002162243,
+      "descriptive_brier_skill": 0.062221819066319406,
+      "mean_probability_bias": 0.0006730919000847921,
+      "common_cutoff_recall": 0.2018140589569161,
+      "common_cutoff_selected_fraction": 0.04428279734558448,
+      "within_group_top10_recall_diagnostic_only": 0.3526077097505669,
+      "disposition": "accepted_limitation_for_public_data_prototype",
+      "reason": "평균 확률편향은 작지만 공통 cutoff의 낮은 포착률과 상대적으로 낮은 ROC-AUC를 개선 과제로 남긴다."
+    }
+  ],
+  "validation_metrics": {
+    "sample_count": 46127,
+    "positive_count": 3724,
+    "negative_count": 42403,
+    "prevalence": 0.08073362672621241,
+    "roc_auc": 0.7765000604272954,
+    "pr_auc": 0.2699346065210402,
+    "ks": 0.4174038539163613,
+    "ks_threshold": 0.07483934070756443,
+    "gini": 0.5530001208545907,
+    "brier_score": 0.066533660661186,
+    "threshold_metrics": {
+      "threshold": 0.18607729049496233,
+      "true_negative": 39116,
+      "false_positive": 3287,
+      "false_negative": 2398,
+      "true_positive": 1326,
+      "predicted_positive_count": 4613,
+      "recall": 0.3560687432867884,
+      "precision": 0.2874485150661175,
+      "f1": 0.318100035984167
+    },
+    "top_k_metrics": {
+      "requested_fraction": 0.1,
+      "k": 4613,
+      "actual_fraction": 0.1000065037830338,
+      "cutoff_score": 0.18607729049496233,
+      "boundary_tie_count": 1,
+      "boundary_selected_weight": 1.0,
+      "true_positive_weight": 1326.0,
+      "precision": 0.2874485150661175,
+      "recall": 0.3560687432867884,
+      "lift": 3.56045586854318
+    },
+    "warnings": []
+  },
+  "risk_bands": [
+    {
+      "band": "high",
+      "rows": 4613,
+      "population_fraction": 0.1000065037830338,
+      "positive_count": 1326,
+      "positive_recall_share": 0.3560687432867884,
+      "mean_predicted_probability": 0.29881382466283823,
+      "observed_positive_rate": 0.2874485150661175,
+      "calibration_gap": 0.011365309596720718,
+      "lift": 3.56045586854318,
+      "score_min": 0.18607729049496233,
+      "score_max": 0.8267199456526272
+    },
+    {
+      "band": "medium",
+      "rows": 9226,
+      "population_fraction": 0.2000130075660676,
+      "positive_count": 1196,
+      "positive_recall_share": 0.32116004296455425,
+      "mean_predicted_probability": 0.12239631684309767,
+      "observed_positive_rate": 0.12963364404942554,
+      "calibration_gap": -0.007237327206327873,
+      "lift": 1.6056957838528065,
+      "score_min": 0.08251815922901691,
+      "score_max": 0.18607317594770637
+    },
+    {
+      "band": "low",
+      "rows": 32288,
+      "population_fraction": 0.6999804886508986,
+      "positive_count": 1202,
+      "positive_recall_share": 0.32277121374865736,
+      "mean_predicted_probability": 0.03586334659377071,
+      "observed_positive_rate": 0.037227452923686816,
+      "calibration_gap": -0.0013641063299161052,
+      "lift": 0.4611145867376213,
+      "score_min": 0.0024877509215862565,
+      "score_max": 0.08251116693560089
+    }
+  ],
+  "bundle_manifest": {
+    "path": "models/stage6/frozen_v1/manifest.json",
+    "bytes": 35173,
+    "sha256": "b297b482dac8cecdf475a4df12b20d931e18d9b764b45302965abb245e926b25"
+  },
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.5.2",
+    "pandas": "3.0.5",
+    "scipy": "1.18.1",
+    "scikit-learn": "1.9.0",
+    "lightgbm": "4.7.0",
+    "joblib": "1.6.0"
+  },
+  "references": {
+    "stage5_result": {
+      "path": "reports/stage5_final_results.json",
+      "bytes": 165072,
+      "sha256": "5326581032eb766d113314f8eb782c2bbff249d5e771fed085fe1c2e79afdc23"
+    },
+    "stage6_shap_result": {
+      "path": "reports/stage6_shap_analysis.json",
+      "bytes": 63844,
+      "sha256": "bc6f5512718186c7e72efbee375b37702b9bece95dd4ee49afab3a77850d1d41"
+    },
+    "strategy": {
+      "path": "reports/stage6_strategy_analysis.json",
+      "bytes": 39475,
+      "sha256": "2566912e97ee12d105a798e063adb0c6a96447032073601b6fba28b69bc9bfdc"
+    }
+  },
+  "artifacts": {
+    "model.joblib": {
+      "bytes": 794363,
+      "sha256": "0e8b96d1617c3c3b48ba77b4b1b34664d0914a17d89f489dc98586baae09c09a"
+    },
+    "calibrator.joblib": {
+      "bytes": 134,
+      "sha256": "3a87e579c32ca2d7d780acb6e335b4c35024257a7dee959aa4b4ee081f768995"
+    },
+    "policy.json": {
+      "bytes": 542,
+      "sha256": "463280bbf3a8e7ae181e939a7ce37c7f52aefd78b98e705477f01d92748cd5ac"
+    }
+  },
+  "next_stage": 7,
+  "test_evaluation_stage": 8,
+  "verification": {
+    "copied_validation_predictions_identical": true,
+    "test_loaded": false,
+    "validation_metric_replay": true
+  },
+  "documents": {
+    "docs/Stage6_Finalization_Report.md": {
+      "bytes": 4963,
+      "sha256": "c99d0f6d1a6491bb321b8cc8255e989d3441480717640237c8ab40500f167c49"
+    },
+    "docs/Model_Card.md": {
+      "bytes": 4122,
+      "sha256": "54eebfbb36130f72d349561caabb1feca5caa0401c546541d89b75b8a2ab885f"
+    }
+  }
+}
