@@ -1,0 +1,1650 @@
+{
+  "schema_version": "creditlens-inference-v1",
+  "feature_version": "v3",
+  "model_release": "creditlens-v3-lightgbm-v1",
+  "feature_schema_sha256": "846fdfb5adb20774b9ff3c1bfd9de218c7063161eadcd87f9db1ce8bdb7dd5ee",
+  "max_batch_size": 1000,
+  "unknown_category_policy": "warn_and_use_frozen_encoder",
+  "fields": [
+    {
+      "name": "CNT_CHILDREN",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_INCOME_TOTAL",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_CREDIT",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_ANNUITY",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_GOODS_PRICE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "REGION_POPULATION_RELATIVE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "DAYS_BIRTH",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "DAYS_REGISTRATION",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "DAYS_ID_PUBLISH",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "OWN_CAR_AGE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLAG_MOBIL",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_EMP_PHONE",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_WORK_PHONE",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_CONT_MOBILE",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_PHONE",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_EMAIL",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "CNT_FAM_MEMBERS",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "REGION_RATING_CLIENT",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "REGION_RATING_CLIENT_W_CITY",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "HOUR_APPR_PROCESS_START",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 23
+    },
+    {
+      "name": "REG_REGION_NOT_LIVE_REGION",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "REG_REGION_NOT_WORK_REGION",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "LIVE_REGION_NOT_WORK_REGION",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "REG_CITY_NOT_LIVE_CITY",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "REG_CITY_NOT_WORK_CITY",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "LIVE_CITY_NOT_WORK_CITY",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "EXT_SOURCE_1",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "EXT_SOURCE_2",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "EXT_SOURCE_3",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "APARTMENTS_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BASEMENTAREA_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "YEARS_BEGINEXPLUATATION_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "YEARS_BUILD_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "COMMONAREA_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "ELEVATORS_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "ENTRANCES_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLOORSMAX_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLOORSMIN_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LANDAREA_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LIVINGAPARTMENTS_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LIVINGAREA_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "NONLIVINGAPARTMENTS_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "NONLIVINGAREA_AVG",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APARTMENTS_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BASEMENTAREA_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "YEARS_BEGINEXPLUATATION_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "YEARS_BUILD_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "COMMONAREA_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "ELEVATORS_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "ENTRANCES_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLOORSMAX_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLOORSMIN_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LANDAREA_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LIVINGAPARTMENTS_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LIVINGAREA_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "NONLIVINGAPARTMENTS_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "NONLIVINGAREA_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APARTMENTS_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BASEMENTAREA_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "YEARS_BEGINEXPLUATATION_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "YEARS_BUILD_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "COMMONAREA_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "ELEVATORS_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "ENTRANCES_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLOORSMAX_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLOORSMIN_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LANDAREA_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LIVINGAPARTMENTS_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "LIVINGAREA_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "NONLIVINGAPARTMENTS_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "NONLIVINGAREA_MEDI",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "TOTALAREA_MODE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "EMERGENCYSTATE_MODE",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "OBS_30_CNT_SOCIAL_CIRCLE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "DEF_30_CNT_SOCIAL_CIRCLE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "OBS_60_CNT_SOCIAL_CIRCLE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "DEF_60_CNT_SOCIAL_CIRCLE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "DAYS_LAST_PHONE_CHANGE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "FLAG_DOCUMENT_2",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_3",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_4",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_5",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_6",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_7",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_8",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_9",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_10",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_11",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_12",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_13",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_14",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_15",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_16",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_17",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_18",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_19",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_20",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "FLAG_DOCUMENT_21",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_HOUR",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_DAY",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_WEEK",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_MON",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_QRT",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "AMT_REQ_CREDIT_BUREAU_YEAR",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "DAYS_EMPLOYED",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "DAYS_EMPLOYED_SENTINEL",
+      "type": "integer",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "OWN_CAR_AGE_NOT_APPLICABLE",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "OWN_CAR_AGE_MISSING",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "APP_CREDIT_INCOME_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_ANNUITY_INCOME_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_CREDIT_ANNUITY_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_CREDIT_GOODS_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_INCOME_PER_FAMILY_MEMBER",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_AGE_YEARS",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_EMPLOYED_YEARS",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_EMPLOYED_AGE_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "APP_EXT_SOURCE_OBSERVED_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3
+    },
+    {
+      "name": "APP_EXT_SOURCE_MEAN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "BUREAU_HAS_HISTORY",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "BUREAU_RECORD_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_LOAN_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_ACTIVE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_CLOSED_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_SOLD_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_BAD_DEBT_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_CREDIT_TYPE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_NON_PRIMARY_CURRENCY_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_OVERDUE_LOAN_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_ACTIVE_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "BUREAU_OVERDUE_LOAN_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_MEAN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_MIN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DAYS_CREDIT_MAX",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DAYS_SINCE_RECENT_CREDIT",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DAYS_OVERDUE_MEAN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DAYS_OVERDUE_MAX",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_PROLONG_COUNT_SUM",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_CREDIT_AMOUNT_OBSERVED_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_CREDIT_AMOUNT_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_CREDIT_AMOUNT_MEAN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_CREDIT_AMOUNT_MAX",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DEBT_OBSERVED_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DEBT_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DEBT_MEAN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DEBT_MAX",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_OVERDUE_AMOUNT_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_OVERDUE_AMOUNT_MAX",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_MAX_OVERDUE_OBSERVED_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_MAX_OVERDUE_AMOUNT",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_ACTIVE_CREDIT_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_ACTIVE_DEBT_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_DEBT_CREDIT_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_ANNUITY_OBSERVED_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_ANNUITY_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "BUREAU_ANNUITY_MEAN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_HAS_HISTORY",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "INST_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PREV_LOAN_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PAYMENT_EVENT_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PAYMENT_DATE_OBSERVED_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PAYMENT_AMOUNT_OBSERVED_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_MISSING_PAYMENT_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_MISSING_PAYMENT_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "INST_LATE_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_LATE_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "INST_DAYS_LATE_MEAN",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_DAYS_LATE_MAX",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_DAYS_LATE_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_UNDERPAID_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_UNDERPAID_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "INST_SCHEDULED_AMOUNT_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PAID_AMOUNT_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PAYMENT_GAP_SUM",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PAYMENT_GAP_MAX",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_PAYMENT_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_DAYS_SINCE_RECENT_DUE",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_OLDEST_DUE_AGE_DAYS",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_HISTORY_SPAN_DAYS",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": -3.4028234663852886e+38,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_LAST_365_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_LAST_365_LATE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_LAST_365_LATE_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "INST_LAST_730_SCHEDULE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_LAST_730_LATE_COUNT",
+      "type": "integer",
+      "required": true,
+      "nullable": false,
+      "minimum": 0,
+      "maximum": 3.4028234663852886e+38
+    },
+    {
+      "name": "INST_LAST_730_LATE_RATIO",
+      "type": "number",
+      "required": true,
+      "nullable": true,
+      "minimum": 0,
+      "maximum": 1
+    },
+    {
+      "name": "NAME_CONTRACT_TYPE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "FLAG_OWN_CAR",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "FLAG_OWN_REALTY",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "NAME_TYPE_SUITE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "NAME_INCOME_TYPE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "NAME_EDUCATION_TYPE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "NAME_FAMILY_STATUS",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "NAME_HOUSING_TYPE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "OCCUPATION_TYPE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "WEEKDAY_APPR_PROCESS_START",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "ORGANIZATION_TYPE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "FONDKAPREMONT_MODE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "HOUSETYPE_MODE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    },
+    {
+      "name": "WALLSMATERIAL_MODE",
+      "type": "string",
+      "required": true,
+      "nullable": true,
+      "min_length": 1,
+      "max_length": 128,
+      "reserved_values": [
+        "__MISSING__",
+        "__RARE__"
+      ]
+    }
+  ]
+}

@@ -13,7 +13,8 @@ CreditLens는 Kaggle의 공개 익명 금융 데이터를 활용하여 대출 �
 - Stage 4: 기준 모델 5개 학습과 ROC·PR·Calibration·Decile·Top-K validation 분석 완료
 - Stage 5: LightGBM·TensorFlow MLP 비교, 제한 튜닝, 확률 보정 검토와 피처군 분석 완료
 - Stage 6: SHAP·위험전략·하위그룹 검토와 최종 모델·cutoff 동결 완료
-- 다음 작업: Stage 7 동결 모델을 사용하는 Streamlit·FastAPI 프로토타입
+- Stage 7: 1/3 입력 계약·공통 예측 함수·합성 예시 구현 완료
+- 다음 작업: Stage 7의 2/3 Streamlit·FastAPI 인터페이스
 - 모델은 train으로만 학습했고 test 데이터는 계속 봉인합니다.
 
 전체 범위와 Stage별 완료 조건은 [프로젝트 계획서](docs/Project_Plan.md)를 참고하세요.
@@ -26,6 +27,7 @@ V3 신경망의 학습 절차와 비교 결과는 [Stage 5 2/3 TensorFlow MLP �
 고정 후보의 예측 근거와 Top 10% 포착·누락 분석은 [Stage 6 1/3 SHAP·오류 분석 보고서](docs/Stage6_SHAP_Analysis_Report.md)에 기록되어 있습니다.
 위험구간·심사 용량과 하위그룹 진단은 [Stage 6 2/3 위험전략·하위그룹 분석 보고서](docs/Stage6_Risk_Strategy_and_Subgroup_Report.md)에서 확인할 수 있습니다.
 최종 모델과 활용 기준은 [Stage 6 최종 판단 보고서](docs/Stage6_Finalization_Report.md)와 [모델 카드](docs/Model_Card.md)에 정리했습니다.
+공통 예측 함수의 입력·출력 명세와 실행 방법은 [Stage 7 입출력 계약](docs/Stage7_Inference_Contract.md)을 참고하세요.
 
 ## 핵심 분석 목표
 
@@ -450,11 +452,24 @@ git check-ignore -v --no-index data/processed/features.parquet
 git check-ignore -v --no-index models/creditlens.joblib
 ```
 
+## 공통 예측 함수
+
+동결 모델에 V3 피처 198개를 전달하면 상환곤란 확률, 위험구간, 우선검토 여부와 입력 품질 경고를 반환합니다. 원본 거래를 집계하는 기능은 아니며, Stage 3 방식으로 준비된 고객별 피처가 필요합니다. 화면과 API는 다음 단계에서 이 함수를 공유합니다.
+
+기존 `.venv`와 로컬 동결 모델이 있는 프로젝트 루트에서 실행합니다. 모델 파일은 Git에 포함되지 않습니다.
+
+```bash
+# 실제 고객이 아닌 합성 입력으로 예측 확인
+PYTHONPATH=src .venv/bin/python -m creditlens.inference --demo
+
+# 전체 입력 피처 명세 확인
+PYTHONPATH=src .venv/bin/python -m creditlens.inference --contract
+```
+
+상세 계약은 [Stage 7 명세](docs/Stage7_Inference_Contract.md), 전체 필드 목록은 [입력 계약 JSON](reports/stage7_input_contract.json)에 있습니다. 모델·전처리·cutoff는 Stage 6 그대로이며, 이 실행은 학습·검증·test 데이터셋을 읽지 않습니다. 개별 SHAP 요인 반환은 아직 구현 전입니다.
+
 ## 다음 작업
 
-Stage 6을 완료했습니다. 다음은 Stage 7의 결과 제공 프로그램입니다.
-
-1. 동결 모델이 요구하는 입력 피처와 출력 명세를 정의합니다.
-2. 같은 추론 함수를 쓰는 Streamlit 화면·FastAPI API·배치 실행을 구현합니다.
-3. 입력 검수와 데이터·모델 모니터링 기준을 정리합니다.
-4. Stage 8 구현 항목 3에서 내부 holdout test 46,126명을 한 번 최종 평가합니다. 그전까지 test는 봉인합니다.
+1. Stage 7-2: 같은 예측 함수를 쓰는 Streamlit 화면·FastAPI API와 예측요인 표시를 구현합니다.
+2. Stage 7-3: 파일 기반 배치 실행, 운영 검수와 데이터·모델 모니터링 기준을 정리합니다.
+3. Stage 8 구현 항목 3에서 내부 holdout test 46,126명을 한 번 최종 평가합니다. 그전까지 test는 봉인합니다.

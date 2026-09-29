@@ -11,8 +11,8 @@
 | 진행 방식 | Stage 단위 구현·검증 |
 | 저장소 | `CreditLens` |
 | 개발 환경 | WSL2 Ubuntu, VS Code, Google Colab, Python |
-| 현재 상태 | Stage 6 완료 (해석·경고 검토·최종 모델과 cutoff 동결) |
-| 다음 단계 | Stage 7 Streamlit·FastAPI 프로토타입과 데이터서비스 요건 |
+| 현재 상태 | Stage 7의 1/3 완료 (입출력 계약·공통 예측 함수) |
+| 다음 단계 | Stage 7의 2/3 Streamlit·FastAPI 인터페이스 |
 
 ### 한 줄 정의
 
@@ -243,7 +243,7 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 | 5 | Stage 4 | 전처리·평가 체계와 Dummy·Logistic·Random Forest | 완료 |
 | 6 | Stage 5 | LightGBM·TensorFlow MLP와 데이터·모델 비교 | 완료 |
 | 7 | Stage 6 | 최종 모델 해석·위험전략·설정 고정 | 완료 |
-| 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 다음 |
+| 8 | Stage 7 | Streamlit·FastAPI 프로그램과 데이터서비스 요건 | 1/3 완료 |
 | 9 | Stage 8 | 봉인 테스트·최종 보고서·시연 검증 | 예정 |
 
 ### Stage 0. 프로젝트 초기 환경 구성
@@ -558,6 +558,20 @@ Home Credit 원본에는 신뢰할 수 있는 신청 기준일이 없으므로 P
 
 고정된 모델을 공통 추론 파이프라인으로 제공하는 최소 Streamlit 프로그램과 FastAPI REST API를 구현하고, 입력 검수와 데이터·모델 모니터링 요건을 정의한다. 이 단계는 분석 결과를 보여주는 프로토타입이며 프로젝트의 본체는 Stage 3~6의 분석·AI다.
 
+**세 번의 작업 구분**
+
+1. **7-1 완료:** 198개 피처의 입력·출력 계약, 입력 검사, 동결 모델을 사용하는 공통 예측 함수, 합성 예시와 자동 테스트.
+2. **7-2 예정:** 같은 함수를 사용하는 Streamlit·FastAPI 화면/API, 개별 예측요인 표시와 인터페이스 검증.
+3. **7-3 예정:** 파일 기반 배치 실행, 운영 인수검수, 데이터·모델 모니터링 시나리오와 Runbook.
+
+**7-1 구현 결과**
+
+- `src/creditlens/inference/`에서 198개 피처를 검증하고 저장된 전처리·모델·보정기·cutoff로 예측한다. 학습이나 설정 변경은 하지 않는다.
+- 입력 누락과 명시적 결측, 타입·범위 오류, 미등록 범주 경고와 일부 필드 간 모순을 구분한다.
+- 상환곤란 확률·모델 위험구간·우선검토 여부·버전·품질 경고를 반환한다. 개별 SHAP 요인과 화면/API는 아직 구현 전이다.
+- 전체 명세와 실행 방법은 [Stage 7 입출력 계약](Stage7_Inference_Contract.md), 기계 판독용 필드 목록은 [계약 JSON](../reports/stage7_input_contract.json)에 기록한다.
+- 검증에는 실제 고객 대신 합성 입력을 사용하며 train/validation/test를 읽지 않는다.
+
 **구현 단계**
 
 1. 분석가·심사 담당자·데이터서비스 운영자를 사용자로 정의하고 결과 이용 시나리오를 정리한다.
@@ -709,7 +723,7 @@ CreditLens/
 └── requirements-stage5-7.txt # Stage 5·7의 MLP·시연 의존성
 ```
 
-Stage 6까지 SHAP·위험구간·하위그룹 분석과 경고 재검토를 완료하고 최종 LightGBM·정책·산출물을 동결했다. 다음 작업은 Stage 7에서 공통 동결 모델을 사용하는 Streamlit·FastAPI 인터페이스와 입력 검수·모니터링 요건을 구현하는 것이다. Stage 8에서 내부 holdout test를 한 번 평가한다. AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
+Stage 6에서 최종 LightGBM·정책·산출물을 동결했고 Stage 7의 1/3에서 입력 계약과 공통 예측 함수를 구현했다. 다음은 7-2 Streamlit·FastAPI 인터페이스, 이후 7-3 배치 실행·운영 검수·모니터링이다. 내부 holdout test는 Stage 8 구현 항목 3에서 한 번 평가한다. AWS·대규모 배포는 핵심 분석과 모델링이 완성된 이후에만 검토한다.
 
 ## 10. 형상관리와 개발 원칙
 

@@ -89,3 +89,6 @@ saved_model/
 mlruns/
 wandb/
 tensorboard/
+
+# Local-only personal study notes (not portfolio deliverables)
+/personal_study/
